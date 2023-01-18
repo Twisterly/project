@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_car_brand car_brand_id="200" car_brand_name="KIA" />
+    <t_car_brand car_brand_id="201" car_brand_name="BMW" />
+
+    <t_model_detail modeldetail_id="1" model_name="sportage" car_brand_id="200"/>
+    <t_model_detail modeldetail_id="2" model_name="x5" car_brand_id="201"/>
+</dataset>

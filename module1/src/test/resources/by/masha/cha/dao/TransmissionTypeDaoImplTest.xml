@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_transmission_type transmission_type_id="500" transmission_type_name="automatic"/>
+    <t_transmission_type transmission_type_id="501" transmission_type_name="manual"/>
+</dataset>

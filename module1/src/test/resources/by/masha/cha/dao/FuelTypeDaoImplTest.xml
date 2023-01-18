@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_fuel_type fuel_type_id="100" fuel_type_name="petrol"/>
+    <t_fuel_type fuel_type_id="101" fuel_type_name="gaz"/>
+    <t_fuel_type fuel_type_id="102" fuel_type_name="diesel"/>
+    <t_fuel_type fuel_type_id="103" fuel_type_name="electricity"/>
+</dataset>

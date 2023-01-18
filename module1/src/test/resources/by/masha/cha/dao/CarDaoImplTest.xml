@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+
+    <t_car_brand car_brand_id="200" car_brand_name="AUDI"/>
+    <t_car_brand car_brand_id="201" car_brand_name="BMW"/>
+
+    <!--    <t_model_detail modeldetail_id="1" model_name="sorento"/>-->
+    <!--    <t_model_detail modeldetail_id="2" model_name="x5"/>-->
+
+    <t_body_type body_type_id="600" body_type_name="sedan"/>
+    <t_body_type body_type_id="601" body_type_name="coupe"/>
+
+    <t_transmission_type transmission_type_id="500"
+                         transmission_type_name="automatic"/>
+    <t_transmission_type transmission_type_id="501"
+                         transmission_type_name="manual"/>
+
+    <t_fuel_type fuel_type_id="100" fuel_type_name="petrol"/>
+
+    <t_car_photo car_photo_id="200" photo_name="sorentoPhoto"/>
+    <t_car_photo car_photo_id="201" photo_name="x5Photo"/>
+
+    <t_car car_id="101" reg_number="7434CK-7"
+           vin_number="375HJFNFOW36272FEIFH" price="20.0"
+           year="2020" color="black" climate_control="true"
+           seats="5" doors="4" engine_capacity="2.5"
+           car_photo_id="200" body_type_id="600"
+           transmission_type_id="500" car_brand_id="200"
+           fuel_type_id="100"/>
+    <t_car car_id="102" reg_number="7084MM-7"
+           vin_number="37JGRNFOW36272FEIFH" price="25.0"
+           year="2022" color="white" climate_control="true"
+           seats="5" doors="4" engine_capacity="4.8"
+           car_photo_id="201" body_type_id="601"
+           transmission_type_id="501" fuel_type_id="100"
+           car_brand_id="201"/>
+
+</dataset>
