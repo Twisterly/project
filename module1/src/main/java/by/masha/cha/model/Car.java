@@ -69,5 +69,7 @@ public class Car {
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name="fuel_type_id")
     private FuelType fuelType;
+    @Column(name="car_is_free")
+    private boolean isFree = true;
 
 }

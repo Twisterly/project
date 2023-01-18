@@ -122,6 +122,7 @@
             car_brand_id BIGINT(19),
             transmission_type_id BIGINT(19),
             fuel_type_id BIGINT(19),
+            car_is_free BOOLEAN,
             PRIMARY KEY (car_id),
             FOREIGN KEY (car_photo_id) REFERENCES t_car_photo (car_photo_id),
             FOREIGN KEY (body_type_id) REFERENCES t_body_type (body_type_id),

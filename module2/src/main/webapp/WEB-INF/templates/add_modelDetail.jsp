@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
 <h1>Add new model</h1>
 
-<form method="post" action="/car/add-modelDetail.html">
+<form method="post" action="/car/add-modelDetail.html" enctype="multipart/form-data">
  <!-- brand -->
          <div class="mb-3">
            <label for="brand.id">Choose a brand:</label>

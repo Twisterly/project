@@ -26,13 +26,13 @@
            seats="5" doors="4" engine_capacity="2.5"
            car_photo_id="200" body_type_id="600"
            transmission_type_id="500" car_brand_id="200"
-           fuel_type_id="100"/>
+           fuel_type_id="100" car_is_free="true"/>
     <t_car car_id="102" reg_number="7084MM-7"
            vin_number="37JGRNFOW36272FEIFH" price="25.0"
            year="2022" color="white" climate_control="true"
            seats="5" doors="4" engine_capacity="4.8"
            car_photo_id="201" body_type_id="601"
            transmission_type_id="501" fuel_type_id="100"
-           car_brand_id="201"/>
+           car_brand_id="201" car_is_free="true"/>
 
 </dataset>
