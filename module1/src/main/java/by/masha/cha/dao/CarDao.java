@@ -1,8 +1,6 @@
 package by.masha.cha.dao;
 
-import by.masha.cha.model.Brand;
 import by.masha.cha.model.Car;
-import by.masha.cha.model.ModelDetail;
 
 import java.util.List;
 
@@ -18,6 +16,8 @@ public interface CarDao {
 
     List<Car> findAll();
 
-    List<ModelDetail> findByModel(long id);
+    List<Car> findAllByBrandName(String name);
+
+
 
 }

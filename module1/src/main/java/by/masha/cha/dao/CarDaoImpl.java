@@ -50,11 +50,19 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public List<ModelDetail> findByModel(long modelId) {
-        String query = "SELECT m.modelDetail FROM Car AS m WHERE id=" + modelId;
-        return sessionFactory.getCurrentSession().createQuery(query,
-                ModelDetail.class).list();
-
+    public List<Car> findAllByBrandName(String name) {
+        String brandQuery = "FROM Brand B WHERE B.brandName='" + name + "'";
+        List<Brand> brands =
+                sessionFactory.getCurrentSession().createQuery(brandQuery,
+                        Brand.class).list();
+        Brand brand = brands.get(0);
+        String carQuery =
+                "FROM Car C WHERE brand='" + brand.getId() + "'";
+        return sessionFactory.getCurrentSession().createQuery(carQuery,
+                Car.class).list();
     }
+
+
+
 
 }

@@ -19,12 +19,12 @@ public class CarListController {
 
     @Autowired
     private CarService carService;
-    @Autowired
-    private ModelDetailService modelDetailService;
-    @Autowired
-    private BodyTypeService bodyTypeService;
-    @Autowired
-    private BrandService brandService;
+//    @Autowired
+//    private ModelDetailService modelDetailService;
+//    @Autowired
+//    private BodyTypeService bodyTypeService;
+//    @Autowired
+//    private BrandService brandService;
 
     @GetMapping("/car-list.html")
     public ModelAndView showCarList() {

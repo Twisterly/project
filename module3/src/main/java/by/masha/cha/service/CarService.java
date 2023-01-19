@@ -16,27 +16,25 @@ public class CarService {
 
     @Transactional
     public void add(Car car, byte[] photo) {
-        List<Car> cars = new ArrayList<>();
-        cars.add(car);
         Brand brand = car.getBrand();
-        if (brand.getCar() == null) {
-            car.getBrand().setCar(cars);
-        }
-        BodyType bodyType = car.getBodyType();
-        if (bodyType.getCar() == null){
-            car.getBodyType().setCar(cars);
+        if(brand == null){
+            car.setBrand(new Brand());
         }
         FuelType fuelType = car.getFuelType();
-        if (fuelType.getCar() == null){
-            car.getFuelType().setCar(cars);
+        if(fuelType == null){
+            car.setFuelType(new FuelType());
         }
         TransmissionType transmissionType = car.getTransmissionType();
-        if (transmissionType.getCar() == null){
-            car.getTransmissionType().setCar(cars);
+        if(transmissionType == null){
+            car.setTransmissionType(new TransmissionType());
+        }
+        BodyType bodyType = car.getBodyType();
+        if(bodyType == null){
+            car.setBodyType(new BodyType());
         }
         if (car.getCarPhoto() == null) {
             CarPhoto carPhoto = new CarPhoto();
-            carPhoto.setCar(cars);
+            carPhoto.setCar(car);
             carPhoto.setPhoto(photo);
             car.setCarPhoto(carPhoto);
         }
@@ -44,6 +42,7 @@ public class CarService {
         carDao.create(car);
 
     }
+
     public List<Car> getAll() {
         return carDao.findAll();
     }

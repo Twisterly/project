@@ -25,7 +25,8 @@ public class CarPhoto {
     @Column(name = "car_photo", columnDefinition = "MEDIUMBLOB NOT NULL")
     private byte[] photo;
 
-    @OneToMany(mappedBy = "carPhoto")
-    private List<Car> car;
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 
 }

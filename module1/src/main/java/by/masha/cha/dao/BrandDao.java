@@ -18,4 +18,6 @@ public interface BrandDao {
     public List<Brand> findAll();
 
     List<String> findAllBrandNames();
+
+    Brand findByBrandName(String name);
 }

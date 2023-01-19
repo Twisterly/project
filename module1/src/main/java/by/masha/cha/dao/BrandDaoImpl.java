@@ -2,15 +2,17 @@ package by.masha.cha.dao;
 
 
 import by.masha.cha.model.Brand;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Repository
 @Transactional
-public class BrandDaoImpl implements BrandDao{
+public class BrandDaoImpl implements BrandDao {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -51,5 +53,14 @@ public class BrandDaoImpl implements BrandDao{
         String query = "SELECT b.brandName FROM Brand AS b";
         return sessionFactory.getCurrentSession().createQuery(query,
                 String.class).list();
+    }
+
+    @Override
+    public Brand findByBrandName(String name) {
+        String query = "FROM Brand B WHERE B.brandName='" + name +"'";
+        List<Brand> brands =
+                sessionFactory.getCurrentSession().createQuery(query,
+                        Brand.class).list();
+        return brands.get(0);
     }
 }

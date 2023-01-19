@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -49,11 +48,12 @@ public class CarDaoImplTest extends BaseDaoTest {
 
         Car car = new Car();
         car.setPrice(20.0);
-        List<Car> cars = new ArrayList<>();
-        cars.add(car);
 
         Brand brand = new Brand();
-        brand.setBrandName("ferrari");
+        brand.setBrandName("audi");
+
+        ModelDetail modelDetail = new ModelDetail();
+        modelDetail.setModelName("a4");
 
         BodyType bodyType = new BodyType();
         bodyType.setBodyTypeName("sedan");
@@ -65,19 +65,13 @@ public class CarDaoImplTest extends BaseDaoTest {
         fuelType.setFuelTypeName("petrol");
 
         CarPhoto carPhoto = new CarPhoto();
-        carPhoto.setName("x6Photo");
 
         car.setBrand(brand);
+        car.setModelDetail(modelDetail);
         car.setBodyType(bodyType);
         car.setCarPhoto(carPhoto);
         car.setTransmissionType(transmissionType);
         car.setFuelType(fuelType);
-        bodyType.setCar(cars);
-        carPhoto.setCar(cars);
-        brand.setCar(cars);
-        transmissionType.setCar(cars);
-        fuelType.setCar(cars);
-
         //When
         targetObject.create(car);
 
@@ -90,7 +84,8 @@ public class CarDaoImplTest extends BaseDaoTest {
         conn.createStatement().executeUpdate("truncate table t_body_type;");
         conn.createStatement().executeUpdate("truncate table t_car_photo;");
         conn.createStatement().executeUpdate("truncate table t_model_detail;");
-        conn.createStatement().executeUpdate("truncate table t_transmission_type;");
+        conn.createStatement().executeUpdate("truncate table " +
+                "t_transmission_type;");
         conn.createStatement().executeUpdate("truncate table t_fuel_type;");
         conn.createStatement().executeUpdate("truncate table t_car;");
         conn.createStatement().executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
@@ -156,4 +151,25 @@ public class CarDaoImplTest extends BaseDaoTest {
         assertEquals(cars.size(), 2);
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
+
+    @Test
+    @SneakyThrows
+    public void findAllByBrandName() {
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(CarDaoImplTest.class.getResourceAsStream(
+                        "CarDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        List<Car> cars =
+                targetObject.findAllByBrandName("BMW");
+
+        //Then
+        assertEquals(1, cars.size());
+        assertEquals("7084MM-7", cars.get(0).getRegNumber());
+
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
+    }
+
+
 }

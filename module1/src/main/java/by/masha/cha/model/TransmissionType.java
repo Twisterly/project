@@ -21,8 +21,8 @@ public class TransmissionType {
     @Column(name="transmission_type_name")
     private String transmissionTypeName;
 
-    @OneToMany(mappedBy = "transmissionType")
-    private List<Car> car;
+//    @OneToMany(mappedBy = "transmissionType")
+//    private List<Car> car;
 
 
 

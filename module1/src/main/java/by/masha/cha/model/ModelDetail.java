@@ -25,9 +25,9 @@ public class ModelDetail {
 
     //    @OneToMany(mappedBy = "modelDetail")
 //    private List<Car> car;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_brand_id")
-    private Brand brand;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "car_brand_id")
+//    private Brand brand;
 
 
 }

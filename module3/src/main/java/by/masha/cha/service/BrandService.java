@@ -23,5 +23,9 @@ public class BrandService {
         return brandDao.findAll();
     }
 
+    public List<String> findAllBrandNames() {
+        return brandDao.findAllBrandNames();
+    }
+
 }
 

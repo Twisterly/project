@@ -1,5 +1,6 @@
 package by.masha.cha.dao;
 
+import by.masha.cha.model.Brand;
 import by.masha.cha.model.ModelDetail;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface ModelDetailDao {
     List<String> findAllModelNames();
 
    List<ModelDetail> findAll();
+
+    List<ModelDetail> findAllModelsByBrandName(String name);
 
 
 }

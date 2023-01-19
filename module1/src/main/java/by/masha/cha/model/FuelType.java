@@ -21,7 +21,7 @@ public class FuelType {
     @Column(name="fuel_type_name")
     private String fuelTypeName;
 
-    @OneToMany(mappedBy = "fuelType")
-    private List<Car> car;
+//    @OneToMany(mappedBy = "fuelType")
+//    private List<Car> car;
 
 }

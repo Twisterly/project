@@ -155,5 +155,23 @@ public class BrandDaoImplTest extends BaseDaoTest {
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
 
+    @Test
+    @SneakyThrows
+    public void findByBrandName() {
+        //Given
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(BrandDaoImplTest.class.getResourceAsStream(
+                        "BrandDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        Brand brand = targetObject.findByBrandName("FIAT");
+
+        //Then
+        assertEquals(202, brand.getId());
+
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
+    }
+
 }
 

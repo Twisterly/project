@@ -50,26 +50,29 @@ public class Car {
 //    @JoinColumn(name = "modeldetail_id")
 //    private ModelDetail modelDetail;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name="car_photo_id")
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private CarPhoto carPhoto;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name="body_type_id")
     private BodyType bodyType;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "car_brand_id")
     private Brand brand;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name="transmission_type_id")
     private TransmissionType transmissionType;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name="fuel_type_id")
     private FuelType fuelType;
     @Column(name="car_is_free")
     private boolean isFree = true;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name="model_detail_id")
+    private ModelDetail modelDetail;
 
 }

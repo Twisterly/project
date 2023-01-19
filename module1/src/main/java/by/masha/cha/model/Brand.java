@@ -22,8 +22,8 @@ public class Brand {
     @Column(name = "car_brand_name")
     private String brandName;
 
-    @OneToMany(mappedBy = "brand")
-    private List<Car> car;
-    @OneToMany(mappedBy = "brand")
-    private List<ModelDetail> modelDetails;
+//    @OneToMany(mappedBy = "brand")
+//    private List<Car> car;
+//    @OneToMany(mappedBy = "brand")
+//    private List<ModelDetail> modelDetails;
 }

@@ -23,6 +23,6 @@ public class BodyType {
     @Column(name="body_type_name")
     private String bodyTypeName;
 
-    @OneToMany(mappedBy = "bodyType")
-    private List<Car> car;
+//    @OneToMany(mappedBy = "bodyType")
+//    private List<Car> car;
 }

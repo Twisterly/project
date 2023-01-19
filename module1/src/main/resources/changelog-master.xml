@@ -76,9 +76,7 @@
             CREATE TABLE IF NOT EXISTS t_model_detail (
             modeldetail_id BIGINT(19),
             model_name VARCHAR(255),
-            `car_brand_id` BIGINT(19),
-            PRIMARY KEY (modeldetail_id),
-            FOREIGN KEY (car_brand_id) REFERENCES t_car_brand (car_brand_id)
+            PRIMARY KEY (modeldetail_id)
             );
         </sql>
     </changeSet>
@@ -122,13 +120,15 @@
             car_brand_id BIGINT(19),
             transmission_type_id BIGINT(19),
             fuel_type_id BIGINT(19),
+            modeldetail_id BIGINT(19),
             car_is_free BOOLEAN,
             PRIMARY KEY (car_id),
             FOREIGN KEY (car_photo_id) REFERENCES t_car_photo (car_photo_id),
             FOREIGN KEY (body_type_id) REFERENCES t_body_type (body_type_id),
             FOREIGN KEY (car_brand_id) REFERENCES t_car_brand (car_brand_id),
             FOREIGN KEY (transmission_type_id) REFERENCES t_transmission_type (transmission_type_id),
-            FOREIGN KEY (fuel_type_id) REFERENCES t_fuel_type (fuel_type_id)
+            FOREIGN KEY (fuel_type_id) REFERENCES t_fuel_type (fuel_type_id),
+            FOREIGN KEY (modeldetail_id) REFERENCES t_model_detail (modeldetail_id)
             );
         </sql>
     </changeSet>
@@ -169,30 +169,26 @@
         </sql>
     </changeSet>
 
-    <!--    <changeSet id="8" author="mashafadik@yahoo.com">-->
-    <!--        <sql>-->
-    <!--            CREATE TABLE IF NOT EXISTS t_fuel_seq (-->
-    <!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
-    <!--            );-->
-    <!--            INSERT INTO t_fuel_seq VALUES (0);-->
-    <!--        </sql>-->
-    <!--    </changeSet>-->
-
-    <!--    <changeSet id="9" author="mashafadik@yahoo.com">-->
-    <!--        <sql>-->
-    <!--            CREATE TABLE IF NOT EXISTS `app_user` (-->
-    <!--            `ID` VARCHAR(256) PRIMARY KEY NOT NULL,-->
-    <!--            `USER_NAME` VARCHAR(256) NOT NULL,-->
-    <!--            `USER_PASSWORD` VARCHAR(256),-->
-    <!--            `USER_ROLE` VARCHAR(256)-->
-    <!--            );-->
-    <!--            INSERT INTO `app_user` VALUES (-->
-    <!--            '10000000-0000-0000-0000-000000000001',-->
-    <!--            'root',-->
-    <!--            '{nope}root',-->
-    <!--            'ADMIN'-->
-    <!--            );-->
-    <!--        </sql>-->
-    <!--    </changeSet>-->
+    <changeSet id="15" author="mashafadik@yahoo.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `app_user` (
+            `ID` VARCHAR(256) PRIMARY KEY NOT NULL,
+            `USER_NAME` VARCHAR(256) NOT NULL,
+            `USER_PASSWORD` VARCHAR(256) NOT NULL,
+            `user_first_name` VARCHAR(256),
+            `user_last_name` VARCHAR(256),
+            `user_birth_date` DATE,
+            `USER_ROLE` VARCHAR(256) DEFAULT 'USER'
+            );
+            INSERT INTO `app_user` (ID, USER_NAME,
+            USER_PASSWORD, USER_ROLE)
+            VALUES (
+            '10000000-0000-0000-0000-000000000001',
+            'root',
+            '{noop}root',
+            'ADMIN'
+            );
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

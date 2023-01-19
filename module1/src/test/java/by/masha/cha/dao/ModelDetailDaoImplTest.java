@@ -8,6 +8,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +50,14 @@ public class ModelDetailDaoImplTest extends BaseDaoTest {
 
         ModelDetail modelDetail = new ModelDetail();
         modelDetail.setModelName("rio");
-        List<ModelDetail> models = new ArrayList<>();
-        models.add(modelDetail);
+//        List<ModelDetail> models = new ArrayList<>();
+//        models.add(modelDetail);
 
         Brand brand = new Brand();
         brand.setBrandName("kia");
 
-        modelDetail.setBrand(brand);
-        brand.setModelDetails(models);
+//        modelDetail.setBrand(brand);
+//        brand.setModelDetails(models);
 
         //When
         targetObject.create(modelDetail);
@@ -160,5 +161,26 @@ public class ModelDetailDaoImplTest extends BaseDaoTest {
 //        }
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 modelDetailDataSet);
+    }
+
+    @Test
+    @SneakyThrows
+    @Ignore
+    public void findAllModelsByBrandName() {
+        //Given
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(ModelDetailDaoImplTest.class.getResourceAsStream(
+                        "ModelDetailDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        List<ModelDetail> modelDetails =
+                targetObject.findAllModelsByBrandName("BMW");
+
+        //Then
+        assertEquals(1, modelDetails.size());
+        assertEquals("x5", modelDetails.get(0).getModelName());
+
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
 }

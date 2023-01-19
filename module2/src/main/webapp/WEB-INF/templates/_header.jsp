@@ -44,9 +44,24 @@
               <li><a class="dropdown-item" href="/car/add-brand.html">Add brand</a></li>
               <li><a class="dropdown-item" href="/car/add-fuelType.html">Add fuel type</a></li>
               <li><a class="dropdown-item" href="/car/add-transmissionType.html">Add transmission type</a></li>
+           <li><a class="dropdown-item" href="/car/reg-appUser.html">Add app user</a></li>
           </ul>
         </li>
-
+ <li class="nav-item">
+        <security:authorize access="isAuthenticated()">
+            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+        </security:authorize>
+        <security:authorize access="!isAuthenticated()">
+                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+        </security:authorize>
+        </li>
+      </ul>
+      <security:authorize access="isAuthenticated()">
+        <a class="nav-link disabled">Welcome&nbsp;<security:authentication property="name"/>&nbsp;</a>
+      </security:authorize>
+      <security:authorize access="!isAuthenticated()">
+        <a class="nav-link disabled">Welcome&nbsp;anonymous</a>
+      </security:authorize>
       <form class="d-flex" role="search" action="/hello/search.do" method="post">
         <input class="form-control me-2" type="search" name="pname" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

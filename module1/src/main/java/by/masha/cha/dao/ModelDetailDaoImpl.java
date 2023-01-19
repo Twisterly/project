@@ -1,5 +1,6 @@
 package by.masha.cha.dao;
 
+import by.masha.cha.model.Brand;
 import by.masha.cha.model.ModelDetail;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,19 @@ public class ModelDetailDaoImpl implements ModelDetailDao {
     public List<ModelDetail> findAll() {
         String query = "FROM ModelDetail";
         return sessionFactory.getCurrentSession().createQuery(query,
+                ModelDetail.class).list();
+    }
+
+    @Override
+    public List<ModelDetail> findAllModelsByBrandName(String name) {
+        String brandQuery = "FROM Brand B WHERE B.brandName='" + name + "'";
+        List<Brand> brands =
+                sessionFactory.getCurrentSession().createQuery(brandQuery,
+                        Brand.class).list();
+        Brand brand = brands.get(0);
+        String modelDetailQuery =
+                "FROM ModelDetail M WHERE brand='" + brand.getId() + "'";
+        return sessionFactory.getCurrentSession().createQuery(modelDetailQuery,
                 ModelDetail.class).list();
     }
 }
