@@ -1,7 +1,6 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.AppUser;
-import by.masha.cha.model.BodyType;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

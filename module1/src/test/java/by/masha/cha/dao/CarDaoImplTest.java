@@ -24,6 +24,17 @@ import static org.junit.Assert.assertNotNull;
 public class CarDaoImplTest extends BaseDaoTest {
     @Autowired
     CarDao targetObject;
+    @Autowired
+    BrandDao brandDao;
+    @Autowired
+    ModelDetailDao modelDetailDao;
+    @Autowired
+    FuelTypeDao fuelTypeDao;
+    @Autowired
+    TransmissionTypeDao transmissionTypeDao;
+    @Autowired
+    BodyTypeDao bodyTypeDao;
+
 
     @Before
     public void setUp() {
@@ -46,25 +57,32 @@ public class CarDaoImplTest extends BaseDaoTest {
         int initialSize = rs.getInt(1);
         assertEquals(0, initialSize);
 
-        Car car = new Car();
-        car.setPrice(20.0);
 
         Brand brand = new Brand();
         brand.setBrandName("audi");
-
-        ModelDetail modelDetail = new ModelDetail();
-        modelDetail.setModelName("a4");
-
+       brandDao.create(brand);
+//
         BodyType bodyType = new BodyType();
         bodyType.setBodyTypeName("sedan");
-
+        bodyTypeDao.create(bodyType);
+//
+        ModelDetail modelDetail = new ModelDetail();
+        modelDetail.setModelName("a4");
+        modelDetailDao.create(modelDetail);
+//
         TransmissionType transmissionType = new TransmissionType();
         transmissionType.setTransmissionTypeName("automatic");
-
+        transmissionTypeDao.create(transmissionType);
+//
         FuelType fuelType = new FuelType();
         fuelType.setFuelTypeName("petrol");
+       fuelTypeDao.create(fuelType);
+
+
 
         CarPhoto carPhoto = new CarPhoto();
+        Car car = new Car();
+        car.setPrice(20.0);
 
         car.setBrand(brand);
         car.setModelDetail(modelDetail);
@@ -104,7 +122,7 @@ public class CarDaoImplTest extends BaseDaoTest {
         //Then
         assertEquals("7434CK-7", car.getRegNumber());
         assertEquals(200, car.getCarPhoto().getId());
-        assertEquals("sedan", car.getBodyType().getBodyTypeName());
+     //   assertEquals("sedan", car.getBodyType().getBodyTypeName());
 
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }

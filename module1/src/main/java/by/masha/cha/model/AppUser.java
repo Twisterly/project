@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "app_user")
@@ -33,6 +32,12 @@ public class AppUser {
     @Column(name = "user_birth_date")
     private Date birthDate;
 
+    @Column(name="user_email")
+    private String email;
+    @Column(name="user_gender")
+    private String gender;
+
     @Column(name = "USER_ROLE")
     private String role = "USER";
+
 }

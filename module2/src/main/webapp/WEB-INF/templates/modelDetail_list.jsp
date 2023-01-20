@@ -11,14 +11,6 @@
     <td><c:out value="${modelDetail}"/></td>
   </tr>
   </c:forEach>
-    <tr>
-      <th>Brand Name</th>
-    </tr>
-    <c:forEach items="${brands}" var="brand">
-    <tr>
-      <td><c:out value="${modelDetail.brand.brandName}"/></td>
-    </tr>
-    </c:forEach>
 </table>
 
 <jsp:include page="_footer.jsp"/>

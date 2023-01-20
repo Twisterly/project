@@ -11,7 +11,7 @@
     <!-- password -->
      <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="text" name="password" class="form-control" id="{noop}password" aria-describedby="nameHelp">
+      <input type="password" name="password" class="form-control" id="{noop}password" aria-describedby="nameHelp">
       <div id="nameHelp" class="form-text">Enter password</div>
      </div>
      <!-- firstName -->
@@ -26,12 +26,27 @@
            <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="nameHelp">
            <div id="nameHelp" class="form-text">Enter last Name</div>
           </div>
-          <!-- birthDat -->
-           <div class="mb-3">
-            <label for="birthDate" class="form-label">birthDate</label>
-            <input type="date" name="birthDate" class="form-control" id="birthDate" aria-describedby="nameHelp">
-            <div id="nameHelp" class="form-text">Enter birthDate</div>
-           </div>
+ <!-- gender -->
+ <div class="form-check form-check-inline">
+   <input class="form-check-input" type="radio" name="gender" id="gender1" value="male">
+   <label class="form-check-label" for="gender1">Male</label>
+ </div>
+ <div class="form-check form-check-inline">
+   <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
+   <label class="form-check-label" for="gender2">Female</label>
+ </div>
+ <!-- birthDat -->
+  <div class="mb-3">
+    <label for="birthDate" class="form-label">birthDate</label>
+    <input type="date" name="birthDate" class="form-control" id="birthDate" aria-describedby="nameHelp">
+    <div id="nameHelp" class="form-text">Enter birthDate</div>
+   </div>
+  <!-- email -->
+   <div class="mb-3">
+      <label for="email" class="form-label">email</label>
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="nameHelp">
+      <div id="nameHelp" class="form-text">Enter email</div>
+   </div>
          <button type="submit" class="btn btn-primary">Submit</button>
 
 <jsp:include page="_footer.jsp"/>

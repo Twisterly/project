@@ -121,7 +121,6 @@
             transmission_type_id BIGINT(19),
             fuel_type_id BIGINT(19),
             modeldetail_id BIGINT(19),
-            car_is_free BOOLEAN,
             PRIMARY KEY (car_id),
             FOREIGN KEY (car_photo_id) REFERENCES t_car_photo (car_photo_id),
             FOREIGN KEY (body_type_id) REFERENCES t_body_type (body_type_id),
@@ -178,6 +177,8 @@
             `user_first_name` VARCHAR(256),
             `user_last_name` VARCHAR(256),
             `user_birth_date` DATE,
+            `user_email` VARCHAR(256),
+            `user_gender` VARCHAR(256),
             `USER_ROLE` VARCHAR(256) DEFAULT 'USER'
             );
             INSERT INTO `app_user` (ID, USER_NAME,
@@ -187,6 +188,42 @@
             'root',
             '{noop}root',
             'ADMIN'
+            );
+            INSERT INTO `app_user` (ID, USER_NAME,
+            USER_PASSWORD)
+            VALUES (
+            '10000000-0000-0000-0000-000000000011',
+            'twister',
+            '{noop}qwerty'
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="16" author="mashafadik@yahoo.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `t_app_order` (
+            `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,
+            `start_date` DATE,
+            `start_time` TIME,
+            `end_date` DATE,
+            `end_time` TIME,
+            `total_sum` DOUBLE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="17" author="mashafadik@yahoo.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS t_car_filter (
+            `car_filter_id` BIGINT(19),
+            `climate_control` VARCHAR(255),
+            `seats` VARCHAR(255),
+            `body_type` VARCHAR(255),
+            `car_brand` VARCHAR(255),
+            `transmission_type` VARCHAR(255),
+            `fuel_type` VARCHAR(255),
+            `model_detail` VARCHAR(255),
+            PRIMARY KEY (car_filter_id)
             );
         </sql>
     </changeSet>

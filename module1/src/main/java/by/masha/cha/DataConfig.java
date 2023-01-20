@@ -75,7 +75,10 @@ public class DataConfig {
                 Brand.class,
                 TransmissionType.class,
                 FuelType.class,
-                AppUser.class
+                AppUser.class,
+                AppOrder.class,
+                CarFilter.class
+
         );
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;

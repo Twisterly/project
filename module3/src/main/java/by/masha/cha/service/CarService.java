@@ -50,4 +50,13 @@ public class CarService {
     public Car getById(long carId) {
         return carDao.findById(carId);
     }
+
+    @Transactional
+    public List<Car> findAllByBrandName(CarFilter carFilter){
+        List<Car> resultList = new ArrayList<>();
+        carDao.findAllByBrandName(carFilter.getBrand());
+        return resultList;
+    }
+
+
 }

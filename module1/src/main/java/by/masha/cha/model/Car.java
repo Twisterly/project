@@ -1,8 +1,10 @@
 package by.masha.cha.model;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "t_car")
@@ -46,33 +48,37 @@ public class Car {
     @Column(name = "engine_capacity")
     private double engineCapacity;
 
-//    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "modeldetail_id")
-//    private ModelDetail modelDetail;
-
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private CarPhoto carPhoto;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
+    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="body_type_id")
     private BodyType bodyType;
 
     @ManyToOne(optional = false)
+    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "car_brand_id")
     private Brand brand;
 
     @ManyToOne(optional = false)
+    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="transmission_type_id")
     private TransmissionType transmissionType;
 
     @ManyToOne(optional = false)
+    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="fuel_type_id")
     private FuelType fuelType;
-    @Column(name="car_is_free")
-    private boolean isFree = true;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name="model_detail_id")
+   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name="modeldetail_id")
     private ModelDetail modelDetail;
+
+//    @ManyToMany(mappedBy = "cars")
+//    private List<AppOrder> appOrders;
+
+
 
 }
