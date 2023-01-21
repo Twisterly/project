@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_app_order order_id="10000000-0000-0000-0000-000000000001"
+                 start_date="2023-01-30" start_time="09:00:00"
+                 end_date="2023-02-02" end_time="21:00:00" total_sum="50.0"/>
+
+    <t_app_order order_id="10000000-0000-0000-0000-000000000002"
+                 start_date="2023-01-26" start_time="12:00:00"
+                 end_date="2023-01-28" end_time="12:00:00" total_sum="70.0"/>
+</dataset>
