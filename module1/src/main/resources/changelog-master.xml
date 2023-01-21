@@ -5,19 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <!--    <changeSet id="1" author="mashafadik@yahoo.com">-->
-    <!--        <sql>-->
-    <!--            CREATE TABLE IF NOT EXISTS t_fuel_type (-->
-    <!--            fuel_id BIGINT(19),-->
-    <!--            fuel_name VARCHAR(255),-->
-    <!--            PRIMARY KEY (fuel_id)-->
-    <!--            );-->
-    <!--        </sql>-->
-    <!--    </changeSet>-->
-
     <changeSet id="1" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_fuel_type (
+            CREATE TABLE IF NOT EXISTS `t_fuel_type` (
             `fuel_type_id` BIGINT(19),
             `fuel_type_name` VARCHAR(255),
             PRIMARY KEY (`fuel_type_id`)
@@ -73,10 +63,10 @@
 
     <changeSet id="7" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_model_detail (
-            modeldetail_id BIGINT(19),
-            model_name VARCHAR(255),
-            PRIMARY KEY (modeldetail_id)
+            CREATE TABLE IF NOT EXISTS `t_model_detail` (
+            `modeldetail_id` BIGINT(19),
+            `model_name` VARCHAR(255),
+            PRIMARY KEY (`modeldetail_id`)
             );
         </sql>
     </changeSet>
@@ -104,67 +94,67 @@
 
     <changeSet id="10" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_car (
-            car_id BIGINT(19),
-            reg_number VARCHAR(255),
-            vin_number VARCHAR(255),
-            price DOUBLE,
-            year VARCHAR(255),
-            color VARCHAR(255),
-            climate_control BOOLEAN,
-            seats BIGINT(19),
-            doors BIGINT(19),
-            engine_capacity DOUBLE,
-            car_photo_id BIGINT(19),
-            body_type_id BIGINT(19),
-            car_brand_id BIGINT(19),
-            transmission_type_id BIGINT(19),
-            fuel_type_id BIGINT(19),
-            modeldetail_id BIGINT(19),
-            PRIMARY KEY (car_id),
-            FOREIGN KEY (car_photo_id) REFERENCES t_car_photo (car_photo_id),
-            FOREIGN KEY (body_type_id) REFERENCES t_body_type (body_type_id),
-            FOREIGN KEY (car_brand_id) REFERENCES t_car_brand (car_brand_id),
-            FOREIGN KEY (transmission_type_id) REFERENCES t_transmission_type (transmission_type_id),
-            FOREIGN KEY (fuel_type_id) REFERENCES t_fuel_type (fuel_type_id),
-            FOREIGN KEY (modeldetail_id) REFERENCES t_model_detail (modeldetail_id)
+            CREATE TABLE IF NOT EXISTS `t_model_seq` (
+            next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
+            INSERT INTO `t_model_seq` VALUES (0);
         </sql>
     </changeSet>
 
     <changeSet id="11" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_model_seq (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
+            CREATE TABLE IF NOT EXISTS `t_car` (
+            `car_id` BIGINT(19),
+            `reg_number` VARCHAR(255),
+            `vin_number` VARCHAR(255),
+            `price` DOUBLE,
+            `year` VARCHAR(255),
+            `color` VARCHAR(255),
+            `climate_control` BOOLEAN,
+            `seats` BIGINT(19),
+            `doors` BIGINT(19),
+            `engine_capacity` DOUBLE,
+            `car_photo_id` BIGINT(19),
+            `body_type_id` BIGINT(19),
+            `car_brand_id` BIGINT(19),
+            `transmission_type_id` BIGINT(19),
+            `fuel_type_id` BIGINT(19),
+            `modeldetail_id` BIGINT(19),
+            PRIMARY KEY (`car_id`),
+            FOREIGN KEY (`car_photo_id`) REFERENCES `t_car_photo` (`car_photo_id`),
+            FOREIGN KEY (`body_type_id`) REFERENCES `t_body_type` (`body_type_id`),
+            FOREIGN KEY (`car_brand_id`) REFERENCES `t_car_brand` (`car_brand_id`),
+            FOREIGN KEY (`transmission_type_id`) REFERENCES `t_transmission_type` (`transmission_type_id`),
+            FOREIGN KEY (`fuel_type_id`) REFERENCES `t_fuel_type` (`fuel_type_id`),
+            FOREIGN KEY (`modeldetail_id`) REFERENCES `t_model_detail` (`modeldetail_id`)
             );
-            INSERT INTO t_model_seq VALUES (0);
         </sql>
     </changeSet>
 
     <changeSet id="12" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_car_seq (
+            CREATE TABLE IF NOT EXISTS `t_car_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
-            INSERT INTO t_car_seq VALUES (0);
+            INSERT INTO `t_car_seq` VALUES (0);
         </sql>
     </changeSet>
 
     <changeSet id="13" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_car_photo_seq (
+            CREATE TABLE IF NOT EXISTS `t_car_photo_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
-            INSERT INTO t_car_photo_seq VALUES (0);
+            INSERT INTO `t_car_photo_seq` VALUES (0);
         </sql>
     </changeSet>
 
     <changeSet id="14" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS t_body_type_seq (
+            CREATE TABLE IF NOT EXISTS `t_body_type_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
-            INSERT INTO t_body_type_seq VALUES (0);
+            INSERT INTO `t_body_type_seq` VALUES (0);
         </sql>
     </changeSet>
 
@@ -186,15 +176,8 @@
             VALUES (
             '10000000-0000-0000-0000-000000000001',
             'root',
-            '{noop}root',
+            'root',
             'ADMIN'
-            );
-            INSERT INTO `app_user` (ID, USER_NAME,
-            USER_PASSWORD)
-            VALUES (
-            '10000000-0000-0000-0000-000000000011',
-            'twister',
-            '{noop}qwerty'
             );
         </sql>
     </changeSet>
@@ -208,22 +191,6 @@
             `end_date` DATE,
             `end_time` TIME,
             `total_sum` DOUBLE
-            );
-        </sql>
-    </changeSet>
-
-    <changeSet id="17" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS t_car_filter (
-            `car_filter_id` BIGINT(19),
-            `climate_control` VARCHAR(255),
-            `seats` VARCHAR(255),
-            `body_type` VARCHAR(255),
-            `car_brand` VARCHAR(255),
-            `transmission_type` VARCHAR(255),
-            `fuel_type` VARCHAR(255),
-            `model_detail` VARCHAR(255),
-            PRIMARY KEY (car_filter_id)
             );
         </sql>
     </changeSet>

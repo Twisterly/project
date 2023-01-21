@@ -1,6 +1,7 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.Car;
+import by.masha.cha.model.CarFilter;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public interface CarDao {
     List<Car> findAll();
 
     List<Car> findAllByBrandName(String name);
+
+    List<Car> findAllByClimateControl(boolean isClimateControl);
+
+    List<Car> findCarByFilter(CarFilter carFilter);
 
 
 

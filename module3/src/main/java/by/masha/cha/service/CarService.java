@@ -17,19 +17,19 @@ public class CarService {
     @Transactional
     public void add(Car car, byte[] photo) {
         Brand brand = car.getBrand();
-        if(brand == null){
+        if (brand == null) {
             car.setBrand(new Brand());
         }
         FuelType fuelType = car.getFuelType();
-        if(fuelType == null){
+        if (fuelType == null) {
             car.setFuelType(new FuelType());
         }
         TransmissionType transmissionType = car.getTransmissionType();
-        if(transmissionType == null){
+        if (transmissionType == null) {
             car.setTransmissionType(new TransmissionType());
         }
         BodyType bodyType = car.getBodyType();
-        if(bodyType == null){
+        if (bodyType == null) {
             car.setBodyType(new BodyType());
         }
         if (car.getCarPhoto() == null) {
@@ -51,11 +51,11 @@ public class CarService {
         return carDao.findById(carId);
     }
 
-    @Transactional
-    public List<Car> findAllByBrandName(CarFilter carFilter){
+
+    public List<Car> findCarByFilter(CarFilter carFilter) {
         List<Car> resultList = new ArrayList<>();
-        carDao.findAllByBrandName(carFilter.getBrand());
-        return resultList;
+        return carDao.findCarByFilter(carFilter);
+
     }
 
 

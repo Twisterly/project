@@ -60,30 +60,29 @@ public class CarDaoImplTest extends BaseDaoTest {
 
         Brand brand = new Brand();
         brand.setBrandName("audi");
-       brandDao.create(brand);
-//
+        brandDao.create(brand);
+
         BodyType bodyType = new BodyType();
         bodyType.setBodyTypeName("sedan");
         bodyTypeDao.create(bodyType);
-//
+
         ModelDetail modelDetail = new ModelDetail();
         modelDetail.setModelName("a4");
         modelDetailDao.create(modelDetail);
-//
+
         TransmissionType transmissionType = new TransmissionType();
         transmissionType.setTransmissionTypeName("automatic");
         transmissionTypeDao.create(transmissionType);
-//
+
         FuelType fuelType = new FuelType();
         fuelType.setFuelTypeName("petrol");
-       fuelTypeDao.create(fuelType);
-
-
+        fuelTypeDao.create(fuelType);
 
         CarPhoto carPhoto = new CarPhoto();
-        Car car = new Car();
-        car.setPrice(20.0);
 
+        Car car = new Car();
+        carPhoto.setCar(car);
+        car.setPrice(20.0);
         car.setBrand(brand);
         car.setModelDetail(modelDetail);
         car.setBodyType(bodyType);
@@ -122,14 +121,13 @@ public class CarDaoImplTest extends BaseDaoTest {
         //Then
         assertEquals("7434CK-7", car.getRegNumber());
         assertEquals(200, car.getCarPhoto().getId());
-     //   assertEquals("sedan", car.getBodyType().getBodyTypeName());
+        //   assertEquals("sedan", car.getBodyType().getBodyTypeName());
 
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
 
     @Test
     @SneakyThrows
-    @Ignore
     public void delete() {
         //Given
         IDataSet dataSet = new FlatXmlDataSetBuilder()
@@ -185,6 +183,48 @@ public class CarDaoImplTest extends BaseDaoTest {
         //Then
         assertEquals(1, cars.size());
         assertEquals("7084MM-7", cars.get(0).getRegNumber());
+
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
+    }
+
+    @Test
+    @SneakyThrows
+    public void findAllByClimateControl() {
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(CarDaoImplTest.class.getResourceAsStream(
+                        "CarDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        List<Car> cars =
+                targetObject.findAllByClimateControl(true);
+
+        //Then
+        assertEquals(1, cars.size());
+
+
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
+
+    }
+
+    @Test
+    @SneakyThrows
+    public void findCarByFilter() {
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(CarDaoImplTest.class.getResourceAsStream(
+                        "CarDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+        CarFilter carFilter = new CarFilter();
+               carFilter.setBrand("BMW");
+               carFilter.setClimateControl("false");
+               carFilter.setDoors("4");
+        //When
+        List<Car> cars =
+                targetObject.findCarByFilter(carFilter);
+
+        //Then
+        assertEquals(1, cars.size());
+
 
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }

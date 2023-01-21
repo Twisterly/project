@@ -1,5 +1,6 @@
 package by.masha.cha.web;
 
+import by.masha.cha.model.Brand;
 import by.masha.cha.model.Car;
 import by.masha.cha.service.BodyTypeService;
 import by.masha.cha.service.BrandService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -19,19 +21,22 @@ public class CarListController {
 
     @Autowired
     private CarService carService;
-//    @Autowired
-//    private ModelDetailService modelDetailService;
-//    @Autowired
-//    private BodyTypeService bodyTypeService;
-//    @Autowired
-//    private BrandService brandService;
+    @Autowired
+    private ModelDetailService modelDetailService;
+    @Autowired
+    private BodyTypeService bodyTypeService;
+    @Autowired
+    private BrandService brandService;
 
     @GetMapping("/car-list.html")
     public ModelAndView showCarList() {
-        return new ModelAndView(
-                "car_list",
-                Map.of("cars", carService.getAll())
-        );
+        List<Brand> brands = brandService.getAll();
+        List<Car> cars = carService.getAll();
+        ModelAndView modelAndView = new ModelAndView("car_list");
+        modelAndView.addAllObjects( Map.of("cars", carService.getAll()));
+        modelAndView.addAllObjects(Map.of("brands", brandService.getAll()));
+        return modelAndView;
+
 
     }
 

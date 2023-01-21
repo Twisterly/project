@@ -48,31 +48,33 @@ public class Car {
     @Column(name = "engine_capacity")
     private double engineCapacity;
 
-    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToOne
+    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name="car_photo_id")
     private CarPhoto carPhoto;
 
-    @ManyToOne(optional = false)
-    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne
+ //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="body_type_id")
     private BodyType bodyType;
 
-    @ManyToOne(optional = false)
-    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne
+  //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "car_brand_id")
     private Brand brand;
 
-    @ManyToOne(optional = false)
-    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne
+  //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="transmission_type_id")
     private TransmissionType transmissionType;
 
-    @ManyToOne(optional = false)
-    @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne
+ //   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="fuel_type_id")
     private FuelType fuelType;
 
-    @ManyToOne(optional = false)
-   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne
+//   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="modeldetail_id")
     private ModelDetail modelDetail;
 

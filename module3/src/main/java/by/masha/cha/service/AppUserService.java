@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AppUserService {
+public class
+AppUserService {
 
     @Autowired
     AppUserDao appUserDao;

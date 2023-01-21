@@ -82,9 +82,63 @@
       <input type="text" name="color" class="form-control" id="color" aria-describedby="nameHelp">
       <div id="nameHelp" class="form-text">Enter color</div>
      </div>
-
-
-
+     <!-- climateControl -->
+     <label for="climateControl" class="form-label">Climate control</label><br/>
+     <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="climateControl" id="climateControl1" value="true">
+        <label class="form-check-label" for="climateControl1">yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="climateControl" id="climateControl2" value="false">
+        <label class="form-check-label" for="climateControl2">no</label>
+      </div>
+      <br/>
+      <!-- doors -->
+           <label for="doors" class="form-label">Doors</label><br/>
+           <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="doors" id="doors1" value="2">
+              <label class="form-check-label" for="doors1">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="doors" id="doors2" value="3">
+              <label class="form-check-label" for="doors2">3</label>
+            </div>
+             <div class="form-check form-check-inline">
+             <input class="form-check-input" type="radio" name="doors" id="doors3" value="4">
+             <label class="form-check-label" for="doors3">4</label>
+             </div>
+            <div class="form-check form-check-inline">
+             <input class="form-check-input" type="radio" name="doors" id="doors4" value="5">
+             <label class="form-check-label" for="doors4">5</label>
+            </div>
+            <br/>
+      <!-- seats -->
+                 <label for="seats" class="form-label">Seats</label><br/>
+                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="seats" id="seats1" value="2">
+                    <label class="form-check-label" for="seats1">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="seats" id="seats2" value="3">
+                    <label class="form-check-label" for="seats2">3</label>
+                  </div>
+                   <div class="form-check form-check-inline">
+                   <input class="form-check-input" type="radio" name="seats" id="seats3" value="4">
+                   <label class="form-check-label" for="seats3">4</label>
+                   </div>
+                  <div class="form-check form-check-inline">
+                   <input class="form-check-input" type="radio" name="seats" id="seats4" value="5">
+                   <label class="form-check-label" for="seats4">5</label>
+                  </div>
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="seats" id="seats5" value="6">
+                    <label class="form-check-label" for="seats5">6</label>
+                     </div>
+                  <div class="form-check form-check-inline">
+                   <input class="form-check-input" type="radio" name="seats" id="seats6" value="7">
+                   <label class="form-check-label" for="seats6">7</label>
+                    </div>
+                  <br/>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 <jsp:include page="_footer.jsp"/>
