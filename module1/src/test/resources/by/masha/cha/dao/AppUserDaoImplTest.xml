@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+
+    <t_app_user app_user_id="12300000-0000-0000-0000-000000000123" user_name="Maasha"
+                user_password="12345" user_first_name="Mariia" user_last_name="Chachik"
+                user_birth_date="1990-08-16" user_email="mashafadik@yahoo.com"
+                user_gender="female"/>
+
+    <t_app_user app_user_id="12300000-0000-0000-0000-000000000124" user_name="Ivan1989"
+                user_password="qwerty" user_first_name="Ivan" user_last_name="Petrov"
+                user_birth_date="1989-10-10" user_email="ivanpetrov1989@gmail.com"
+                user_gender="male"/>
+
+
+</dataset>
