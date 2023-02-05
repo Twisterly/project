@@ -3,7 +3,7 @@
 <h1>Add new model</h1>
 
 <form method="post" action="/car/add-modelDetail.html" enctype="multipart/form-data">
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="modelName" class="form-label">Model name</label>
     <input type="text" name="modelName" class="form-control" id="modelName" aria-describedby="nameHelp">
     <div id="nameHelp" class="form-text">Enter model name</div>

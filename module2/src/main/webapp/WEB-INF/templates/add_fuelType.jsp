@@ -2,7 +2,7 @@
 <h1>Add new fuel type</h1>
 
 <form method="post" action="/car/add-fuelType.html">
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="fuelTypeName" class="form-label">Fuel type name</label>
     <input type="text" name="fuelTypeName" class="form-control" id="fuelTypeName" aria-describedby="nameHelp">
     <div id="nameHelp" class="form-text">Enter fuel type name</div>

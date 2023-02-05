@@ -6,6 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "t_app_order")
@@ -38,6 +40,9 @@ public class AppOrder {
     @ManyToOne
     @JoinColumn(name="app_user_id")
     private AppUser appUser;
+    @Column(name = "order_time")
+    private Timestamp timeOfOrder = Timestamp.valueOf(LocalDateTime.now());
+
 
 
 //    @ManyToMany(fetch = FetchType.EAGER)

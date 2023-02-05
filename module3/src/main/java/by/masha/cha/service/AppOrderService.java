@@ -38,12 +38,16 @@ public class AppOrderService {
         return appOrderDao.findLastOrder();
     }
 
+    public void delete(AppOrder appOrder) {
+        appOrderDao.delete(appOrder);
+    }
+
     public List<AppOrder> findAllByUserId(String userId) {
         return appOrderDao.findAllByUserId(userId);
     }
 
     public List<AppOrder> findAllByCarId(String carId) {
-        return appOrderDao.findAllByUserId(carId);
+        return appOrderDao.findAllByCarId(carId);
     }
 
     public boolean isReserved(List<AppOrder> appOrders, LocalDate startDate,
@@ -54,7 +58,7 @@ public class AppOrderService {
             LocalDate secondDate = order.getEndDate().toLocalDate();
             while (firstDate.isBefore(secondDate)) {
                 bookedDates.add(firstDate);
-               firstDate = firstDate.plusDays(1);
+                firstDate = firstDate.plusDays(1);
             }
             bookedDates.add(secondDate);
         }
@@ -64,15 +68,6 @@ public class AppOrderService {
             startDate = startDate.plusDays(1);
         }
         desiredDates.add(endDate);
-
-//        System.out.println("Reserved dates");
-//        for (LocalDate localDate : bookedDates) {
-//            System.out.println(localDate);
-//        }
-//        System.out.println("Desired dates");
-//        for (LocalDate localDate : desiredDates) {
-//            System.out.println(localDate);
-//        }
 
         for (LocalDate localDate : desiredDates) {
             if (bookedDates.stream().anyMatch(localDate::equals)) {

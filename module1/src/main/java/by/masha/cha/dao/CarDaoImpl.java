@@ -208,6 +208,8 @@ public class CarDaoImpl implements CarDao {
         return sessionFactory.getCurrentSession()
                 .createQuery(query, Car.class).list();
     }
-    }
+
+
+}
 
 

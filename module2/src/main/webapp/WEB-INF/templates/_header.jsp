@@ -33,6 +33,7 @@
              <li><a class="dropdown-item" href="/car/transmissionType-list.html">Show transmission Types</a></li>
           <li><a class="dropdown-item" href="/car/appUser-list.html">Show all Users</a></li>
           <li><a class="dropdown-item" href="/car/personal-area-orders.html">Personal area</a></li>
+          <li><a class="dropdown-item" href="/car/order-list.html">Show orders</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

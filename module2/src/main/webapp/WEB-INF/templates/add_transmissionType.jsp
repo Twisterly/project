@@ -2,7 +2,7 @@
 <h1>Add new transmission type</h1>
 
 <form method="post" action="/car/add-transmissionType.html">
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="transmissionTypeName" class="form-label">Transmission type name</label>
     <input type="text" name="transmissionTypeName" class="form-control" id="transmissionTypeName" aria-describedby="nameHelp">
     <div id="nameHelp" class="form-text">Enter transmission type name</div>

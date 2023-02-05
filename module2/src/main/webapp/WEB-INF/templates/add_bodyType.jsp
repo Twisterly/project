@@ -2,7 +2,7 @@
 <h1>Add new body type</h1>
 
 <form method="post" action="/car/add-bodyType.html">
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="bodyTypeName" class="form-label">Body type name</label>
     <input type="text" name="bodyTypeName" class="form-control" id="bodyTypeName" aria-describedby="nameHelp">
     <div id="nameHelp" class="form-text">Enter body type name</div>

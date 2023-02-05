@@ -49,14 +49,20 @@ public class AddAppOrderController {
     public ModelAndView createAppOrder(AppOrder appOrder) {
         System.out.println("Call createAppOrder: " + appOrder);
         appOrderService.add(appOrder);
-        String orderId = appOrder.getId();
-        String carId = appOrder.getCar().getId();
         ModelAndView modelAndView = new ModelAndView("appOrder");
-        AppOrder newAppOrder = appOrderService.findById(orderId);
-        Car orderedCar = carService.getById(carId);
-        modelAndView.addAllObjects(Map.of("newAppOrder", newAppOrder));
-        modelAndView.addAllObjects(Map.of("orderedCar", orderedCar));
+        modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));
+        modelAndView.addAllObjects(Map.of("car", carService.getById(appOrder.getCar().getId())));
         return modelAndView;
+//        List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
+//        if (appOrderService.isReserved(ordersList, appOrder.getStartDate().toLocalDate(), appOrder.getEndDate().toLocalDate()) == false) {
+//            appOrderService.add(appOrder);
+//            ModelAndView modelAndView = new ModelAndView("appOrder");
+//            modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));
+//            modelAndView.addAllObjects(Map.of("car", carService.getById(carId)));
+//            return modelAndView;
+//        }
+//        else
+//            return new ModelAndView("error");
     }
 
 
