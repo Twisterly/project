@@ -23,11 +23,5 @@ public class ModelDetail {
     @Column(name = "model_name")
     private String modelName;
 
-    //    @OneToMany(mappedBy = "modelDetail")
-//    private List<Car> car;
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "car_brand_id")
-//    private Brand brand;
-
 
 }

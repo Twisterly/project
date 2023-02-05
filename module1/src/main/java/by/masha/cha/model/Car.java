@@ -2,6 +2,7 @@ package by.masha.cha.model;
 
 import lombok.*;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -10,16 +11,19 @@ import javax.persistence.*;
 @Table(name = "t_car")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Car {
+
+//    @Id
+//    @Column(name = "car_id")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
+//    @SequenceGenerator(name = "car_seq", sequenceName = "t_car_seq")
+//    private long id;
 
     @Id
     @Column(name = "car_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
-    @SequenceGenerator(name = "car_seq", sequenceName = "t_car_seq")
-    private long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
     @Column(name = "reg_number")
     private String regNumber;
@@ -50,37 +54,31 @@ public class Car {
 
     @OneToOne
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="car_photo_id")
+    @JoinColumn(name = "car_photo_id")
     private CarPhoto carPhoto;
 
     @ManyToOne
- //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="body_type_id")
+    @JoinColumn(name = "body_type_id")
     private BodyType bodyType;
 
     @ManyToOne
-  //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "car_brand_id")
     private Brand brand;
 
     @ManyToOne
-  //  @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="transmission_type_id")
+    @JoinColumn(name = "transmission_type_id")
     private TransmissionType transmissionType;
 
     @ManyToOne
- //   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="fuel_type_id")
+    @JoinColumn(name = "fuel_type_id")
     private FuelType fuelType;
 
     @ManyToOne
-//   @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="modeldetail_id")
+    @JoinColumn(name = "modeldetail_id")
     private ModelDetail modelDetail;
 
-//    @ManyToMany(mappedBy = "cars")
+//    @ManyToMany(mappedBy = "car")
 //    private List<AppOrder> appOrders;
-
 
 
 }

@@ -1,6 +1,6 @@
 package by.masha.cha.dao;
 
-import by.masha.cha.model.AppOrder;
+import by.masha.cha.model.*;
 import lombok.SneakyThrows;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -24,6 +24,21 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
     @Autowired
     AppOrderDao targetObject;
 
+    @Autowired
+    CarDao carDao;
+    @Autowired
+    BrandDao brandDao;
+    @Autowired
+    ModelDetailDao modelDetailDao;
+    @Autowired
+    FuelTypeDao fuelTypeDao;
+    @Autowired
+    TransmissionTypeDao transmissionTypeDao;
+    @Autowired
+    BodyTypeDao bodyTypeDao;
+    @Autowired
+    AppUserDao appUserDao;
+
     @Before
     public void setUp() {
     }
@@ -44,13 +59,54 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
         rs.next();
         int initialSize = rs.getInt(1);
         assertEquals(0, initialSize);
-        AppOrder appOrder = new AppOrder();
-        appOrder.setStartDate(Date.valueOf("2023-02-09"));
-        appOrder.setStartTime(Time.valueOf("09:00:00"));
-        appOrder.setEndDate(Date.valueOf("2023-02-12"));
-        appOrder.setEndTime(Time.valueOf("09:00:00"));
-        appOrder.setTotalSum(100.0);
 
+        Brand brand = new Brand();
+        brand.setBrandName("audi");
+        brandDao.create(brand);
+
+        BodyType bodyType = new BodyType();
+        bodyType.setBodyTypeName("sedan");
+        bodyTypeDao.create(bodyType);
+
+        ModelDetail modelDetail = new ModelDetail();
+        modelDetail.setModelName("a4");
+        modelDetailDao.create(modelDetail);
+
+        TransmissionType transmissionType = new TransmissionType();
+        transmissionType.setTransmissionTypeName("automatic");
+        transmissionTypeDao.create(transmissionType);
+
+        FuelType fuelType = new FuelType();
+        fuelType.setFuelTypeName("petrol");
+        fuelTypeDao.create(fuelType);
+
+        CarPhoto carPhoto = new CarPhoto();
+
+        Car car = new Car();
+        carPhoto.setCar(car);
+        car.setPrice(20.0);
+        car.setBrand(brand);
+        car.setModelDetail(modelDetail);
+        car.setBodyType(bodyType);
+        car.setCarPhoto(carPhoto);
+        car.setTransmissionType(transmissionType);
+        car.setFuelType(fuelType);
+        carDao.create(car);
+
+        AppUser appUser = new AppUser();
+        appUser.setUsername("masha1990");
+        appUser.setPassword("qwerty");
+        appUser.setEmail("masha1990@gmail.com");
+        appUser.setFirstName("Masha");
+        appUser.setLastName("Ivanova");
+        appUserDao.create(appUser);
+
+
+        AppOrder appOrder = new AppOrder();
+        appOrder.setCar(car);
+        appOrder.setAppUser(appUser);
+        appOrder.setStartDate(Date.valueOf("2023-02-09"));
+        appOrder.setEndDate(Date.valueOf("2023-02-12"));
 
         //When
         targetObject.create(appOrder);
@@ -63,7 +119,7 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
         assertEquals(1, actualSize);
 
 
-        conn.createStatement().executeUpdate("delete from t_app_order;");
+     //   conn.createStatement().executeUpdate("delete from t_app_order;");
         conn.close();
     }
 
@@ -81,8 +137,8 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
                 "-000000000001");
 
         //Then
-        assertEquals(Date.valueOf("2023-02-02"), appOrder.getEndDate());
-        assertEquals(Time.valueOf("21:00:00"), appOrder.getEndTime());
+     assertEquals(Date.valueOf("2023-02-02"), appOrder.getEndDate());
+//        assertEquals(Time.valueOf("21:00:00"), appOrder.getEndTime());
 
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
@@ -134,9 +190,69 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
 
         //Then
         assertEquals(2, appOrderList.size());
-//        for(ModelDetail modelDetail: modelDetailList) {
-//            assertTrue(modelDetail.getCar().size() > 0);
-//        }
+        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
+                dataSet);
+    }
+    @Test
+    @SneakyThrows
+    public void findAllByUserId(){
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(AppOrderDaoImplTest.class.getResourceAsStream(
+                        "AppOrderDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
+                dataSet);
+
+        //When
+        List<AppOrder> appOrderList = targetObject.findAllByUserId("12300000-0000-0000-0000-000000000123");
+
+        //Then
+        assertEquals(2, appOrderList.size());
+//
+        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
+                dataSet);
+    }
+
+    @Test
+    @SneakyThrows
+    public void findAllByCarId(){
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(AppOrderDaoImplTest.class.getResourceAsStream(
+                        "AppOrderDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
+                dataSet);
+
+        //When
+        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000-0000-0000-0000-000000000111");
+
+
+        //Then
+        assertEquals(1, appOrderList.size());
+//
+        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
+                dataSet);
+    }
+
+    @Test
+    @SneakyThrows
+    public void findLastOrder() {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(AppOrderDaoImplTest.class.getResourceAsStream(
+                        "AppOrderDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
+                dataSet);
+
+        //When
+        AppOrder appOrder = targetObject.findLastOrder();
+
+        //Then
+        assertEquals(70.0, appOrder.getTotalSum());
+//
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 dataSet);
     }

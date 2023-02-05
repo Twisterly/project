@@ -1,6 +1,7 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.AppOrder;
+import by.masha.cha.model.Car;
 
 import java.util.List;
 
@@ -15,4 +16,12 @@ public interface AppOrderDao {
     void delete(AppOrder appOrder);
 
     List<AppOrder> findAll();
+
+    List<AppOrder> findAllByUserId(String id);
+
+    AppOrder findLastOrder();
+
+    List<AppOrder> findAllByCarId(String id);
+
+
 }

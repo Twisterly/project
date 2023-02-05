@@ -66,4 +66,18 @@ public class ModelDetailDaoImpl implements ModelDetailDao {
         return sessionFactory.getCurrentSession().createQuery(modelDetailQuery,
                 ModelDetail.class).list();
     }
+
+    @Override
+    public boolean isAlreadyExists(ModelDetail modelDetail) {
+        String query =
+                "From ModelDetail M WHERE M.modelName='" + modelDetail.getModelName() + "'";
+        List<ModelDetail> modelDetails =
+                sessionFactory.getCurrentSession().createQuery(query,
+                ModelDetail.class).list();
+        if (modelDetails.size() == 0) {
+            return false;
+        } else
+            return true;
+    }
+
 }

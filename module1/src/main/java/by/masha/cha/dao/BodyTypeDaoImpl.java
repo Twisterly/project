@@ -52,4 +52,15 @@ public class BodyTypeDaoImpl implements BodyTypeDao{
         return sessionFactory.getCurrentSession().createQuery(query,
                 BodyType.class).list();
     }
+
+    @Override
+    public boolean isAlreadyExists(BodyType bodyType) {
+        String query = "From BodyType B WHERE B.bodyTypeName='" + bodyType.getBodyTypeName() +"'";
+        List<BodyType> bodyTypes = sessionFactory.getCurrentSession().createQuery(query,
+                BodyType.class).list();
+        if(bodyTypes.size() == 0){
+            return false;
+        } else
+            return true;
+    }
 }

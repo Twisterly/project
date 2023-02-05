@@ -103,8 +103,18 @@
 
     <changeSet id="11" author="mashafadik@yahoo.com">
         <sql>
+            CREATE TABLE IF NOT EXISTS `t_schedule` (
+            `schedule_id` BIGINT(19),
+            `schedule_start_date` DATE,
+            `schedule_end_date`DATE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="12" author="mashafadik@yahoo.com">
+        <sql>
             CREATE TABLE IF NOT EXISTS `t_car` (
-            `car_id` BIGINT(19),
+            `car_id` VARCHAR(256),
             `reg_number` VARCHAR(255),
             `vin_number` VARCHAR(255),
             `price` DOUBLE,
@@ -131,7 +141,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="12" author="mashafadik@yahoo.com">
+    <changeSet id="13" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -140,7 +150,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="13" author="mashafadik@yahoo.com">
+    <changeSet id="14" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_photo_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -149,7 +159,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="14" author="mashafadik@yahoo.com">
+    <changeSet id="15" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_body_type_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -158,21 +168,22 @@
         </sql>
     </changeSet>
 
-    <changeSet id="15" author="mashafadik@yahoo.com">
+    <changeSet id="16" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS `app_user` (
-            `ID` VARCHAR(256) PRIMARY KEY NOT NULL,
-            `USER_NAME` VARCHAR(256) NOT NULL,
-            `USER_PASSWORD` VARCHAR(256) NOT NULL,
+            CREATE TABLE IF NOT EXISTS `t_app_user` (
+            `app_user_id` VARCHAR(256) PRIMARY KEY NOT NULL,
+            `user_name` VARCHAR(256) NOT NULL,
+            `user_password` VARCHAR(256) NOT NULL,
             `user_first_name` VARCHAR(256),
             `user_last_name` VARCHAR(256),
             `user_birth_date` DATE,
+            `user_phone_number` VARCHAR(256),
             `user_email` VARCHAR(256),
             `user_gender` VARCHAR(256),
-            `USER_ROLE` VARCHAR(256) DEFAULT 'USER'
+            `user_role` VARCHAR(256) DEFAULT 'USER'
             );
-            INSERT INTO `app_user` (ID, USER_NAME,
-            USER_PASSWORD, USER_ROLE)
+            INSERT INTO `t_app_user` (app_user_id, user_name,
+            user_password, user_role)
             VALUES (
             '10000000-0000-0000-0000-000000000001',
             'root',
@@ -182,15 +193,17 @@
         </sql>
     </changeSet>
 
-    <changeSet id="16" author="mashafadik@yahoo.com">
+    <changeSet id="17" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_app_order` (
             `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,
             `start_date` DATE,
-            `start_time` TIME,
             `end_date` DATE,
-            `end_time` TIME,
-            `total_sum` DOUBLE
+            `total_sum` DOUBLE,
+            `car_id` VARCHAR(256),
+            `app_user_id` VARCHAR(256),
+            FOREIGN KEY (`car_id`) REFERENCES `t_car` (`car_id`),
+            FOREIGN KEY (`app_user_id`) REFERENCES `t_app_user` (`app_user_id`)
             );
         </sql>
     </changeSet>

@@ -1,7 +1,6 @@
 package by.masha.cha.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,8 +9,11 @@ import java.sql.Time;
 
 @Entity
 @Table(name = "t_app_order")
-@Getter
 @Setter
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AppOrder {
 
     @Id
@@ -22,16 +24,21 @@ public class AppOrder {
 
     @Column(name = "start_date")
     private Date startDate;
-    @Column(name = "start_time")
-    private Time startTime;
 
     @Column(name = "end_date")
     private Date endDate;
-    @Column(name = "end_time")
-    private Time endTime;
 
-    @Column(name="total_sum")
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
+    @Column(name = "total_sum")
     private double totalSum;
+
+    @ManyToOne
+    @JoinColumn(name="app_user_id")
+    private AppUser appUser;
+
 
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "car_orders",

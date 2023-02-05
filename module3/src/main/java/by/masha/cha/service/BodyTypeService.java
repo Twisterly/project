@@ -2,6 +2,7 @@ package by.masha.cha.service;
 
 import by.masha.cha.dao.BodyTypeDao;
 import by.masha.cha.model.BodyType;
+import by.masha.cha.model.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,12 @@ public class BodyTypeService {
 
     public List<BodyType> getAll() {
         return bodyTypeDao.findAll();
+    }
+
+    public List<String> findAllBodyTypeNames(){return bodyTypeDao.findAllBodyTypeNames();}
+
+    public boolean isAlreadyExists(BodyType bodyType){
+        return bodyTypeDao.isAlreadyExists(bodyType);
     }
 
 }

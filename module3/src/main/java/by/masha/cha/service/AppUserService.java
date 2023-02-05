@@ -29,4 +29,18 @@ AppUserService {
     public List<AppUser> getAll() {
         return appUserDao.findAll();
     }
+
+    public AppUser findById(String id){return appUserDao.findById(id);}
+
+    @Transactional
+    public void update(AppUser appUser) {
+        appUserDao.update(appUser);
+    }
+
+    public Integer isAlreadyExists(AppUser appUser){
+        return appUserDao.isAlreadyExists(appUser);
+    }
+
+
+
 }

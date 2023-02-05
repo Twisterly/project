@@ -2,14 +2,13 @@ package by.masha.cha.service;
 
 import by.masha.cha.dao.ModelDetailDao;
 import by.masha.cha.model.Brand;
-import by.masha.cha.model.Car;
-import by.masha.cha.model.CarPhoto;
 import by.masha.cha.model.ModelDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -20,12 +19,6 @@ public class ModelDetailService {
 
     @Transactional
     public void add(ModelDetail modelDetail) {
-//        List<ModelDetail> modelDetails = new ArrayList<>();
-//        modelDetails.add(modelDetail);
-//        Brand brand = modelDetail.getBrand();
-//        if (brand.getModelDetails() == null) {
-//           modelDetail.getBrand().setModelDetails(modelDetails);
-//        }
         modelDetailDao.create(modelDetail);
     }
 
@@ -35,6 +28,10 @@ public class ModelDetailService {
 
     public List<ModelDetail> findAllModelsByBrandName(String name) {
         return modelDetailDao.findAllModelsByBrandName(name);
+    }
+    public List<String> findAllModelNames(){return  modelDetailDao.findAllModelNames();}
+    public boolean isAlreadyExists(ModelDetail modelDetail){
+        return modelDetailDao.isAlreadyExists(modelDetail);
     }
 
 }

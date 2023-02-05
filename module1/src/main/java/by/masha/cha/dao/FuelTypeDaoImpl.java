@@ -1,6 +1,5 @@
 package by.masha.cha.dao;
 
-import by.masha.cha.model.BodyType;
 import by.masha.cha.model.FuelType;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,17 @@ public class FuelTypeDaoImpl implements FuelTypeDao {
         String query = "FROM FuelType";
         return sessionFactory.getCurrentSession().createQuery(query,
                 FuelType.class).list();
+    }
+
+    @Override
+    public boolean isAlreadyExists(FuelType fuelType) {
+        String query = "From FuelType F WHERE F.fuelTypeName='" + fuelType.getFuelTypeName() +"'";
+        List<FuelType> fuelTypes = sessionFactory.getCurrentSession().createQuery(query,
+                FuelType.class).list();
+        if(fuelTypes.size() == 0){
+            return false;
+        } else
+            return true;
     }
 }
 

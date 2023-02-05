@@ -63,4 +63,15 @@ public class BrandDaoImpl implements BrandDao {
                         Brand.class).list();
         return brands.get(0);
     }
+
+    @Override
+    public boolean isAlreadyExists(Brand brand) {
+        String query = "From Brand B WHERE B.brandName='" + brand.getBrandName() +"'";
+        List<Brand> brands = sessionFactory.getCurrentSession().createQuery(query,
+                Brand.class).list();
+        if(brands.size() == 0){
+            return false;
+        } else
+        return true;
+    }
 }

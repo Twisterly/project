@@ -36,12 +36,31 @@ public class AddModelDetailController {
 //        );
     }
 
+//    @PostMapping("/add-modelDetail.html")
+//    //   @Secured("ADMIN")
+//    public String addModelDetail(ModelDetail modelDetail) {
+//        System.out.println("Call addModelDetail: " + modelDetail);
+//        modelDetailService.add(modelDetail);
+//        return "redirect:/modelDetail-list.html";
+//    }
+
     @PostMapping("/add-modelDetail.html")
     //   @Secured("ADMIN")
-    public String addModelDetail(ModelDetail modelDetail) {
+    public ModelAndView addModelDetail(ModelDetail modelDetail) {
         System.out.println("Call addModelDetail: " + modelDetail);
-        modelDetailService.add(modelDetail);
-        return "redirect:/modelDetail-list.html";
+        ModelAndView modelAndView1 = new ModelAndView("modelDetail_list");
+        ModelAndView modelAndView2 = new ModelAndView("error_modelDetail");
+        if (modelDetailService.isAlreadyExists(modelDetail) == false) {
+            modelDetailService.add(modelDetail);
+            List<String> modelDetails = modelDetailService.findAllModelNames();
+            modelAndView1.addAllObjects(Map.of("modelDetails",modelDetails));
+            modelAndView1.addAllObjects(Map.of("modelDetail", modelDetail.getModelName()));
+            return modelAndView1;
+        } else {
+            List<String> modelDetails = modelDetailService.findAllModelNames();
+            modelAndView1.addAllObjects(Map.of("modelDetails", modelDetails));
+            return modelAndView2;
+        }
     }
 
 }

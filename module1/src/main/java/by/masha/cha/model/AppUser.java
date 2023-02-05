@@ -6,23 +6,24 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "t_app_user")
 @Getter
 @Setter
 public class AppUser {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "app_user_id")
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @Column(name = "USER_NAME")
+    @Column(name = "user_name")
     private String username;
 
-    @Column(name = "USER_PASSWORD")
+    @Column(name = "user_password")
     private String password;
     @Column(name = "user_first_name")
     private String firstName;
@@ -34,10 +35,16 @@ public class AppUser {
 
     @Column(name="user_email")
     private String email;
+
+    @Column(name="user_phone_number")
+    private String phoneNumber;
     @Column(name="user_gender")
     private String gender;
 
-    @Column(name = "USER_ROLE")
+    @Column(name = "user_role")
     private String role = "USER";
+
+    @OneToMany(mappedBy = "appUser")
+    private List<AppOrder> appOrders;
 
 }

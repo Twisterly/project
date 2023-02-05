@@ -1,5 +1,6 @@
 package by.masha.cha.dao;
 
+import by.masha.cha.model.BodyType;
 import by.masha.cha.model.Brand;
 import by.masha.cha.model.ModelDetail;
 import by.masha.cha.model.TransmissionType;
@@ -55,4 +56,18 @@ public class TransmissionTypeDaoImpl implements TransmissionTypeDao {
         return sessionFactory.getCurrentSession().createQuery(query,
                 String.class).list();
     }
+
+    @Override
+    public boolean isAlreadyExists(TransmissionType transmissionType) {
+        String query = "From TransmissionType T WHERE T" +
+                ".transmissionTypeName='" + transmissionType.getTransmissionTypeName() + "'";
+        List<TransmissionType> transmissionTypes =
+                sessionFactory.getCurrentSession().createQuery(query,
+                TransmissionType.class).list();
+        if (transmissionTypes.size() == 0) {
+            return false;
+        } else
+            return true;
+    }
+
 }

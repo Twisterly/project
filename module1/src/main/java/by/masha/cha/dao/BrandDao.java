@@ -20,4 +20,6 @@ public interface BrandDao {
     List<String> findAllBrandNames();
 
     Brand findByBrandName(String name);
+
+    boolean isAlreadyExists(Brand brand);
 }

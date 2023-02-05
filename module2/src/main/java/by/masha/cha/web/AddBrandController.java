@@ -29,10 +29,22 @@ public class AddBrandController {
 
     @PostMapping("/add-brand.html")
     //   @Secured("ADMIN")
-    public String addBrand(Brand brand) {
+    public ModelAndView addBrand(Brand brand) {
         System.out.println("Call addBrand: " + brand);
-        brandService.add(brand);
-        return "redirect:/brand-list.html";
+        ModelAndView modelAndView1 = new ModelAndView("brand_list");
+        ModelAndView modelAndView2 = new ModelAndView("error_brand");
+        if (brandService.isAlreadyExists(brand) == false) {
+            brandService.add(brand);
+            List<String> brands = brandService.findAllBrandNames();
+            modelAndView1.addAllObjects(Map.of("brands", brands));
+            modelAndView1.addAllObjects(Map.of("brand", brand.getBrandName()));
+            return modelAndView1;
+        } else {
+            List<String> brands = brandService.findAllBrandNames();
+            modelAndView1.addAllObjects(Map.of("brands", brands));
+            return modelAndView2;
+        }
     }
+
 
 }

@@ -18,4 +18,6 @@ public interface TransmissionTypeDao {
     public List<TransmissionType> findAll();
 
     List<String> findAllTransmissionTypeNames();
+
+    boolean isAlreadyExists(TransmissionType transmissionType);
 }

@@ -1,19 +1,26 @@
 package by.masha.cha.dao;
 
-import by.masha.cha.model.Brand;
-import by.masha.cha.model.Car;
-import by.masha.cha.model.CarFilter;
-import by.masha.cha.model.ModelDetail;
+import by.masha.cha.model.*;
 import com.mchange.lang.IntegerUtils;
 import net.bytebuddy.matcher.StringMatcher;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.ScrollMode;
+import org.hibernate.ScrollableResults;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+
 
 @Repository
 @Transactional
@@ -28,7 +35,7 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public Car findById(long id) {
+    public Car findById(String id) {
         return sessionFactory.getCurrentSession().get(Car.class, id);
     }
 
@@ -49,8 +56,14 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> findAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Car",
-                Car.class).list();
+
+        Query query = sessionFactory.openSession().createQuery("From Car");
+        query.setFirstResult(0);
+        query.setMaxResults(5);
+        List<Car> carList = query.list();
+        return carList;
+//        return sessionFactory.getCurrentSession().createQuery("from Car",
+//                Car.class).list();
     }
 
     @Override
@@ -78,6 +91,7 @@ public class CarDaoImpl implements CarDao {
 
     }
 
+
     @Override
     public List<Car> findCarByFilter(CarFilter carFilter) {
         StringBuilder query = new StringBuilder("FROM Car C WHERE ");
@@ -95,7 +109,7 @@ public class CarDaoImpl implements CarDao {
             query.append("C.bodyType='" + carFilter.getBodyType() + "' ");
         }
         if (StringUtils.isNotEmpty(carFilter.getDoors()) &&
-                ( StringUtils.isNotEmpty(carFilter.getBrand()) ||
+                (StringUtils.isNotEmpty(carFilter.getBrand()) ||
                         StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
                         StringUtils.isNotEmpty(carFilter.getBodyType()))) {
             Integer doors = IntegerUtils.parseInt(carFilter.getDoors(), 0);
@@ -178,14 +192,22 @@ public class CarDaoImpl implements CarDao {
                         StringUtils.isNotEmpty(carFilter.getDoors()) ||
                         StringUtils.isNotEmpty(carFilter.getBrand()) ||
                         StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))){
+                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
             query.append("AND C.climateControl='" + BooleanUtils.toInteger(Boolean.valueOf(carFilter.getClimateControl())) + "' ");
         }
-            return
-                    sessionFactory.getCurrentSession().
-                            createQuery(query.toString(),Car.class).list();
-
-}
-
+        return
+                sessionFactory.getCurrentSession().
+                        createQuery(query.toString(), Car.class).list();
 
     }
+
+    @Override
+    public List<Car> findAllByUserId(String userId) {
+        String query = "From AppOrder inner join Car on " +
+                "appUser.id='" + userId + "' ";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Car.class).list();
+    }
+    }
+
+

@@ -21,5 +21,7 @@ public interface ModelDetailDao {
 
     List<ModelDetail> findAllModelsByBrandName(String name);
 
+    boolean isAlreadyExists(ModelDetail modelDetail);
+
 
 }

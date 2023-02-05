@@ -29,11 +29,11 @@
  <!-- gender -->
  <div class="form-check form-check-inline">
    <input class="form-check-input" type="radio" name="gender" id="gender1" value="male">
-   <label class="form-check-label" for="gender1">Male</label>
+   <label class="form-check-label" for="gender1">male</label>
  </div>
  <div class="form-check form-check-inline">
    <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
-   <label class="form-check-label" for="gender2">Female</label>
+   <label class="form-check-label" for="gender2">female</label>
  </div>
  <!-- birthDat -->
   <div class="mb-3">
@@ -47,6 +47,13 @@
       <input type="email" name="email" class="form-control" id="email" aria-describedby="nameHelp">
       <div id="nameHelp" class="form-text">Enter email</div>
    </div>
+   <!-- phoneNumber -->
+      <div class="mb-3">
+         <label for="phoneNumber" class="form-label">phone number</label>
+         <input type="phoneNumber" name="phoneNumber" class="form-control" id="phoneNumber" aria-describedby="nameHelp">
+         <div id="nameHelp" class="form-text">Enter phone number</div>
+      </div>
          <button type="submit" class="btn btn-primary">Submit</button>
+
 
 <jsp:include page="_footer.jsp"/>

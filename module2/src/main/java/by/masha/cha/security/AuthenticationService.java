@@ -22,22 +22,25 @@ public class AuthenticationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("Call: loadUserByUsername");
         try {
-            List<AppUser> appUsers = appUserService.findUserByUsername(username);
+            List<AppUser> appUsers =
+                    appUserService.findUserByUsername(username);
             System.out.println("Found user: " + appUsers.size());
             if (appUsers.size() != 1) {
                 throw new UsernameNotFoundException("User not found: " + username);
             }
             AppUser appUser = appUsers.get(0);
-            return new User(
+            return new UserExt(
                     appUser.getUsername(),
                     appUser.getPassword(),
                     true, true, true, true,
-                    List.of(new SimpleGrantedAuthority("ROLE_" + appUser.getRole()))
+                    List.of(new SimpleGrantedAuthority("ROLE_" + appUser.getRole())),
+                    appUser.getId()
             );
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new UsernameNotFoundException("User not found: " + username, e);
+            throw new UsernameNotFoundException("User not found: " + username
+                    , e);
         }
     }
 }

@@ -1,6 +1,7 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.BodyType;
+import by.masha.cha.model.Brand;
 import by.masha.cha.model.FuelType;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface FuelTypeDao {
     List<String> findAllFuelTypeNames();
 
     public List<FuelType> findAll();
+
+    boolean isAlreadyExists(FuelType fuelType);
 }

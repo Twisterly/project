@@ -12,13 +12,13 @@ import java.util.Map;
 @Controller
 public class BodyTypeListController {
     @Autowired
-    private BodyTypeDao bodyTypeDao;
+    private BodyTypeService bodyTypeService;
 
     @GetMapping("/bodyType-list.html")
     public ModelAndView showBodyTypes() {
         return new ModelAndView(
                 "bodyType_list",
-                Map.of("bodyTypes", bodyTypeDao.findAllBodyTypeNames())
+                Map.of("bodyTypes",bodyTypeService.findAllBodyTypeNames())
         );
     }
 }

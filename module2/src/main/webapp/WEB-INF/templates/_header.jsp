@@ -31,6 +31,8 @@
              <li><a class="dropdown-item" href="/car/brand-list.html">Show brands</a></li>
              <li><a class="dropdown-item" href="/car/fuelType-list.html">Show fuel Types</a></li>
              <li><a class="dropdown-item" href="/car/transmissionType-list.html">Show transmission Types</a></li>
+          <li><a class="dropdown-item" href="/car/appUser-list.html">Show all Users</a></li>
+          <li><a class="dropdown-item" href="/car/personal-area-orders.html">Personal area</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -46,9 +48,19 @@
               <li><a class="dropdown-item" href="/car/add-transmissionType.html">Add transmission type</a></li>
            <li><a class="dropdown-item" href="/car/reg-appUser.html">Add app user</a></li>
             <li><a class="dropdown-item" href="/car/add-filter.html">Search</a></li>
-          </ul>
+             <li><a class="dropdown-item" href="/car/create-order.html">Create order</a></li>
+           </ul>
         </li>
- <li class="nav-item">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             User
+             </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/car/personal-info.html">Your info</a></li>
+            <li><a class="dropdown-item" href="/car/person-orders.html">Your orders</a></li>
+         </ul>
+         </li>
+        <li class="nav-item">
         <security:authorize access="isAuthenticated()">
             <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
         </security:authorize>

@@ -27,5 +27,9 @@ public class BrandService {
         return brandDao.findAllBrandNames();
     }
 
+    public boolean isAlreadyExists(Brand brand){
+        return brandDao.isAlreadyExists(brand);
+    }
+
 }
 

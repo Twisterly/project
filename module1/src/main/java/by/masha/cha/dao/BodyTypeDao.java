@@ -18,4 +18,6 @@ public interface BodyTypeDao {
     List<String> findAllBodyTypeNames();
 
     public List<BodyType> findAll();
+
+    boolean isAlreadyExists(BodyType bodyType);
 }

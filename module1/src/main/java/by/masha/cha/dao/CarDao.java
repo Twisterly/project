@@ -3,13 +3,14 @@ package by.masha.cha.dao;
 import by.masha.cha.model.Car;
 import by.masha.cha.model.CarFilter;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface CarDao {
 
     void create(Car car);
 
-    Car findById(long id);
+    Car findById(String id);
 
     void update(Car car);
 
@@ -22,6 +23,9 @@ public interface CarDao {
     List<Car> findAllByClimateControl(boolean isClimateControl);
 
     List<Car> findCarByFilter(CarFilter carFilter);
+
+    List<Car> findAllByUserId(String userId);
+
 
 
 
