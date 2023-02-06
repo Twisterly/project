@@ -20,6 +20,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/car/index.html">Home</a>
         </li>
+        <security:authorize access="isAuthenticated()">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Lists
@@ -61,6 +62,18 @@
             <li><a class="dropdown-item" href="/car/person-orders.html">Your orders</a></li>
          </ul>
          </li>
+         </security:authorize>
+          <security:authorize access="!isAuthenticated()">
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Anonymous
+           </a>
+             <ul class="dropdown-menu">
+             <li><a class="dropdown-item" href="/car/reg-appUser.html">Registration</a></li>
+             <li><a class="dropdown-item" href="/car/guest-car-list.html">Car list</a></li>
+           </ul>
+           </li>
+         </security:authorize>
         <li class="nav-item">
         <security:authorize access="isAuthenticated()">
             <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>

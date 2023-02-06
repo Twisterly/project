@@ -55,25 +55,25 @@
   <!-- regNumber -->
   <div class="col-md-6">
       <label for="regNumber" class="form-label">Registration Number</label>
-      <input type="text" name="regNumber" class="form-control" id="regNumber" aria-describedby="nameHelp">
+      <input type="text" name="regNumber" class="form-control" id="regNumber" aria-describedby="nameHelp" pattern="^\d{4}[A-Z]{2}[-]\d{1}$">
       <div id="nameHelp" class="form-text">Enter Registration name</div>
   </div>
    <!-- vinNumber -->
     <div class="col-md-6">
      <label for="vinNumber" class="form-label">VIN Number</label>
-     <input type="text" name="vinNumber" class="form-control" id="vinNumber" aria-describedby="nameHelp">
+     <input type="text" name="vinNumber" class="form-control" id="vinNumber" aria-describedby="nameHelp" pattern="^[0123456789ABCDEFGHJKLMNPRSTUVWXYZ]{17}$">
      <div id="nameHelp" class="form-text">Enter VIN Number</div>
     </div>
     <!-- price -->
      <div class="col-md-6">
       <label for="price" class="form-label">Price</label>
-      <input type="number" name="price" class="form-control" id="price" aria-describedby="nameHelp">
+      <input type="number" name="price" class="form-control" id="price" aria-describedby="nameHelp" pattern="^[0-9]{2,3}$">
       <div id="nameHelp" class="form-text">Enter price</div>
      </div>
      <!-- year -->
       <div class="col-md-6">
         <label for="year" class="form-label">Year</label>
-        <input type="text" name="year" class="form-control" id="year" aria-describedby="nameHelp">
+        <input type="text" name="year" class="form-control" id="year" aria-describedby="nameHelp" pattern="^[2]{1}[0]{1}[0-2]{1}[0-9]{1}$">
         <div id="nameHelp" class="form-text">Enter year</div>
       </div>
      <!-- color -->

@@ -31,5 +31,9 @@ public class BrandService {
         return brandDao.isAlreadyExists(brand);
     }
 
+    public Brand findById(long id) {
+        return brandDao.findById(id);
+    }
+
 }
 

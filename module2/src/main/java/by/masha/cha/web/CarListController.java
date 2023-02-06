@@ -4,14 +4,15 @@ import by.masha.cha.model.BodyType;
 import by.masha.cha.model.Brand;
 import by.masha.cha.model.Car;
 import by.masha.cha.model.ModelDetail;
-import by.masha.cha.service.BodyTypeService;
-import by.masha.cha.service.BrandService;
-import by.masha.cha.service.CarService;
-import by.masha.cha.service.ModelDetailService;
+import by.masha.cha.security.UserExt;
+import by.masha.cha.service.*;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,30 +35,40 @@ public class CarListController {
     private BodyTypeService bodyTypeService;
     @Autowired
     private BrandService brandService;
+    @Autowired
+    private AppUserService appUserService;
 
     @GetMapping("/car-list.html")
     public ModelAndView showCarList() {
         List<Brand> brands = brandService.getAll();
-        List<Car> cars =carService.getAll();
+        List<Car> cars = carService.getAll();
         List<ModelDetail> modelDetails = modelDetailService.getAll();
         List<BodyType> bodyTypes = bodyTypeService.getAll();
         ModelAndView modelAndView = new ModelAndView("car_list");
-        modelAndView.addAllObjects( Map.of("cars", cars));
+        modelAndView.addAllObjects(Map.of("cars", cars));
         modelAndView.addAllObjects(Map.of("brands", brands));
         modelAndView.addAllObjects(Map.of("bodyTypes", bodyTypes));
         modelAndView.addAllObjects(Map.of("modelDetails", modelDetails));
+        UserExt principal =
+                (UserExt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        modelAndView.addAllObjects(Map.of("role",
+                appUserService.getRoleNum(appUserService.findById(principal.getUserId()))));
         return modelAndView;
+
     }
 
 
 //    @GetMapping("/pagination")
 //    public String listCars(
 //            Model model,
-//            @RequestParam(value = "size", required = false, defaultValue = "0") Integer size,
-//            @RequestParam(value = "size", required = false, defaultValue = "7") Integer page ){
+//            @RequestParam(value = "size", required = false, defaultValue =
+//            "0") Integer size,
+//            @RequestParam(value = "size", required = false, defaultValue =
+//            "7") Integer page ){
 //        Page<Car> pageCars = carService.findAll(PageRequest.of(page, size));
 //        model.addAttribute("pageCars", pageCars);
-//        model.addAttribute("numbers", IntStream.range(0, pageCars.getTotalPages()).toArray());
+//        model.addAttribute("numbers", IntStream.range(0, pageCars
+//        .getTotalPages()).toArray());
 //
 //        return "car_list";
 //    }

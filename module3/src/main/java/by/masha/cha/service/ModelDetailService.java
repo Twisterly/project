@@ -26,12 +26,15 @@ public class ModelDetailService {
         return modelDetailDao.findAll();
     }
 
-    public List<ModelDetail> findAllModelsByBrandName(String name) {
-        return modelDetailDao.findAllModelsByBrandName(name);
+    public List<String> findAllModelNames() {
+        return modelDetailDao.findAllModelNames();
     }
-    public List<String> findAllModelNames(){return  modelDetailDao.findAllModelNames();}
-    public boolean isAlreadyExists(ModelDetail modelDetail){
+
+    public boolean isAlreadyExists(ModelDetail modelDetail) {
         return modelDetailDao.isAlreadyExists(modelDetail);
     }
 
+    public List<ModelDetail> findAllModelsByBrandName(String name) {
+        return modelDetailDao.findAllModelsByBrandName(name);
+    }
 }

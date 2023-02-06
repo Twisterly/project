@@ -53,7 +53,8 @@
          <input type="phoneNumber" value="+375" name="phoneNumber" class="form-control" id="phoneNumber" aria-describedby="nameHelp" pattern="^\+\d{12}\$" required>
          <div id="nameHelp" class="form-text">Enter phone number</div>
       </div>
-         <button type="submit" class="btn btn-primary">Submit</button>
+<input name="role" id="role" value="USER" type="hidden">
+        <button type="submit" class="btn btn-primary">Submit</button>
 
 
 <jsp:include page="_footer.jsp"/>

@@ -42,7 +42,7 @@ public class AppUser {
     private String gender;
 
     @Column(name = "user_role")
-    private String role = "USER";
+    private String role;
 
     @OneToMany(mappedBy = "appUser")
     private List<AppOrder> appOrders;

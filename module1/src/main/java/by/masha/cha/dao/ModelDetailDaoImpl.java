@@ -1,12 +1,14 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.Brand;
+import by.masha.cha.model.Car;
 import by.masha.cha.model.ModelDetail;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -56,15 +58,15 @@ public class ModelDetailDaoImpl implements ModelDetailDao {
 
     @Override
     public List<ModelDetail> findAllModelsByBrandName(String name) {
-        String brandQuery = "FROM Brand B WHERE B.brandName='" + name + "'";
-        List<Brand> brands =
+        String brandQuery = "FROM Car C WHERE C.brand.brandName='" + name + "'";
+        List<Car> cars =
                 sessionFactory.getCurrentSession().createQuery(brandQuery,
-                        Brand.class).list();
-        Brand brand = brands.get(0);
-        String modelDetailQuery =
-                "FROM ModelDetail M WHERE brand='" + brand.getId() + "'";
-        return sessionFactory.getCurrentSession().createQuery(modelDetailQuery,
-                ModelDetail.class).list();
+                        Car.class).list();
+        List<ModelDetail> modelDetailsList = new ArrayList<>();
+        for(Car car : cars ){
+          modelDetailsList.add(car.getModelDetail());
+        }
+       return modelDetailsList;
     }
 
     @Override

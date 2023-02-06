@@ -30,17 +30,27 @@ AppUserService {
         return appUserDao.findAll();
     }
 
-    public AppUser findById(String id){return appUserDao.findById(id);}
+    public AppUser findById(String id) {
+        return appUserDao.findById(id);
+    }
 
     @Transactional
     public void update(AppUser appUser) {
         appUserDao.update(appUser);
     }
 
-    public Integer isAlreadyExists(AppUser appUser){
+    public Integer isAlreadyExists(AppUser appUser) {
         return appUserDao.isAlreadyExists(appUser);
     }
 
+    public Integer getRoleNum(AppUser appUser) {
+        if (appUser.getRole().equals("ADMIN")) {
+            return 1;
+        }
+        if (appUser.getRole().equals("USER")) {
+            return 2;
+        } else return 0;
+    }
 
 
 }
