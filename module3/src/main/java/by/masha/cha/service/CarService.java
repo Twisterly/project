@@ -60,8 +60,8 @@ public class CarService {
     }
 
 
-    public List<Car> findCarByFilter(CarFilter carFilter) {
-        return carDao.findCarByFilter(carFilter);
+    public List<Car> findCarByFilter(CarFilter carFilter, Integer pageSize, Integer pageNumber) {
+        return carDao.findCarByFilter(carFilter,  pageSize,  pageNumber);
 
     }
 

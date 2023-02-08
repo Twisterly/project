@@ -24,7 +24,7 @@ public interface CarDao {
 
     List<Car> findAllByClimateControl(boolean isClimateControl);
 
-    List<Car> findCarByFilter(CarFilter carFilter);
+    List<Car> findCarByFilter(CarFilter carFilter, Integer pageSize, Integer pageNumber);
 
     List<Car> findAllByUserId(String userId);
 

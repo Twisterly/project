@@ -74,4 +74,11 @@ public class BrandDaoImpl implements BrandDao {
         } else
         return true;
     }
+
+    @Override
+    public Long getIdByBrandName(String brandName) {
+        String query = "From Brand B WHERE B.brandName='" + brandName +"'";
+        Brand brand = sessionFactory.getCurrentSession().createQuery(query, Brand.class).uniqueResult();
+        return brand.getId();
+    }
 }

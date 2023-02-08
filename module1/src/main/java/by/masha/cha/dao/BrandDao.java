@@ -22,4 +22,6 @@ public interface BrandDao {
     Brand findByBrandName(String name);
 
     boolean isAlreadyExists(Brand brand);
+
+    Long getIdByBrandName(String brandName);
 }

@@ -24,25 +24,6 @@
             </c:forEach>
           </select>
           </div>
- <!-- climateControl -->
-      <div class="col-md-6">
-        <label for="seats">Do you need climate control?</label>
-        <select class="form-select" id="climateControl" name="climateControl">
-        <option value="${null}">${null}</option>
-        <option value="${climateControl == true}">yes</option>
-        <option value="${climateControl == false}">no</option>
-        </select>
-      </div>
- <!-- body type -->
-    <div class="col-md-6">
-       <label for="bodyType">Choose a body type:</label>
-       <select class="form-select" id="bodyType" name="bodyType">
-       <option value="${null}">${null}</option>
-         <c:forEach items="${bodyTypes}" var="bodyType">
-         <option value="${bodyType}">${bodyType}</option>
-         </c:forEach>
-       </select>
-       </div>
   <!-- fuel type -->
      <div class="col-md-6">
         <label for="fuelType">Choose a fuel type:</label>

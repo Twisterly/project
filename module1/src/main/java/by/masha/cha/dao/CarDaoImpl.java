@@ -2,6 +2,7 @@ package by.masha.cha.dao;
 
 import by.masha.cha.model.*;
 import com.mchange.lang.IntegerUtils;
+import com.sun.xml.bind.v2.TODO;
 import net.bytebuddy.matcher.StringMatcher;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,18 +13,26 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.QuerydslJpaRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 
@@ -93,117 +102,54 @@ public class CarDaoImpl implements CarDao {
 
 
     @Override
-    public List<Car> findCarByFilter(CarFilter carFilter) {
-        StringBuilder query = new StringBuilder("FROM Car C WHERE ");
-        if (StringUtils.isNotEmpty(carFilter.getBrand())) {
-            query.append("C.brand.brandName='" + carFilter.getBrand() + "' ");
+    public List<Car> findCarByFilter(CarFilter carFilter, Integer pageSize, Integer pageNumber) {
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<Car> criteria = criteriaBuilder.createQuery(Car.class);
+        Root<Car> cars = criteria.from(Car.class);
+        List<Predicate> predicates = new ArrayList<>();
+        if (!(carFilter.getBrand().equals("")) && !(carFilter.getBrand().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("brand").get(
+                    "brandName"), carFilter.getBrand()));
         }
-        if (StringUtils.isNotEmpty(carFilter.getModelDetail()) && StringUtils.isNotEmpty(carFilter.getBrand())) {
-            query.append("AND C.modelDetail.modelName='" + carFilter.getModelDetail() + "' ");
-        } else if (StringUtils.isNotEmpty(carFilter.getModelDetail()) && StringUtils.isEmpty(carFilter.getBrand())) {
-            query.append("C.modelDetail.modelName='" + carFilter.getModelDetail() + "' ");
+        if (!(carFilter.getModelDetail().equals("")) && !(carFilter.getModelDetail().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("modelDetail").get(
+                    "modelName"), carFilter.getModelDetail()));
         }
-        if (StringUtils.isNotEmpty(carFilter.getBodyType()) && (StringUtils.isNotEmpty(carFilter.getBrand()) || StringUtils.isNotEmpty(carFilter.getModelDetail()))) {
-            query.append("AND C.bodyType='" + carFilter.getBodyType() + "' ");
-        } else if (StringUtils.isNotEmpty(carFilter.getBodyType()) && (StringUtils.isEmpty(carFilter.getBrand()) && StringUtils.isEmpty(carFilter.getModelDetail()))) {
-            query.append("C.bodyType='" + carFilter.getBodyType() + "' ");
+        if (!(carFilter.getFuelType().equals("")) && !(carFilter.getFuelType().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("fuelType").get(
+                    "fuelTypeName"), carFilter.getFuelType()));
         }
-        if (StringUtils.isNotEmpty(carFilter.getDoors()) &&
-                (StringUtils.isNotEmpty(carFilter.getBrand()) ||
-                        StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
-            Integer doors = IntegerUtils.parseInt(carFilter.getDoors(), 0);
-            if (doors > 0) {
-                query.append("AND C.seats='" + doors + "' ");
-            }
-        } else if (StringUtils.isNotEmpty(carFilter.getDoors()) &&
-                (StringUtils.isEmpty(carFilter.getBrand()) &&
-                        StringUtils.isEmpty(carFilter.getModelDetail()) &&
-                        StringUtils.isEmpty(carFilter.getBodyType()))) {
-            Integer doors = IntegerUtils.parseInt(carFilter.getDoors(), 0);
-            if (doors > 0) {
-                query.append("C.seats='" + doors + "' ");
-            }
+        if (!(carFilter.getTransmissionType().equals("")) && !(carFilter.getTransmissionType().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("transmissionType").get("transmissionTypeName"), carFilter.getTransmissionType()));
         }
-        if (StringUtils.isNotEmpty(carFilter.getSeats()) &&
-                (StringUtils.isNotEmpty(carFilter.getDoors()) ||
-                        StringUtils.isNotEmpty(carFilter.getBrand()) ||
-                        StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
-            Integer seats = IntegerUtils.parseInt(carFilter.getSeats(), 0);
-            if (seats > 0) {
-                query.append("AND C.seats='" + seats + "' ");
-            }
-        } else if (StringUtils.isNotEmpty(carFilter.getSeats()) &&
-                (StringUtils.isEmpty(carFilter.getDoors()) &&
-                        StringUtils.isEmpty(carFilter.getBrand()) &&
-                        StringUtils.isEmpty(carFilter.getModelDetail()) &&
-                        StringUtils.isEmpty(carFilter.getBodyType()))) {
-            Integer seats = IntegerUtils.parseInt(carFilter.getSeats(), 0);
-            if (seats > 0) {
-                query.append("C.seats='" + seats + "' ");
-            }
+        if (!(carFilter.getDoors().equals("")) && !(carFilter.getDoors().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("doors"),
+                    Integer.parseInt(carFilter.getDoors())));
         }
-        if (StringUtils.isNotEmpty(carFilter.getTransmissionType()) &&
-                ((StringUtils.isEmpty(carFilter.getSeats()) &&
-                        StringUtils.isEmpty(carFilter.getDoors()) &&
-                        StringUtils.isEmpty(carFilter.getBrand()) &&
-                        StringUtils.isEmpty(carFilter.getModelDetail()) &&
-                        StringUtils.isEmpty(carFilter.getBodyType())))) {
-            query.append("C.transmissionType.transmissionTypeName='" + carFilter.getTransmissionType() + "' ");
-        } else if (StringUtils.isNotEmpty(carFilter.getTransmissionType()) &&
-                (StringUtils.isNotEmpty(carFilter.getSeats()) ||
-                        StringUtils.isNotEmpty(carFilter.getDoors()) ||
-                        StringUtils.isNotEmpty(carFilter.getBrand()) ||
-                        StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
-            query.append("AND C.transmissionType.transmissionTypeName='" + carFilter.getTransmissionType() + "' ");
+        if (!(carFilter.getSeats().equals("")) && !(carFilter.getSeats().equals("null"))) {
+            predicates.add(criteriaBuilder.equal(cars.get("seats"),
+                    Integer.parseInt(carFilter.getSeats())));
         }
-        if (StringUtils.isNotEmpty(carFilter.getFuelType()) &&
-                (StringUtils.isEmpty(carFilter.getTransmissionType()) &&
-                        StringUtils.isEmpty(carFilter.getSeats()) &&
-                        StringUtils.isEmpty(carFilter.getDoors()) &&
-                        StringUtils.isEmpty(carFilter.getBrand()) &&
-                        StringUtils.isEmpty(carFilter.getModelDetail()) &&
-                        StringUtils.isEmpty(carFilter.getBodyType()))) {
-            query.append("C.fuelType.fuelTypeName='" + carFilter.getFuelType() + "' ");
-        } else if (StringUtils.isNotEmpty(carFilter.getFuelType()) &&
-                (StringUtils.isNotEmpty(carFilter.getTransmissionType()) ||
-                        StringUtils.isNotEmpty(carFilter.getSeats()) ||
-                        StringUtils.isNotEmpty(carFilter.getDoors()) ||
-                        StringUtils.isNotEmpty(carFilter.getBrand()) ||
-                        StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
-            query.append("AND C.fuelType.fuelTypeName='" + carFilter.getFuelType() + "' ");
-        }
-        if (StringUtils.isNotEmpty(carFilter.getClimateControl()) &&
-                (StringUtils.isEmpty(carFilter.getFuelType()) &&
-                        StringUtils.isEmpty(carFilter.getTransmissionType()) &&
-                        StringUtils.isEmpty(carFilter.getSeats()) &&
-                        StringUtils.isEmpty(carFilter.getDoors()) &&
-                        StringUtils.isEmpty(carFilter.getBrand()) &&
-                        StringUtils.isEmpty(carFilter.getModelDetail()) &&
-                        StringUtils.isEmpty(carFilter.getBodyType()))) {
-            query.append("C.climateControl='" + BooleanUtils.toInteger(Boolean.valueOf(carFilter.getClimateControl())) + "' ");
-        } else if (StringUtils.isNotEmpty(carFilter.getClimateControl()) &&
-                (StringUtils.isNotEmpty(carFilter.getFuelType()) ||
-                        StringUtils.isNotEmpty(carFilter.getTransmissionType()) ||
-                        StringUtils.isNotEmpty(carFilter.getSeats()) ||
-                        StringUtils.isNotEmpty(carFilter.getDoors()) ||
-                        StringUtils.isNotEmpty(carFilter.getBrand()) ||
-                        StringUtils.isNotEmpty(carFilter.getModelDetail()) ||
-                        StringUtils.isNotEmpty(carFilter.getBodyType()))) {
-            query.append("AND C.climateControl='" + BooleanUtils.toInteger(Boolean.valueOf(carFilter.getClimateControl())) + "' ");
-        }
-        return
-                sessionFactory.getCurrentSession().
-                        createQuery(query.toString(), Car.class).list();
+        criteria.select(cars).where(predicates.toArray(Predicate[]::new));
+        Query<Car> query =
+                sessionFactory.getCurrentSession().createQuery(criteria);
+        query.setFirstResult(pageNumber*pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
+
+//        criteria1.setFirstResult(pageNumber * pageSize);
+//        criteria1.setMaxResults(pageSize);
+//        return criteria1.list();
+//        return criteria1.list();
+        //        return sessionFactory.getCurrentSession().createQuery
+        //        (criteria).list();
 
     }
 
     @Override
     public List<Car> findAllByUserId(String userId) {
-        String query = "From AppOrder ao WHERE ao.appUser='" + userId + "' ";
+        String query = "From AppOrder ao WHERE ao.appUser='" + userId +
+                "' ";
         List<AppOrder> appOrders =
                 sessionFactory.getCurrentSession().createQuery(query,
                         AppOrder.class).list();
@@ -216,7 +162,8 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> findAllByLimit(Integer limit, Integer offset) {
-        String query = "From Car c ORDER BY id LIMIT '" + limit + "' OFFSET " +
+        String query = "From Car c ORDER BY id LIMIT '" + limit + "' " +
+                "OFFSET " +
                 "'" + offset + "'";
         List<Car> cars =
                 sessionFactory.getCurrentSession().createQuery(query,
@@ -239,6 +186,7 @@ public class CarDaoImpl implements CarDao {
         return criteria.list();
     }
 
+
     public Long getCount() {
         Criteria criteriaCount =
                 sessionFactory.getCurrentSession().createCriteria(Car.class);
@@ -247,30 +195,33 @@ public class CarDaoImpl implements CarDao {
 
     }
 
-    public List<String> getAllCarDoorsModification(){
+    public List<String> getAllCarDoorsModification() {
         List<String> result = new ArrayList<>();
-        List<Car> cars = sessionFactory.getCurrentSession().createQuery("from Car",
+        List<Car> cars = sessionFactory.getCurrentSession().createQuery(
+                "from" +
+                        " Car",
                 Car.class).list();
-        for(Car car: cars){
+        for (Car car : cars) {
             result.add(car.getDoors().toString());
         }
-       return result.stream()
+        return result.stream()
                 .distinct()
                 .collect(Collectors.toList());
     }
 
-   public List<String> getAllCarSeatsModification(){
-       List<String> result = new ArrayList<>();
-       List<Car> cars = sessionFactory.getCurrentSession().createQuery("from Car",
-               Car.class).list();
-       for(Car car: cars){
-           result.add(car.getSeats().toString());
-       }
-       return result.stream()
-               .distinct()
-               .collect(Collectors.toList());
-   }
-
+    public List<String> getAllCarSeatsModification() {
+        List<String> result = new ArrayList<>();
+        List<Car> cars = sessionFactory.getCurrentSession().createQuery(
+                "from" +
+                        " Car",
+                Car.class).list();
+        for (Car car : cars) {
+            result.add(car.getSeats().toString());
+        }
+        return result.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
 
 
 }
