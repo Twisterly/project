@@ -32,9 +32,9 @@
              <li><a class="dropdown-item" href="/car/brand-list.html">Show brands</a></li>
              <li><a class="dropdown-item" href="/car/fuelType-list.html">Show fuel Types</a></li>
              <li><a class="dropdown-item" href="/car/transmissionType-list.html">Show transmission Types</a></li>
-          <li><a class="dropdown-item" href="/car/appUser-list.html">Show all Users</a></li>
+          <li><a class="dropdown-item" href="/car/appUsers-list.html">Show all Users</a></li>
           <li><a class="dropdown-item" href="/car/personal-area-orders.html">Personal area</a></li>
-          <li><a class="dropdown-item" href="/car/order-list.html">Show orders</a></li>
+          <li><a class="dropdown-item" href="/car/allOrders-list.html">Show orders</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -59,9 +59,18 @@
              </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/car/personal-info.html">Your info</a></li>
-            <li><a class="dropdown-item" href="/car/person-orders.html">Your orders</a></li>
+            <li><a class="dropdown-item" href="/car/appUser-orders.html">Your orders</a></li>
          </ul>
          </li>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Admin
+             </a>
+             <ul class="dropdown-menu">
+             <li><a class="dropdown-item" href="/car/allOrders-list.html">Show orders</a></li>
+             <li><a class="dropdown-item" href="/car/appUsers-list.html">Show users</a></li>
+                  </ul>
+                  </li>
          </security:authorize>
           <security:authorize access="!isAuthenticated()">
          <li class="nav-item dropdown">

@@ -18,6 +18,7 @@ public class TransmissionTypeService {
 
     @Transactional
     public void add(TransmissionType transmissionType) {
+        transmissionType.setTransmissionTypeName(transmissionType.getTransmissionTypeName().toUpperCase());
         transmissionTypeDao.create(transmissionType);
     }
 
@@ -25,7 +26,7 @@ public class TransmissionTypeService {
         return transmissionTypeDao.findAll();
     }
 
-    public boolean isAlreadyExists(TransmissionType transmissionType){
+    public boolean isAlreadyExists(TransmissionType transmissionType) {
         return transmissionTypeDao.isAlreadyExists(transmissionType);
     }
 

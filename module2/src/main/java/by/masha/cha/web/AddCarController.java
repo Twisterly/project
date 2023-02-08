@@ -19,21 +19,21 @@ import java.util.Map;
 @Controller
 public class AddCarController {
     @Autowired
-    CarService carService;
+    private CarService carService;
 
     @Autowired
-    ModelDetailService modelDetailService;
+    private ModelDetailService modelDetailService;
     @Autowired
-    BodyTypeService bodyTypeService;
+    private BodyTypeService bodyTypeService;
 
     @Autowired
-    BrandService brandService;
+    private BrandService brandService;
 
     @Autowired
-    FuelTypeService fuelTypeService;
+    private FuelTypeService fuelTypeService;
 
     @Autowired
-    TransmissionTypeService transmissionTypeService;
+    private TransmissionTypeService transmissionTypeService;
 
     @GetMapping("/add-car.html")
     public ModelAndView showAddCarPage() {

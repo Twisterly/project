@@ -32,6 +32,33 @@
   </tr>
   </c:forEach>
 </table>
-</nav>
+ <nav aria-label="Page navigation example">
+  <ul class="pagination">
+  <c:if test="${currentPage + 1 == pageCount && pageCount == 1}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+    </c:if>
+    <c:if test="${currentPage + 1 == 1 && currentPage + 1 < pageCount}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item"><a class="page-link" href="appUsers-list.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 > 1 && currentPage + 1 < pageCount}">
+      <li class="page-item"><a class="page-link" href="appUsers-list.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="appUsers-list.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 == pageCount && currentPage + 1 > 1}">
+      <li class="page-item"><a class="page-link" href="appUsers-list.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item disabled">
+              <span class="page-link">Next</span>
+      </li>
+    </c:if>
+    </ul>
+  </nav>
 
 <jsp:include page="_footer.jsp"/>

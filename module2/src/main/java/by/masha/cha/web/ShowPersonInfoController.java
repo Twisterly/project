@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class ShowPersonInfoController {
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
 
     @GetMapping("/personal-info.html")
     public ModelAndView showPersonalInfo() {

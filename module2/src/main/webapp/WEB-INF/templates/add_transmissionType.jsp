@@ -4,7 +4,7 @@
 <form method="post" action="/car/add-transmissionType.html">
   <div class="col-md-6">
     <label for="transmissionTypeName" class="form-label">Transmission type name</label>
-    <input type="text" name="transmissionTypeName" class="form-control" id="transmissionTypeName" aria-describedby="nameHelp">
+    <input type="text" name="transmissionTypeName" class="form-control" id="transmissionTypeName" aria-describedby="nameHelp" required>
     <div id="nameHelp" class="form-text">Enter transmission type name</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

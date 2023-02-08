@@ -4,7 +4,7 @@
 <form method="post" action="/car/add-bodyType.html">
   <div class="col-md-6">
     <label for="bodyTypeName" class="form-label">Body type name</label>
-    <input type="text" name="bodyTypeName" class="form-control" id="bodyTypeName" aria-describedby="nameHelp">
+    <input type="text" name="bodyTypeName" class="form-control" id="bodyTypeName" aria-describedby="nameHelp" required>
     <div id="nameHelp" class="form-text">Enter body type name</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

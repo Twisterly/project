@@ -15,21 +15,21 @@ import java.util.Map;
 @Controller
 public class UpdateCarController {
     @Autowired
-    CarService carService;
+    private CarService carService;
 
     @Autowired
-    ModelDetailService modelDetailService;
+    private ModelDetailService modelDetailService;
     @Autowired
-    BodyTypeService bodyTypeService;
+    private BodyTypeService bodyTypeService;
 
     @Autowired
-    BrandService brandService;
+    private BrandService brandService;
 
     @Autowired
-    FuelTypeService fuelTypeService;
+    private FuelTypeService fuelTypeService;
 
     @Autowired
-    TransmissionTypeService transmissionTypeService;
+    private TransmissionTypeService transmissionTypeService;
 
     @GetMapping("car/update-car.html")
     public ModelAndView showUpdateCarPage(String carId) {

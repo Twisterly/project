@@ -19,6 +19,7 @@ public class ModelDetailService {
 
     @Transactional
     public void add(ModelDetail modelDetail) {
+        modelDetail.setModelName(modelDetail.getModelName().toUpperCase());
         modelDetailDao.create(modelDetail);
     }
 

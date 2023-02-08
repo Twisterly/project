@@ -9,6 +9,8 @@ import org.hibernate.Criteria;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,6 +32,7 @@ public class CarDaoImpl implements CarDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
 
     @Override
     public void create(Car car) {
@@ -203,11 +208,50 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> findAllByUserId(String userId) {
-        String query = "From AppOrder inner join Car on " +
-                "appUser.id='" + userId + "' ";
-        return sessionFactory.getCurrentSession()
-                .createQuery(query, Car.class).list();
+        String query = "From AppOrder ao WHERE ao.appUser='" + userId + "' ";
+        List<AppOrder> appOrders =
+                sessionFactory.getCurrentSession().createQuery(query,
+                        AppOrder.class).list();
+        List<Car> carList = new ArrayList<>();
+        for (AppOrder order : appOrders) {
+            carList.add(order.getCar());
+        }
+        return carList;
     }
+
+    @Override
+    public List<Car> findAllByLimit(Integer limit, Integer offset) {
+        String query = "From Car c ORDER BY id LIMIT '" + limit + "' OFFSET " +
+                "'" + offset + "'";
+        List<Car> cars =
+                sessionFactory.getCurrentSession().createQuery(query,
+                        Car.class).list();
+        return cars;
+    }
+
+    public List<Car> findAllAndSortByYear() {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(Car.class)
+                        .addOrder(Order.asc("year"));
+        return criteria.list();
+    }
+
+    public List<Car> getPage(Integer pageSize, Integer pageNumber) {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(Car.class).addOrder(Order.asc("year"));
+        criteria.setFirstResult(pageNumber * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+    public Long getCount() {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(Car.class);
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
+
+    }
+
 
 
 }

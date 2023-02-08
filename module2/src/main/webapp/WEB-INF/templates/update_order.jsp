@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
-<h1>Create order</h1>
+<h1>Update order</h1>
 
 <form method="post" action="/car/update-order.html?appOrderId=${appOrder.id}" enctype="multipart/form-data">
 <!-- Car -->
@@ -30,7 +30,7 @@
               <div id="nameHelp" class="form-text">Enter end Date</div>
               </div>
 
-<input name="appOrder.id" id="appOrder.id" value="${appOrderId}" type="hidden">
+<input name="car.id" id="car.id" value="${car.id}" type="hidden">
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

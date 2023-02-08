@@ -28,7 +28,6 @@ public class AddAppOrderController {
     private AppUserService appUserService;
 
 
-
     @GetMapping("/create-order.html")
     public ModelAndView showCreateAppOrderPage() {
         List<Car> carList = carService.getAll();
@@ -59,16 +58,6 @@ public class AddAppOrderController {
         }
         else
             return new ModelAndView("error");
-//        List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
-//        if (appOrderService.isReserved(ordersList, appOrder.getStartDate().toLocalDate(), appOrder.getEndDate().toLocalDate()) == false) {
-//            appOrderService.add(appOrder);
-//            ModelAndView modelAndView = new ModelAndView("appOrder");
-//            modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));
-//            modelAndView.addAllObjects(Map.of("car", carService.getById(carId)));
-//            return modelAndView;
-//        }
-//        else
-//            return new ModelAndView("error");
     }
 
 

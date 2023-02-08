@@ -24,4 +24,7 @@ public interface AppUserDao {
 
     Integer isAlreadyExists(AppUser appUser);
 
+    List<AppUser> getPage(Integer pageSize, Integer pageNumber);
+    Long getCount();
+
 }

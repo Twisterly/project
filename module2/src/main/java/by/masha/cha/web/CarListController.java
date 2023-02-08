@@ -39,9 +39,13 @@ public class CarListController {
     private AppUserService appUserService;
 
     @GetMapping("/car-list.html")
-    public ModelAndView showCarList() {
+    public ModelAndView showCarList(String pageNumber) {
         List<Brand> brands = brandService.getAll();
-        List<Car> cars = carService.getAll();
+        Integer page= 0;
+        if(pageNumber != null){page = Integer.valueOf(pageNumber);}
+        List<Car> cars = carService.getPage(3, page);
+        Long carCount = carService.getCount();
+        int pageCount = (int) Math.ceil((double)carCount/3);
         List<ModelDetail> modelDetails = modelDetailService.getAll();
         List<BodyType> bodyTypes = bodyTypeService.getAll();
         ModelAndView modelAndView = new ModelAndView("car_list");
@@ -49,6 +53,8 @@ public class CarListController {
         modelAndView.addAllObjects(Map.of("brands", brands));
         modelAndView.addAllObjects(Map.of("bodyTypes", bodyTypes));
         modelAndView.addAllObjects(Map.of("modelDetails", modelDetails));
+        modelAndView.addAllObjects(Map.of("pageCount", pageCount));
+        modelAndView.addAllObjects(Map.of("currentPage", page));
         UserExt principal =
                 (UserExt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         modelAndView.addAllObjects(Map.of("role",
@@ -78,8 +84,8 @@ public class CarListController {
     @GetMapping("/image/{car.id}/photo.jpg")
     public byte[] getImage(@PathVariable("car.id") String carId) {
         System.out.println("Call getImage: " + carId);
-        Car empl = carService.getById(carId);
-        return empl.getCarPhoto().getPhoto();
+        Car car = carService.getById(carId);
+        return car.getCarPhoto().getPhoto();
     }
 
 //    @GetMapping("/car-list.html")

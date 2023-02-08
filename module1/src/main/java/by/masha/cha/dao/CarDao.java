@@ -2,8 +2,10 @@ package by.masha.cha.dao;
 
 import by.masha.cha.model.Car;
 import by.masha.cha.model.CarFilter;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.awt.print.Pageable;
+import java.sql.Date;
 import java.util.List;
 
 public interface CarDao {
@@ -25,6 +27,19 @@ public interface CarDao {
     List<Car> findCarByFilter(CarFilter carFilter);
 
     List<Car> findAllByUserId(String userId);
+
+    List<Car> findAllByLimit(Integer limit, Integer offset);
+
+    List<Car> findAllAndSortByYear();
+
+    List<Car> getPage(Integer pageSize, Integer pageNumber);
+    Long getCount();
+
+
+
+
+
+
 
 
 

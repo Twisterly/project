@@ -198,7 +198,9 @@
             CREATE TABLE IF NOT EXISTS `t_app_order` (
             `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,
             `start_date` DATE,
+            `start_time` TIME,
             `end_date` DATE,
+            `end_time` TIME,
             `total_sum` DOUBLE,
             `car_id` VARCHAR(256),
             `app_user_id` VARCHAR(256),

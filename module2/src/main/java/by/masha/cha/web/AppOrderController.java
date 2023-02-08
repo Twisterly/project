@@ -22,28 +22,18 @@ public class AppOrderController {
     @Autowired
     private CarService carService;
 
-    @GetMapping("/order/{order.id}.html")
-    public ModelAndView showAppOrder(String carId) {
-        AppOrder appOrd = appOrderService.findLastOrder();
-        Car car = carService.getById(carId);
-        ModelAndView modelAndView = new ModelAndView("appOrder");
-        modelAndView.addAllObjects( Map.of("order", appOrd));
+    @GetMapping("/order.html")
+    public ModelAndView showAppOrder(String appOrderId) {
+        AppOrder appOrder = appOrderService.findById(appOrderId);
+        Car car = carService.getById(appOrder.getCar().getId());
+        ModelAndView modelAndView = new ModelAndView("appOrderInfo");
+        modelAndView.addAllObjects(Map.of("appOrder", appOrder));
         modelAndView.addAllObjects(Map.of("car", car));
+        modelAndView.addAllObjects(Map.of("status",
+                appOrderService.appOrderStatus(appOrder)));
         return modelAndView;
     }
 
-
-//    @GetMapping("/pagination")
-//    public String listCars(
-//            Model model,
-//            @RequestParam(value = "size", required = false, defaultValue = "0") Integer size,
-//            @RequestParam(value = "size", required = false, defaultValue = "7") Integer page ){
-//        Page<Car> pageCars = carService.findAll(PageRequest.of(page, size));
-//        model.addAttribute("pageCars", pageCars);
-//        model.addAttribute("numbers", IntStream.range(0, pageCars.getTotalPages()).toArray());
-//
-//        return "car_list";
-//    }
 }
 
 

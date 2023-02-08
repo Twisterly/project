@@ -1,8 +1,13 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.AppOrder;
+import by.masha.cha.model.AppUser;
 import by.masha.cha.model.Car;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,6 +78,37 @@ public class AppOrderDaoImpl implements AppOrderDao {
         String query = "From AppOrder ao WHERE ao.car='" + id + "' ";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, AppOrder.class).list();
+    }
+
+    public List<AppOrder> getPageForUser(String appUserId, Integer pageSize, Integer pageNumber) {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(AppOrder.class).add(Restrictions.eq("appUser.id", appUserId)).addOrder(Order.desc("startDate"));
+        criteria.setFirstResult(pageNumber * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+    public Long getCountForUser(String appUserId) {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(AppOrder.class).add(Restrictions.eq("appUser.id", appUserId));
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
+
+    }
+
+    public List<AppOrder> getPageForAdmin(Integer pageSize, Integer pageNumber) {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(AppOrder.class).addOrder(Order.desc("startDate"));
+        criteria.setFirstResult(pageNumber * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+    public Long getCountForAdmin() {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(AppOrder.class);
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
     }
 
 

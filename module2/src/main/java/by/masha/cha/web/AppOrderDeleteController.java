@@ -18,11 +18,11 @@ import java.util.Map;
 @Controller
 public class AppOrderDeleteController {
     @Autowired
-    AppOrderService appOrderService;
+    private AppOrderService appOrderService;
     @Autowired
-    CarService carService;
+    private CarService carService;
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
 
     @GetMapping("/delete-order.html")
     public ModelAndView showOrderList(String appOrderId) {

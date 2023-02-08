@@ -3,6 +3,7 @@ package by.masha.cha.service;
 import by.masha.cha.dao.AppUserDao;
 import by.masha.cha.model.AppUser;
 import by.masha.cha.model.BodyType;
+import by.masha.cha.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +51,14 @@ AppUserService {
         if (appUser.getRole().equals("USER")) {
             return 2;
         } else return 0;
+    }
+
+    public List<AppUser> getPage(Integer pageSize, Integer pageNumber) {
+        return appUserDao.getPage(pageSize, pageNumber);
+    }
+
+    public Long getCount() {
+        return appUserDao.getCount();
     }
 
 

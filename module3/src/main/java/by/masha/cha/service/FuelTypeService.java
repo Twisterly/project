@@ -16,7 +16,8 @@ public class FuelTypeService {
 
     @Transactional
     public void add(FuelType fuelType) {
-       fuelTypeDao.create(fuelType);
+       fuelType.setFuelTypeName(fuelType.getFuelTypeName().toUpperCase());
+        fuelTypeDao.create(fuelType);
     }
 
     public List<FuelType> getAll() {

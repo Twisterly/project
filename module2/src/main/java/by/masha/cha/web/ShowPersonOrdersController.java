@@ -18,11 +18,11 @@ import java.util.Map;
 @Controller
 public class ShowPersonOrdersController {
     @Autowired
-    AppOrderService appOrderService;
+    private AppOrderService appOrderService;
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
     @Autowired
-    CarService carService;
+    private CarService carService;
 
     @GetMapping("/person-orders.html")
     public ModelAndView showPersonOrders() {

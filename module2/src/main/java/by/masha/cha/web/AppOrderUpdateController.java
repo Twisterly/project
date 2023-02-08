@@ -3,11 +3,13 @@ package by.masha.cha.web;
 import by.masha.cha.model.AppOrder;
 import by.masha.cha.model.AppUser;
 import by.masha.cha.model.Car;
+import by.masha.cha.security.UserExt;
 import by.masha.cha.service.AppOrderService;
 import by.masha.cha.service.AppUserService;
 import by.masha.cha.service.CarService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +22,11 @@ import java.util.Map;
 
 public class AppOrderUpdateController {
     @Autowired
-    AppOrderService appOrderService;
+    private AppOrderService appOrderService;
     @Autowired
-    CarService carService;
+    private CarService carService;
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
 
     @GetMapping("/update-order.html")
     public ModelAndView showUpdateOrderPage(String appOrderId) {
@@ -52,11 +54,54 @@ public class AppOrderUpdateController {
 
     @PostMapping("/update-order.html")
     @SneakyThrows
-    public String updateAppOrder(AppOrder appOrder, String appOrderId) {
-        System.out.println("Call deleteAppOrder: " + appOrder);
-        appOrderService.update(appOrder, appOrderId);
-        return "redirect:/order-list.html";
+    public ModelAndView updateAppOrder(AppOrder appOrder, String carId) {
+        System.out.println("Call updateAppOrder: " + appOrder);
+        List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
+        ModelAndView modelAndViewERROR = new ModelAndView(
+                "createAppOrderFromCarList_error");
+        if ((appOrderService.isReserved(ordersList,
+                appOrder.getStartDate().toLocalDate(),
+                appOrder.getEndDate().toLocalDate()) == false)
+                && appOrderService.isCorrectDates(appOrder.getStartDate().toLocalDate(),
+                appOrder.getEndDate().toLocalDate())) {
+            appOrderService.update(appOrder, appOrder.getId());
+            ModelAndView modelAndView = new ModelAndView("appOrder");
+            modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));
+            modelAndView.addAllObjects(Map.of("car",
+                    carService.getById(carId)));
+            return modelAndView;
+
+        } else {
+            Car car = carService.getById(carId);
+            UserExt principal =
+                    (UserExt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            modelAndViewERROR.addAllObjects(Map.of("car", car));
+            modelAndViewERROR.addAllObjects(Map.of("userId",
+                    principal.getUserId()));
+            modelAndViewERROR.addAllObjects(Map.of("startDate",
+                    appOrder.getStartDate()));
+            modelAndViewERROR.addAllObjects(Map.of("endDate",
+                    appOrder.getEndDate()));
+            if (appOrderService.isAvailableDate(ordersList,
+                    appOrder.getStartDate().toLocalDate()) != true) {
+                modelAndViewERROR.addAllObjects(Map.of("reservation", 1));
+            }
+            if (appOrderService.isAvailableDate(ordersList,
+                    appOrder.getEndDate().toLocalDate()) != true) {
+                modelAndViewERROR.addAllObjects(Map.of("reservation", 2));
+            }
+            if ((appOrderService.isAvailableDate(ordersList,
+                    appOrder.getStartDate().toLocalDate()) != true)
+                    &&
+                    (appOrderService.isAvailableDate(ordersList,
+                            appOrder.getEndDate().toLocalDate()) != true)) {
+                modelAndViewERROR.addAllObjects(Map.of("reservation", 3));
+            }
+            return modelAndViewERROR;
+        }
     }
+
 }
+
 
 

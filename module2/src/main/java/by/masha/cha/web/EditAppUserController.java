@@ -16,7 +16,7 @@ import java.util.Map;
 public class EditAppUserController {
 
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
 
 
     @GetMapping("edit-appUser-info.html")

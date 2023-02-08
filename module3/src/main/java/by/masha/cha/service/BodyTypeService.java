@@ -17,6 +17,7 @@ public class BodyTypeService {
 
     @Transactional
     public void add(BodyType bodyType) {
+        bodyType.setBodyTypeName(bodyType.getBodyTypeName().toUpperCase());
         bodyTypeDao.create(bodyType);
     }
 

@@ -129,18 +129,36 @@
       </div>
     </div>
   </div>
-<!-- startDate -->
+
+<c:if test="${reservation == 1 || reservation == 3}">
  <div class="col-md-2">
             <label for="startDate" class="form-label">start Date</label>
-            <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="nameHelp" required>
-            <div id="nameHelp" class="form-text">Enter start Date</div>
-           </div>
-<!-- endDate -->
+            <input value="${startDate}" type="date" name="startDate" class="form-control is-invalid" id="startDate" aria-describedby="nameHelp" required>
+            <div class="invalid-feedback">This day is not available.</div>
+</div>
+</c:if>
+<c:if test="${reservation == 2}">
+ <div class="col-md-2">
+            <label for="startDate" class="form-label">start Date</label>
+            <input value="${startDate}" type="date" name="startDate" class="form-control" id="startDate" aria-describedby="nameHelp" required>
+            <div id="nameHelp" class="form-text">Enter start date</div>
+</div>
+</c:if>
+<c:if test="${reservation == 2 || reservation == 3}">
 <div class="col-md-2">
               <label for="endDate" class="form-label">end Date</label>
-              <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp" required>
-              <div id="nameHelp" class="form-text">Enter end Date</div>
-              </div>
+              <input value="${endDate}" type="date"  name="endDate" class="form-control is-invalid" id="endDate" aria-describedby="nameHelp" required>
+              <div class="invalid-feedback">This day is not available.</div>
+</div>
+</c:if>
+<c:if test="${reservation == 1}">
+<div class="col-md-2">
+              <label for="endDate" class="form-label">end Date</label>
+              <input value="${endDate}" type="date"  name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp" required>
+              <div id="nameHelp" class="form-text">Enter start date</div>
+</div>
+</c:if>
+
 <input name="appUser.id" id="appUser.id" value="${userId}" type="hidden">
 <input name="car.id" id="car.id" value="${car.id}" type="hidden">
 
@@ -150,3 +168,4 @@
   </form>
 
 <jsp:include page="_footer.jsp"/>
+

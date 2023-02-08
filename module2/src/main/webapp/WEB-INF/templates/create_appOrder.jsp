@@ -15,13 +15,13 @@
    <!-- startDate -->
  <div class="col-md-2">
          <label for="startDate" class="form-label">Start date</label>
-         <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="nameHelp">
+         <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="nameHelp" required>
          <div id="nameHelp" class="form-text">Enter start date</div>
  </div>
  <!-- endDate -->
   <div class="col-md-2">
           <label for="endDate" class="form-label">End date</label>
-          <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp">
+          <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp" required>
           <div id="nameHelp" class="form-text">Enter end date</div>
   </div>
 <input name="appUser.id" id="appUser.id" value="${userId}" type="hidden">

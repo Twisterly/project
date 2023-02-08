@@ -3,7 +3,10 @@ package by.masha.cha.dao;
 import by.masha.cha.model.AppUser;
 import by.masha.cha.model.BodyType;
 import by.masha.cha.model.Car;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,5 +92,21 @@ public class AppUserDaoImpl implements AppUserDao {
             return 7;
         } else
             return 8;
+    }
+
+    public List<AppUser> getPage(Integer pageSize, Integer pageNumber) {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(AppUser.class).addOrder(Order.asc("birthDate"));
+        criteria.setFirstResult(pageNumber * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+    public Long getCount() {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(Car.class);
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
+
     }
 }

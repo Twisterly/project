@@ -1,7 +1,6 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.AppOrder;
-import by.masha.cha.model.Car;
 
 import java.util.List;
 
@@ -22,6 +21,12 @@ public interface AppOrderDao {
     AppOrder findLastOrder();
 
     List<AppOrder> findAllByCarId(String id);
+
+    List<AppOrder> getPageForUser(String appUserId, Integer pageSize, Integer pageNumber);
+    Long getCountForUser(String appUserId);
+
+    List<AppOrder> getPageForAdmin(Integer pageSize, Integer pageNumber);
+    Long getCountForAdmin();
 
 
 }

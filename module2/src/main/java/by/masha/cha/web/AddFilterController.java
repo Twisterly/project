@@ -14,21 +14,21 @@ import java.util.Map;
 @Controller
 public class AddFilterController {
     @Autowired
-    CarService carService;
+    private CarService carService;
 
     @Autowired
-    ModelDetailService modelDetailService;
+    private ModelDetailService modelDetailService;
     @Autowired
-    BodyTypeService bodyTypeService;
+    private BodyTypeService bodyTypeService;
 
     @Autowired
-    BrandService brandService;
+    private BrandService brandService;
 
     @Autowired
-    FuelTypeService fuelTypeService;
+    private FuelTypeService fuelTypeService;
 
     @Autowired
-    TransmissionTypeService transmissionTypeService;
+    private TransmissionTypeService transmissionTypeService;
 
     @GetMapping("/add-filter.html")
     public ModelAndView showAddFilter() {

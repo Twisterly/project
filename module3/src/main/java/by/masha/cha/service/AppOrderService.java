@@ -2,7 +2,6 @@ package by.masha.cha.service;
 
 import by.masha.cha.dao.AppOrderDao;
 import by.masha.cha.model.AppOrder;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,8 +10,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 @Service
@@ -109,5 +106,117 @@ public class AppOrderService {
         }
         return false;
     }
+
+//    public List<Date> freeDays(List<AppOrder> appOrders, LocalDate startDate,
+//                               LocalDate endDate) {
+//        List<LocalDate> bookedDates = new ArrayList<>();
+//        for (AppOrder order : appOrders) {
+//            LocalDate firstDate = order.getStartDate().toLocalDate();
+//            LocalDate secondDate = order.getEndDate().toLocalDate();
+//            while (firstDate.isBefore(secondDate)) {
+//                bookedDates.add(firstDate);
+//                firstDate = firstDate.plusDays(1);
+//            }
+//            bookedDates.add(secondDate);
+//        }
+//        List<Date> freeDates = new ArrayList<>();
+//        while (startDate.isBefore(endDate)) {
+//            freeDates.add(Date.valueOf(startDate.minusDays(15)));
+//            startDate = startDate.plusDays(1);
+//        }
+//        while (endDate.isBefore(endDate.plusDays(15))) {
+//            freeDates.add(Date.valueOf(endDate));
+//            endDate = endDate.plusDays(1);
+//        }
+//        for (Date date : freeDates) {
+//            if (bookedDates.stream().anyMatch(date.toLocalDate()::equals)) {
+//                freeDates.remove(date);
+//            }
+//        }
+//        return freeDates;
+//    }
+
+    public boolean isAvailableDate(List<AppOrder> appOrders, LocalDate date) {
+        List<LocalDate> bookedDates = new ArrayList<>();
+        for (AppOrder order : appOrders) {
+            LocalDate firstDate = order.getStartDate().toLocalDate();
+            LocalDate secondDate = order.getEndDate().toLocalDate();
+            while (firstDate.isBefore(secondDate)) {
+                bookedDates.add(firstDate);
+                firstDate = firstDate.plusDays(1);
+            }
+            bookedDates.add(secondDate);
+        }
+        if (bookedDates.stream().anyMatch(date::equals)) {
+            return false;
+        } else
+            return true;
+    }
+
+    public String appOrderStatus(AppOrder appOrder) {
+        LocalDate startDate = appOrder.getStartDate().toLocalDate();
+        LocalDate endDate = appOrder.getEndDate().toLocalDate();
+        if (startDate.isAfter(LocalDate.now())) {
+            return "future";
+        }
+        if (startDate.isBefore(LocalDate.now()) &&
+                endDate.isBefore(LocalDate.now())) {
+            return "past";
+        } else return "in process";
+    }
+
+    public List<AppOrder> getPageForUser(String appUserId, Integer pageSize,
+                                         Integer pageNumber) {
+        return appOrderDao.getPageForUser(appUserId, pageSize, pageNumber);
+    }
+
+    public Long getCountForUser(String appUserId) {
+        return appOrderDao.getCountForUser(appUserId);
+
+    }
+
+    public List<Integer> getPagesList(Integer pageCount) {
+        List<Integer> pages = new ArrayList<>();
+        for (int i = 1; i < pageCount + 1; i++) {
+            pages.add(i);
+        }
+        return pages;
+    }
+
+    public List<AppOrder> getPageForAdmin(Integer pageSize,
+                                          Integer pageNumber) {
+        return appOrderDao.getPageForAdmin(pageSize, pageNumber);
+    }
+
+    public Long getCountForAdmin() {
+        return appOrderDao.getCountForAdmin();
+
+    }
+
+    public List<AppOrder> findAppOrdersByDates(Date startDate, Date endDate) {
+        List<AppOrder> appOrders = appOrderDao.findAll();
+        List<LocalDate> bookedDates = new ArrayList<>();
+        for (AppOrder order : appOrders) {
+            LocalDate firstDate = order.getStartDate().toLocalDate();
+            LocalDate secondDate = order.getEndDate().toLocalDate();
+            while (firstDate.isBefore(secondDate)) {
+                bookedDates.add(firstDate);
+                firstDate = firstDate.plusDays(1);
+            }
+            bookedDates.add(secondDate);
+            for (LocalDate localDate : bookedDates) {
+                if ((bookedDates.stream().anyMatch(startDate.toLocalDate()::equals) ||
+                        bookedDates.stream().anyMatch(endDate.toLocalDate()::equals))) {
+                    appOrders.remove(order);
+                    break;
+                }
+            }
+        }
+        return appOrders;
+    }
+
 }
+
+
+
 

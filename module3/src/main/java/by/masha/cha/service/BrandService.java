@@ -16,6 +16,7 @@ public class BrandService {
 
     @Transactional
     public void add(Brand brand) {
+        brand.setBrandName(brand.getBrandName().toUpperCase());
         brandDao.create(brand);
     }
 

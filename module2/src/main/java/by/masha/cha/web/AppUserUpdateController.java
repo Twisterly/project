@@ -16,7 +16,7 @@ import java.util.Map;
 public class AppUserUpdateController {
 
     @Autowired
-    AppUserService appUserService;
+    private AppUserService appUserService;
 
     @GetMapping("/update-appUser.html")
     public ModelAndView showUpdateAppUser(AppUser appUser) {
