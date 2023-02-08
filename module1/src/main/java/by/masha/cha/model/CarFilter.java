@@ -12,8 +12,6 @@ import javax.persistence.*;
 @Setter
 public class CarFilter {
 
-
-
     private String climateControl;
 
 
@@ -36,8 +34,6 @@ public class CarFilter {
 
     private String modelDetail;
 
-
-    private double engineCapacity;
 
 
 

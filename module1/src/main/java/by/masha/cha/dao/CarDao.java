@@ -35,6 +35,11 @@ public interface CarDao {
     List<Car> getPage(Integer pageSize, Integer pageNumber);
     Long getCount();
 
+    List<String> getAllCarDoorsModification();
+
+    List<String> getAllCarSeatsModification();
+
+
 
 
 

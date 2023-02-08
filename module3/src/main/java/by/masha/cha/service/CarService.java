@@ -61,7 +61,6 @@ public class CarService {
 
 
     public List<Car> findCarByFilter(CarFilter carFilter) {
-        List<Car> resultList = new ArrayList<>();
         return carDao.findCarByFilter(carFilter);
 
     }
@@ -111,7 +110,7 @@ public class CarService {
     public List<Car> getFreeCars(List<AppOrder> orders) {
         List<Car> allCars = carDao.findAll();
         List<Car> orderedCars = new ArrayList<>();
-        for(AppOrder appOrder : orders){
+        for (AppOrder appOrder : orders) {
             orderedCars.add(appOrder.getCar());
         }
         for (Car car : allCars) {
@@ -122,4 +121,11 @@ public class CarService {
         return allCars;
     }
 
+    public List<String> getAllCarDoorsModification() {
+        return carDao.getAllCarDoorsModification();
+    }
+
+    public List<String> getAllCarSeatsModification() {
+        return carDao.getAllCarSeatsModification();
+    }
 }

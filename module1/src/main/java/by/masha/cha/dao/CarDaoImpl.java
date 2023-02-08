@@ -24,6 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository
@@ -61,14 +62,8 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> findAll() {
-
-        Query query = sessionFactory.openSession().createQuery("From Car");
-        query.setFirstResult(0);
-        query.setMaxResults(5);
-        List<Car> carList = query.list();
-        return carList;
-//        return sessionFactory.getCurrentSession().createQuery("from Car",
-//                Car.class).list();
+        return sessionFactory.getCurrentSession().createQuery("from Car",
+                Car.class).list();
     }
 
     @Override
@@ -251,6 +246,30 @@ public class CarDaoImpl implements CarDao {
         return (Long) criteriaCount.uniqueResult();
 
     }
+
+    public List<String> getAllCarDoorsModification(){
+        List<String> result = new ArrayList<>();
+        List<Car> cars = sessionFactory.getCurrentSession().createQuery("from Car",
+                Car.class).list();
+        for(Car car: cars){
+            result.add(car.getDoors().toString());
+        }
+       return result.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+   public List<String> getAllCarSeatsModification(){
+       List<String> result = new ArrayList<>();
+       List<Car> cars = sessionFactory.getCurrentSession().createQuery("from Car",
+               Car.class).list();
+       for(Car car: cars){
+           result.add(car.getSeats().toString());
+       }
+       return result.stream()
+               .distinct()
+               .collect(Collectors.toList());
+   }
 
 
 

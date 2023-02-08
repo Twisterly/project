@@ -4,93 +4,86 @@
 
 <form method="post" action="/car/add-filter.html" enctype="multipart/form-data">
   <!-- brand -->
-<div class="mb-3">
-    <label for="brand" class="form-label">Brand name</label>
-    <input type="text" name="brand" class="form-control" id="brand" aria-describedby="nameHelp">
-    <div id="nameHelp" class="form-text">Enter brand name</div>
-  </div>
-    <!-- model -->
-    <div class="mb-3">
-        <label for="modelDetail" class="form-label">Model name</label>
-        <input type="text" name="modelDetail" class="form-control" id="modelDetail" aria-describedby="nameHelp">
-        <div id="nameHelp" class="form-text">Enter model</div>
-      </div>
+<!-- brand -->
+         <div class="col-md-6">
+           <label for="brand">Choose a brand:</label>
+           <select class="form-select" id="brand" name="brand">
+           <option value="${null}">${null}</option>
+            <c:forEach items="${brands}" var="brand">
+            <option value="${brand}">${brand}</option>
+            </c:forEach>
+          </select>
+         </div>
+   <!-- model -->
+       <div class="col-md-6">
+          <label for="modelDetail">Choose a model:</label>
+          <select class="form-select" id="modelDetail" name="modelDetail">
+            <option value="${null}">${null}</option>
+            <c:forEach items="${modelDetails}" var="modelDetail">
+            <option value="${modelDetail}">${modelDetail}</option>
+            </c:forEach>
+          </select>
+          </div>
  <!-- climateControl -->
-     <label for="climateControl" class="form-label">Climate control</label><br/>
-     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="climateControl" id="climateControl1" value="true">
-        <label class="form-check-label" for="climateControl1">yes</label>
+      <div class="col-md-6">
+        <label for="seats">Do you need climate control?</label>
+        <select class="form-select" id="climateControl" name="climateControl">
+        <option value="${null}">${null}</option>
+        <option value="${climateControl == true}">yes</option>
+        <option value="${climateControl == false}">no</option>
+        </select>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="climateControl" id="climateControl2" value="false">
-        <label class="form-check-label" for="climateControl2">no</label>
-      </div>
-      <br/>
  <!-- body type -->
-  <div class="mb-3">
-         <label for="bodyType" class="form-label">Body type</label>
-         <input type="text" name="bodyType" class="form-control" id="bodyType" aria-describedby="nameHelp">
-         <div id="nameHelp" class="form-text">Enter body Type</div>
+    <div class="col-md-6">
+       <label for="bodyType">Choose a body type:</label>
+       <select class="form-select" id="bodyType" name="bodyType">
+       <option value="${null}">${null}</option>
+         <c:forEach items="${bodyTypes}" var="bodyType">
+         <option value="${bodyType}">${bodyType}</option>
+         </c:forEach>
+       </select>
        </div>
   <!-- fuel type -->
-    <div class="mb-3">
-             <label for="fuelType" class="form-label">Fuel type</label>
-             <input type="text" name="fuelType" class="form-control" id="fuelType" aria-describedby="nameHelp">
-             <div id="nameHelp" class="form-text">Enter fuel Type</div>
-           </div>
+     <div class="col-md-6">
+        <label for="fuelType">Choose a fuel type:</label>
+        <select class="form-select" id="fuelType" name="fuelType">
+        <option value="${null}">${null}</option>
+          <c:forEach items="${fuelTypes}" var="fuelType">
+          <option value="${fuelType}">${fuelType}</option>
+          </c:forEach>
+        </select>
+        </div>
   <!-- transmission type -->
-    <div class="mb-3">
-             <label for="transmissionType" class="form-label">transmission Type</label>
-             <input type="text" name="transmissionType" class="form-control" id="transmissionType" aria-describedby="nameHelp">
-             <div id="nameHelp" class="form-text">Enter transmission Type</div>
-           </div>
+     <div class="col-md-6">
+        <label for="transmissionType">Choose a transmission type:</label>
+        <select class="form-select" id="transmissionType" name="transmissionType">
+        <option value="${null}">${null}</option>
+          <c:forEach items="${transmissionTypes}" var="transmissionType">
+          <option value="${transmissionType}">${transmissionType}</option>
+          </c:forEach>
+        </select>
+        </div>
   <!-- doors -->
-        <label for="doors" class="form-label">Doors</label><br/>
-          <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="doors" id="doors1" value="2">
-          <label class="form-check-label" for="doors1">2</label>
+       <div class="col-md-6">
+          <label for="doors">Choose doors:</label>
+          <select class="form-select" id="doors" name="doors">
+          <option value="${null}">${null}</option>
+            <c:forEach items="${doorsList}" var="doors">
+            <option value="${doors}">${doors}</option>
+            </c:forEach>
+          </select>
           </div>
-           <div class="form-check form-check-inline">
-             <input class="form-check-input" type="radio" name="doors" id="doors2" value="3">
-           <label class="form-check-label" for="doors2">3</label>
-            </div>
-           <div class="form-check form-check-inline">
-             <input class="form-check-input" type="radio" name="doors" id="doors3" value="4">
-            <label class="form-check-label" for="doors3">4</label>
-             </div>
-            <div class="form-check form-check-inline">
-             <input class="form-check-input" type="radio" name="doors" id="doors4" value="5">
-             <label class="form-check-label" for="doors4">5</label>
-             </div>
-            <br/>
   <!-- seats -->
-     <label for="seats" class="form-label">Seats</label><br/>
-       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="seats" id="seats1" value="2">
-         <label class="form-check-label" for="seats1">2</label>
-         </div>
-         <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="seats" id="seats2" value="3">
-        <label class="form-check-label" for="seats2">3</label>
-         </div>
-          <div class="form-check form-check-inline">
-           <input class="form-check-input" type="radio" name="seats" id="seats3" value="4">
-             <label class="form-check-label" for="seats3">4</label>
-             </div>
-           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="seats" id="seats4" value="5">
-            <label class="form-check-label" for="seats4">5</label>
-             </div>
-           <div class="form-check form-check-inline">
-           <input class="form-check-input" type="radio" name="seats" id="seats5" value="6">
-          <label class="form-check-label" for="seats5">6</label>
-         </div>
-        <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="seats" id="seats6" value="7">
-          <label class="form-check-label" for="seats6">7</label>
-          </div>
-       <br/>
-
-    <button type="submit" class="btn btn-primary">Search</button>
-  </form>
+            <div class="col-md-6">
+               <label for="seats">Choose seats:</label>
+               <select class="form-select" id="seats" name="seats">
+               <option value="${null}">${null}</option>
+                 <c:forEach items="${seatsList}" var="seats">
+                 <option value="${seats}">${seats}</option>
+                 </c:forEach>
+               </select>
+               </div>
+<input name="carFilter" id="carFilter" value="${carFilter}" type="hidden">
+<button type="submit" class="btn btn-primary">Search</button>
+</form>
 <jsp:include page="_footer.jsp"/>

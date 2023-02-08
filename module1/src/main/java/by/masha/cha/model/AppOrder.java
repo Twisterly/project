@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "t_app_order")
@@ -44,8 +46,7 @@ public class AppOrder {
     private Timestamp timeOfOrder = Timestamp.valueOf(LocalDateTime.now());
 
 
-
-//    @ManyToMany(fetch = FetchType.EAGER)
+    //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "car_orders",
 //            joinColumns = @JoinColumn(name = "order_id"),
 //            inverseJoinColumns = @JoinColumn(name = "car_id"))

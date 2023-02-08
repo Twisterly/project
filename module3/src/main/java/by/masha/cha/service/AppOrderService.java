@@ -193,26 +193,29 @@ public class AppOrderService {
 
     }
 
+    public List<Date> findAppOrderDates(AppOrder appOrder) {
+        List<Date> result = new ArrayList<>();
+        LocalDate firstDate = appOrder.getStartDate().toLocalDate();
+        LocalDate secondDate = appOrder.getEndDate().toLocalDate();
+        while (firstDate.isBefore(secondDate)) {
+            result.add(Date.valueOf(firstDate));
+            firstDate = firstDate.plusDays(1);
+        }
+        result.add(Date.valueOf(secondDate));
+        return result;
+    }
+
     public List<AppOrder> findAppOrdersByDates(Date startDate, Date endDate) {
         List<AppOrder> appOrders = appOrderDao.findAll();
-        List<LocalDate> bookedDates = new ArrayList<>();
-        for (AppOrder order : appOrders) {
-            LocalDate firstDate = order.getStartDate().toLocalDate();
-            LocalDate secondDate = order.getEndDate().toLocalDate();
-            while (firstDate.isBefore(secondDate)) {
-                bookedDates.add(firstDate);
-                firstDate = firstDate.plusDays(1);
-            }
-            bookedDates.add(secondDate);
-            for (LocalDate localDate : bookedDates) {
-                if ((bookedDates.stream().anyMatch(startDate.toLocalDate()::equals) ||
-                        bookedDates.stream().anyMatch(endDate.toLocalDate()::equals))) {
-                    appOrders.remove(order);
-                    break;
-                }
+        List<AppOrder> result = new ArrayList<>();
+        for (AppOrder appOrder : appOrders) {
+            if ((findAppOrderDates(appOrder).contains(startDate) ||
+                    (findAppOrderDates(appOrder).contains(endDate)))){
+                result.add(appOrder);
+                continue;
             }
         }
-        return appOrders;
+        return result;
     }
 
 }
