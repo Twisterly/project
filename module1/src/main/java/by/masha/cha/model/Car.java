@@ -49,8 +49,8 @@ public class Car {
     @Column(name = "doors")
     private Integer doors;
 
-    @Column(name = "engine_capacity")
-    private double engineCapacity;
+//    @Column(name = "engine_capacity")
+//    private double engineCapacity;
 
     @OneToOne
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)

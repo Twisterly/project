@@ -18,8 +18,6 @@ public class CarPhoto {
     @SequenceGenerator(name = "car_photo_seq", sequenceName = "t_car_photo_seq")
     private long id;
 
-    @Column(name="photo_name")
-    private String name;
 
     @Lob
     @Column(name = "car_photo", columnDefinition = "MEDIUMBLOB NOT NULL")

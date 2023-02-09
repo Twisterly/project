@@ -1,0 +1,3 @@
+app_user_id,user_name,user_password,user_first_name,user_last_name,user_birth_date,user_phone_number,user_email,user_gender,user_role
+10000000-0000-0000-0000-000000000002,maasha,123,Mariia,Chachik,1990-08-16,+3753369692747,mashafadik@yahoo.com,female,USER
+10000000-0000-0000-0000-000000000003,ivan,321,Ivan,Ivanov,2000-01-12,+375299876543,ivan@gmail.com,male,USER

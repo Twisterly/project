@@ -75,7 +75,6 @@
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_photo` (
             `car_photo_id` BIGINT(19),
-            `photo_name` VARCHAR(255),
             `car_photo` MEDIUMBLOB,
             PRIMARY KEY (`car_photo_id`)
             );
@@ -123,7 +122,7 @@
             `climate_control` BOOLEAN,
             `seats` BIGINT(19),
             `doors` BIGINT(19),
-            `engine_capacity` DOUBLE,
+<!--            `engine_capacity` DOUBLE,-->
             `car_photo_id` BIGINT(19),
             `body_type_id` BIGINT(19),
             `car_brand_id` BIGINT(19),
@@ -211,10 +210,6 @@
         </sql>
     </changeSet>
 
-<!--    <changeSet id="18" author="mashafadik@yahoo.com" labels="data">-->
-<!--        <loadData file="brands.csv" tableName="t_car_brand"/>-->
-<!--    </changeSet>-->
-
     <changeSet id="18" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
@@ -226,4 +221,67 @@
         </loadUpdateData>
     </changeSet>
 
+    <changeSet id="19" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/modelDetails.csv"
+                tableName="t_model_detail"
+                primaryKey="modeldetail_id">
+            <column name="modeldetail_id" header="model_detail_id" type="NUMERIC"/>
+            <column name="model_name" header="model_name" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="20" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/transmissionTypes.csv"
+                tableName="t_transmission_type"
+                primaryKey="transmission_type_id">
+            <column name="transmission_type_id" header="transmission_type_id" type="NUMERIC"/>
+            <column name="transmission_type_name" header="transmission_type_name" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="21" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/fuelTypes.csv"
+                tableName="t_fuel_type"
+                primaryKey="fuel_type_id">
+            <column name="fuel_type_id" header="fuel_type_id" type="NUMERIC"/>
+            <column name="fuel_type_name" header="fuel_type_name" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="22" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/bodyTypes.csv"
+                tableName="t_body_type"
+                primaryKey="body_type_id">
+            <column name="body_type_id" header="body_type_id" type="NUMERIC"/>
+            <column name="body_type_name" header="body_type_name" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="23" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/appUsers.csv"
+                tableName="t_app_user"
+                primaryKey="app_user_id">
+            <column name="app_user_id" header="app_user_id" type="STRING"/>
+            <column name="user_name" header="user_name" type="STRING"/>
+            <column name="user_password" header="user_password" type="STRING"/>
+            <column name="user_first_name" header="user_first_name" type="STRING"/>
+            <column name="user_last_name" header="user_last_name" type="STRING"/>
+            <column name="user_birth_date" header="user_birth_date" type="DATE"/>
+            <column name="user_phone_number" header="user_phone_number" type="STRING"/>
+            <column name="user_email" header="user_email" type="STRING"/>
+            <column name="user_gender" header="user_gender" type="STRING"/>
+            <column name="user_role" header="user_role" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+    
 </databaseChangeLog>
