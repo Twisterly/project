@@ -16,7 +16,6 @@
     <th>Car fuel type</th>
     <th>AppUser id</th>
     <th>AppUser username</th>
-    <thStatus</th>
     <th>Actions</th>
   </tr>
   <c:forEach items="${appOrders}" var="appOrder">
@@ -34,7 +33,6 @@
     <td><c:out value="${appOrder.car.fuelType.fuelTypeName}"/></td>
     <td><c:out value="${appOrder.appUser.id}"/></td>
     <td><c:out value="${appOrder.appUser.username}"/></td>
-    <td></td>
     <td>
     <input name="car.id" id="car.id" value="${car.id}" type="hidden">
     <input name="appUser.id" id="appUser.id" value="${appUser.id}" type="hidden">

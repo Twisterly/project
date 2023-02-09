@@ -211,4 +211,19 @@
         </sql>
     </changeSet>
 
+<!--    <changeSet id="18" author="mashafadik@yahoo.com" labels="data">-->
+<!--        <loadData file="brands.csv" tableName="t_car_brand"/>-->
+<!--    </changeSet>-->
+
+    <changeSet id="18" author="mashafadik@yahoo.com" >
+        <loadUpdateData
+                encoding="UTF-8"
+                file="csv_files/brands.csv"
+                tableName="t_car_brand"
+                primaryKey="car_brand_id">
+            <column name="car_brand_id" header="car_brand_id" type="NUMERIC"/>
+            <column name="car_brand_name" header="car_brand_name" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
 </databaseChangeLog>

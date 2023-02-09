@@ -5,18 +5,13 @@
 <form method="post" action="/car/update-order.html?appOrderId=${appOrder.id}" enctype="multipart/form-data">
 <!-- Car -->
  <div class="col-md-6">
- <label for="car.id">Choose a car:</label>
-<select class="form-select" id="car.id" name="car.id">
-<c:forEach items="${cars}" var="car">
-<c:if test="${car.id == appOrder.car.id}">
-<option selected="selected" value="${car.id}">${car.id}</option>
-</c:if>
-<c:if test="${car.id != appOrder.car.id}">
-<option value="${car.id}">${car.id}</option>
-</c:if>
-</c:forEach>
-</select>
-</div>
+    <label for="car.id">Choose a car:</label>
+       <select class="form-select" id="car.id" name="car.id">
+           <c:forEach items="${cars}" var="car">
+            <option value="${car.id}">${car.brand.brandName} ${car.modelDetail.modelName}</option>
+           </c:forEach>
+       </select>
+ </div>
      <!-- startDate -->
  <div class="col-md-2">
             <label for="startDate" class="form-label">start Date</label>
@@ -30,7 +25,9 @@
               <div id="nameHelp" class="form-text">Enter end Date</div>
               </div>
 
-<input name="car.id" id="car.id" value="${car.id}" type="hidden">
+<input name="appUser" id="appUser" value="${appUser}" type="hidden">
+<input name="car" id="car" value="${car}" type="hidden">
+<input name="appOrder.id" id="appOrder.id" value="${appOrderId}" type="hidden">
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

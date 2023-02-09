@@ -54,47 +54,47 @@ public class AppOrderUpdateController {
 
     @PostMapping("/update-order.html")
     @SneakyThrows
-    public ModelAndView updateAppOrder(AppOrder appOrder, String carId) {
+    public ModelAndView updateAppOrder(AppOrder appOrder,String appOrderId) {
         System.out.println("Call updateAppOrder: " + appOrder);
-        List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
+        List<AppOrder> ordersList = appOrderService.findAllByCarId(appOrder.getCar().getId());
         ModelAndView modelAndViewERROR = new ModelAndView(
                 "createAppOrderFromCarList_error");
         if ((appOrderService.isReserved(ordersList,
-                appOrder.getStartDate().toLocalDate(),
-                appOrder.getEndDate().toLocalDate()) == false)
-                && appOrderService.isCorrectDates(appOrder.getStartDate().toLocalDate(),
-                appOrder.getEndDate().toLocalDate())) {
-            appOrderService.update(appOrder, appOrder.getId());
+                appOrderService.findById(appOrderId).getStartDate().toLocalDate(),
+                appOrderService.findById(appOrderId).getEndDate().toLocalDate()) == false)
+                && appOrderService.isCorrectDates(appOrderService.findById(appOrderId).getStartDate().toLocalDate(),
+                appOrderService.findById(appOrderId).getEndDate().toLocalDate())) {
+            appOrderService.update(appOrderService.findById(appOrderId), appOrderService.findById(appOrderId).getId());
             ModelAndView modelAndView = new ModelAndView("appOrder");
-            modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));
+            modelAndView.addAllObjects(Map.of("appOrder", appOrderService.findById(appOrderId)));
             modelAndView.addAllObjects(Map.of("car",
-                    carService.getById(carId)));
+                    carService.getById(appOrderService.findById(appOrderId).getCar().getId())));
             return modelAndView;
 
         } else {
-            Car car = carService.getById(carId);
+            Car car = carService.getById(appOrderService.findById(appOrderId).getCar().getId());
             UserExt principal =
                     (UserExt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             modelAndViewERROR.addAllObjects(Map.of("car", car));
             modelAndViewERROR.addAllObjects(Map.of("userId",
                     principal.getUserId()));
             modelAndViewERROR.addAllObjects(Map.of("startDate",
-                    appOrder.getStartDate()));
+                    appOrderService.findById(appOrderId).getStartDate()));
             modelAndViewERROR.addAllObjects(Map.of("endDate",
-                    appOrder.getEndDate()));
+                    appOrderService.findById(appOrderId).getEndDate()));
             if (appOrderService.isAvailableDate(ordersList,
-                    appOrder.getStartDate().toLocalDate()) != true) {
+                    appOrderService.findById(appOrderId).getStartDate().toLocalDate()) != true) {
                 modelAndViewERROR.addAllObjects(Map.of("reservation", 1));
             }
             if (appOrderService.isAvailableDate(ordersList,
-                    appOrder.getEndDate().toLocalDate()) != true) {
+                    appOrderService.findById(appOrderId).getEndDate().toLocalDate()) != true) {
                 modelAndViewERROR.addAllObjects(Map.of("reservation", 2));
             }
             if ((appOrderService.isAvailableDate(ordersList,
-                    appOrder.getStartDate().toLocalDate()) != true)
+                    appOrderService.findById(appOrderId).getStartDate().toLocalDate()) != true)
                     &&
                     (appOrderService.isAvailableDate(ordersList,
-                            appOrder.getEndDate().toLocalDate()) != true)) {
+                            appOrderService.findById(appOrderId).getEndDate().toLocalDate()) != true)) {
                 modelAndViewERROR.addAllObjects(Map.of("reservation", 3));
             }
             return modelAndViewERROR;
