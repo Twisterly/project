@@ -34,4 +34,8 @@ public class TransmissionTypeService {
         return transmissionTypeDao.findAllTransmissionTypeNames();
     }
 
+    public TransmissionType findById(long id) {
+        return transmissionTypeDao.findById(id);
+    }
+
 }

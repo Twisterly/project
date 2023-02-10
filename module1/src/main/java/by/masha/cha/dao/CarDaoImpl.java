@@ -54,10 +54,8 @@ public class CarDaoImpl implements CarDao {
         return sessionFactory.getCurrentSession().get(Car.class, id);
     }
 
-    @Override
-    public void update(Car car) {
-        create(car);
-
+    public void update(Car car){
+        sessionFactory.getCurrentSession().update(car);
     }
 
     @Override
@@ -218,6 +216,14 @@ public class CarDaoImpl implements CarDao {
                 .collect(Collectors.toList());
     }
 
+    public boolean isUnique(String regNum) {
+        List<Car> cars = sessionFactory.getCurrentSession().createQuery(
+                "from Car c WHERE c.regNumber='" + regNum + "' ",Car.class).list();
+        if (cars.size() > 0) {
+            return false;
+        }
+        else return true;
+    }
 
 }
 

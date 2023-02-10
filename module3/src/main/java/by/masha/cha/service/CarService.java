@@ -60,31 +60,53 @@ public class CarService {
     }
 
 
-    public List<Car> findCarByFilter(CarFilter carFilter, Integer pageSize, Integer pageNumber) {
-        return carDao.findCarByFilter(carFilter,  pageSize,  pageNumber);
+    public List<Car> findCarByFilter(CarFilter carFilter, Integer pageSize,
+                                     Integer pageNumber) {
+        return carDao.findCarByFilter(carFilter, pageSize, pageNumber);
 
     }
 
-    @Transactional
-    public void updateCar(Car car) {
-        Brand brand = car.getBrand();
-        if (brand == null) {
-            car.setBrand(new Brand());
-        }
-        FuelType fuelType = car.getFuelType();
-        if (fuelType == null) {
-            car.setFuelType(new FuelType());
-        }
-        TransmissionType transmissionType = car.getTransmissionType();
-        if (transmissionType == null) {
-            car.setTransmissionType(new TransmissionType());
-        }
-        BodyType bodyType = car.getBodyType();
-        if (bodyType == null) {
-            car.setBodyType(new BodyType());
-        }
+    public Car updateCar(Brand brand,
+                         ModelDetail modelDetail,
+                         BodyType bodyType,
+                         TransmissionType transmissionType,
+                         FuelType fuelType,
+                         Integer doors,
+                         Integer seats,
+                         String color,
+                         double price,
+                         String carId) {
 
+        Car car = carDao.findById(carId);
+        if (!(car.getBrand().equals(brand))) {
+            car.setBrand(brand);
+        }
+        if (!(car.getModelDetail().equals(modelDetail))) {
+            car.setModelDetail(modelDetail);
+        }
+        if (!(car.getBodyType().equals(bodyType))) {
+            car.setBodyType(bodyType);
+        }
+        if (!(car.getTransmissionType().equals(transmissionType))) {
+            car.setTransmissionType(transmissionType);
+        }
+        if (car.getDoors() != doors) {
+            car.setDoors(doors);
+        }
+        if (car.getSeats() != seats) {
+            car.setSeats(seats);
+        }
+        if (!(car.getColor().equals(color))) {
+            car.setColor(color);
+        }
+        if (car.getPrice() != price) {
+            car.setPrice(price);
+        }
+//        if (car.isClimateControl() == climateControl) {
+//            car.setClimateControl(climateControl);
+//        }
         carDao.update(car);
+        return car;
     }
 
     public List<Car> findAllByUserId(String userId) {

@@ -38,4 +38,8 @@ public class ModelDetailService {
     public List<ModelDetail> findAllModelsByBrandName(String name) {
         return modelDetailDao.findAllModelsByBrandName(name);
     }
+
+    public ModelDetail findById(long id){
+        return modelDetailDao.findById(id);
+    }
 }

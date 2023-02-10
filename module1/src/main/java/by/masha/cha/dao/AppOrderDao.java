@@ -18,8 +18,6 @@ public interface AppOrderDao {
 
     List<AppOrder> findAllByUserId(String id);
 
-    AppOrder findLastOrder();
-
     List<AppOrder> findAllByCarId(String id);
 
     List<AppOrder> getPageForUser(String appUserId, Integer pageSize, Integer pageNumber);

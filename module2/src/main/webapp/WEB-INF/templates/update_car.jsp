@@ -2,13 +2,13 @@
 <jsp:include page="_header.jsp"/>
 
 <h1>Update car</h1>
-<form method="post" action="/car/update-car.html" enctype="multipart/form-data">
+<form method="post" action="/car/update-car.html?carId=${carId}" enctype="multipart/form-data">
      <!-- photo -->
      <div class="col-md-6">
           <label for="photo" class="form-label">Photo</label>
-          <image height="100" width="100" src="/car/image/${car.id}/photo.jpg" class="img-thumbnail">
-          <input value="/car/image/${car.id}/photo.jpg" type="file" name="photo" class="form-control" id="photo" aria-describedby="nameHelp">
-          <div id="nameHelp" class="form-text">Enter color</div>
+          <image height="100" width="100" src="/car/image/${carId}/photo.jpg" class="img-thumbnail">
+          <input value="/car/image/${carId}/photo.jpg" type="file" name="photo" class="form-control" id="photo" aria-describedby="nameHelp">
+          <div id="nameHelp" class="form-text">Enter photo</div>
      </div>
      <!-- brand -->
               <div class="col-md-6">
@@ -114,7 +114,7 @@
             <input value="${car.color}" type="text" name="color" class="form-control" id="color" aria-describedby="nameHelp">
             <div id="nameHelp" class="form-text">Enter color</div>
            </div>
-<a href="#" class="btn btn-primary">Update</a>
+<button type="submit" class="btn btn-primary">Update</button>
 </form>
 
 <jsp:include page="_footer.jsp"/>

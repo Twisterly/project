@@ -26,7 +26,9 @@ public class BodyTypeDaoImplTest extends BaseDaoTest {
     BodyTypeDao targetObject;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+        conn.createStatement().executeUpdate("delete from t_body_type;");
     }
 
     @After

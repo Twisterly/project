@@ -13,12 +13,6 @@ import javax.persistence.*;
 @Setter
 public class Car {
 
-//    @Id
-//    @Column(name = "car_id")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
-//    @SequenceGenerator(name = "car_seq", sequenceName = "t_car_seq")
-//    private long id;
-
     @Id
     @Column(name = "car_id")
     @GeneratedValue(generator = "uuid")
@@ -49,9 +43,6 @@ public class Car {
     @Column(name = "doors")
     private Integer doors;
 
-//    @Column(name = "engine_capacity")
-//    private double engineCapacity;
-
     @OneToOne
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "car_photo_id")
@@ -76,9 +67,6 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "modeldetail_id")
     private ModelDetail modelDetail;
-
-//    @ManyToMany(mappedBy = "car")
-//    private List<AppOrder> appOrders;
 
 
 }

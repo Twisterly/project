@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -93,6 +94,45 @@ public class AppUserDaoImpl implements AppUserDao {
         } else
             return 8;
     }
+
+    @Override
+    public Integer isAlreadyExists(AppUser appUser, String appUserId) {
+        String query1 =
+                "From AppUser A WHERE A.username='" + appUser.getUsername() + "'";
+        List<AppUser> appUserNames =
+                sessionFactory.getCurrentSession().createQuery(query1,
+                        AppUser.class).list();
+        appUserNames = appUserNames.stream().filter(appUser1 -> !appUser1.getId().equals(appUserId)).collect(Collectors.toList());
+        String query2 =
+                "From AppUser A WHERE A.email='" + appUser.getEmail() + "'";
+        List<AppUser> appUserEmails =
+                sessionFactory.getCurrentSession().createQuery(query2,
+                        AppUser.class).list();
+        appUserEmails = appUserEmails.stream().filter(appUser1 -> !appUser1.getId().equals(appUserId)).collect(Collectors.toList());
+        String query3 =
+                "From AppUser A WHERE A.phoneNumber='" + appUser.getPhoneNumber() + "'";
+        List<AppUser> appUserPhoneNumber =
+                sessionFactory.getCurrentSession().createQuery(query3,
+                        AppUser.class).list();
+        appUserPhoneNumber = appUserPhoneNumber.stream().filter(appUser1 -> !appUser1.getId().equals(appUserId)).collect(Collectors.toList());
+        if (appUserNames.size() == 0 && appUserEmails.size() == 0 && appUserPhoneNumber.size() == 0) {
+            return 1;
+        } else if (appUserNames.size() == 0 && appUserEmails.size() != 0 && appUserPhoneNumber.size() == 0) {
+            return 2;
+        } else if (appUserNames.size() == 0 && appUserEmails.size() != 0 && appUserPhoneNumber.size() != 0) {
+            return 3;
+        } else if (appUserNames.size() == 0 && appUserEmails.size() == 0 && appUserPhoneNumber.size() != 0) {
+            return 4;
+        } else if (appUserNames.size() != 0 && appUserEmails.size() == 0 && appUserPhoneNumber.size() == 0) {
+            return 5;
+        } else if (appUserNames.size() != 0 && appUserEmails.size() != 0 && appUserPhoneNumber.size() == 0) {
+            return 6;
+        } else if (appUserNames.size() != 0 && appUserEmails.size() == 0 && appUserPhoneNumber.size() != 0) {
+            return 7;
+        } else
+            return 8;
+    }
+
 
     public List<AppUser> getPage(Integer pageSize, Integer pageNumber) {
         Criteria criteria =

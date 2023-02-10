@@ -35,15 +35,6 @@
 
     <changeSet id="4" author="mashafadik@yahoo.com">
         <sql>
-            CREATE TABLE IF NOT EXISTS `t_car_brand_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_car_brand_seq` VALUES (0);
-        </sql>
-    </changeSet>
-
-    <changeSet id="5" author="mashafadik@yahoo.com">
-        <sql>
             CREATE TABLE IF NOT EXISTS `t_transmission_type` (
             `transmission_type_id` BIGINT(19),
             `transmission_type_name` VARCHAR(255),
@@ -52,7 +43,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="6" author="mashafadik@yahoo.com">
+    <changeSet id="5" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_transmission_type_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -61,7 +52,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="7" author="mashafadik@yahoo.com">
+    <changeSet id="6" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_model_detail` (
             `modeldetail_id` BIGINT(19),
@@ -71,7 +62,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="8" author="mashafadik@yahoo.com">
+    <changeSet id="7" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_photo` (
             `car_photo_id` BIGINT(19),
@@ -81,7 +72,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="9" author="mashafadik@yahoo.com">
+    <changeSet id="8" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_body_type` (
             `body_type_id` BIGINT(19),
@@ -91,7 +82,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="10" author="mashafadik@yahoo.com">
+    <changeSet id="9" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_model_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -100,7 +91,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="11" author="mashafadik@yahoo.com">
+    <changeSet id="10" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_schedule` (
             `schedule_id` BIGINT(19),
@@ -110,7 +101,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="12" author="mashafadik@yahoo.com">
+    <changeSet id="11" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car` (
             `car_id` VARCHAR(256),
@@ -122,7 +113,6 @@
             `climate_control` BOOLEAN,
             `seats` BIGINT(19),
             `doors` BIGINT(19),
-<!--            `engine_capacity` DOUBLE,-->
             `car_photo_id` BIGINT(19),
             `body_type_id` BIGINT(19),
             `car_brand_id` BIGINT(19),
@@ -140,7 +130,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="13" author="mashafadik@yahoo.com">
+    <changeSet id="12" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -149,7 +139,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="14" author="mashafadik@yahoo.com">
+    <changeSet id="13" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_car_photo_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -158,7 +148,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="15" author="mashafadik@yahoo.com">
+    <changeSet id="14" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_body_type_seq` (
             next_val INT UNSIGNED PRIMARY KEY NOT NULL
@@ -167,7 +157,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="16" author="mashafadik@yahoo.com">
+    <changeSet id="15" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_app_user` (
             `app_user_id` VARCHAR(256) PRIMARY KEY NOT NULL,
@@ -192,7 +182,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="17" author="mashafadik@yahoo.com">
+    <changeSet id="16" author="mashafadik@yahoo.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_app_order` (
             `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,
@@ -210,7 +200,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="18" author="mashafadik@yahoo.com" >
+    <changeSet id="17" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/brands.csv"
@@ -221,7 +211,7 @@
         </loadUpdateData>
     </changeSet>
 
-    <changeSet id="19" author="mashafadik@yahoo.com" >
+    <changeSet id="18" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/modelDetails.csv"
@@ -232,7 +222,7 @@
         </loadUpdateData>
     </changeSet>
 
-    <changeSet id="20" author="mashafadik@yahoo.com" >
+    <changeSet id="19" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/transmissionTypes.csv"
@@ -243,7 +233,7 @@
         </loadUpdateData>
     </changeSet>
 
-    <changeSet id="21" author="mashafadik@yahoo.com" >
+    <changeSet id="20" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/fuelTypes.csv"
@@ -254,7 +244,7 @@
         </loadUpdateData>
     </changeSet>
 
-    <changeSet id="22" author="mashafadik@yahoo.com" >
+    <changeSet id="21" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/bodyTypes.csv"
@@ -265,7 +255,7 @@
         </loadUpdateData>
     </changeSet>
 
-    <changeSet id="23" author="mashafadik@yahoo.com" >
+    <changeSet id="22" author="mashafadik@yahoo.com" >
         <loadUpdateData
                 encoding="UTF-8"
                 file="csv_files/appUsers.csv"
@@ -283,5 +273,5 @@
             <column name="user_role" header="user_role" type="STRING"/>
         </loadUpdateData>
     </changeSet>
-    
+
 </databaseChangeLog>

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 @Controller
-public class AppOrderDeleteController {
+public class AppOrderDelayController {
     @Autowired
     private AppOrderService appOrderService;
     @Autowired

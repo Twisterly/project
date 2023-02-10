@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +28,9 @@ public class BrandDaoImplTest extends BaseDaoTest {
     BrandDao targetObject;
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+        conn.createStatement().executeUpdate("delete from t_car_brand;");
     }
 
     @After

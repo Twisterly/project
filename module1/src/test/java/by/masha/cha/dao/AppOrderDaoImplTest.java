@@ -119,7 +119,7 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
         assertEquals(1, actualSize);
 
 
-     //   conn.createStatement().executeUpdate("delete from t_app_order;");
+        conn.createStatement().executeUpdate("delete from t_app_order;");
         conn.close();
     }
 
@@ -137,8 +137,8 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
                 "-000000000001");
 
         //Then
-     assertEquals(Date.valueOf("2023-02-02"), appOrder.getEndDate());
-//        assertEquals(Time.valueOf("21:00:00"), appOrder.getEndTime());
+        assertEquals(Date.valueOf("2023-02-02"), appOrder.getEndDate());
+
 
         DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
     }
@@ -193,9 +193,10 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 dataSet);
     }
+
     @Test
     @SneakyThrows
-    public void findAllByUserId(){
+    public void findAllByUserId() {
         Connection conn = testMysqlJdbcDataSource.getConnection();
 
         IDataSet dataSet = new FlatXmlDataSetBuilder()
@@ -205,7 +206,8 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
                 dataSet);
 
         //When
-        List<AppOrder> appOrderList = targetObject.findAllByUserId("12300000-0000-0000-0000-000000000123");
+        List<AppOrder> appOrderList = targetObject.findAllByUserId("12300000" +
+                "-0000-0000-0000-000000000123");
 
         //Then
         assertEquals(2, appOrderList.size());
@@ -216,7 +218,7 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
 
     @Test
     @SneakyThrows
-    public void findAllByCarId(){
+    public void findAllByCarId() {
         Connection conn = testMysqlJdbcDataSource.getConnection();
 
         IDataSet dataSet = new FlatXmlDataSetBuilder()
@@ -226,33 +228,13 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
                 dataSet);
 
         //When
-        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000-0000-0000-0000-000000000111");
+        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000" +
+                "-0000-0000-0000-000000000111");
 
 
         //Then
         assertEquals(1, appOrderList.size());
-//
-        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
-                dataSet);
-    }
 
-    @Test
-    @SneakyThrows
-    public void findLastOrder() {
-        Connection conn = testMysqlJdbcDataSource.getConnection();
-
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(AppOrderDaoImplTest.class.getResourceAsStream(
-                        "AppOrderDaoImplTest.xml"));
-        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
-                dataSet);
-
-        //When
-        AppOrder appOrder = targetObject.findLastOrder();
-
-        //Then
-        assertEquals(70.0, appOrder.getTotalSum());
-//
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 dataSet);
     }

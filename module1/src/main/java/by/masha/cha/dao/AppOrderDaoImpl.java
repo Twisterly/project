@@ -66,12 +66,6 @@ public class AppOrderDaoImpl implements AppOrderDao {
 
     }
 
-    @Override
-    public AppOrder findLastOrder() {
-        String query = "From AppOrder AO ORDER BY AO.id DESC LIMIT 1";
-        return (AppOrder) sessionFactory.getCurrentSession()
-                .createQuery(query, AppOrder.class);
-    }
 
     @Override
     public List<AppOrder> findAllByCarId(String id) {

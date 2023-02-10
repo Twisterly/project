@@ -18,13 +18,13 @@
     <t_fuel_type fuel_type_id="100" fuel_type_name="petrol"/>
     <t_fuel_type fuel_type_id="101" fuel_type_name="diesel"/>
 
-    <t_car_photo car_photo_id="200" photo_name="sorentoPhoto"/>
-    <t_car_photo car_photo_id="201" photo_name="x5Photo"/>
+    <t_car_photo car_photo_id="200" />
+    <t_car_photo car_photo_id="201" />
 
     <t_car car_id="12300000-0000-0000-0000-000000000111" reg_number="7434CK-7"
            vin_number="375HJFNFOW36272FEIFH" price="20.0"
            year="2020" color="black" climate_control="true"
-           seats="5" doors="4" engine_capacity="2.5"
+           seats="5" doors="4"
            car_photo_id="200" body_type_id="600"
            transmission_type_id="500" car_brand_id="200"
            fuel_type_id="100" modeldetail_id="1"/>
@@ -32,7 +32,7 @@
     <t_car car_id="12300000-0000-0000-0000-000000000112" reg_number="7084MM-7"
            vin_number="37JGRNFOW36272FEIFH" price="25.0"
            year="2022" color="white" climate_control="false"
-           seats="5" doors="4" engine_capacity="4.8"
+           seats="5" doors="4"
            car_photo_id="201" body_type_id="601"
            transmission_type_id="501" fuel_type_id="100"
            car_brand_id="201" modeldetail_id="2"/>

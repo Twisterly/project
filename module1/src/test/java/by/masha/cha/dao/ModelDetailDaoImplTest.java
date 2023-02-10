@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,9 @@ public class ModelDetailDaoImplTest extends BaseDaoTest {
     ModelDetailDao targetObject;
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+        conn.createStatement().executeUpdate("delete from t_model_detail;");
     }
 
     @After
@@ -156,31 +159,9 @@ public class ModelDetailDaoImplTest extends BaseDaoTest {
 
         //Then
         assertEquals(2, modelDetailList.size());
-//        for(ModelDetail modelDetail: modelDetailList) {
-//            assertTrue(modelDetail.getCar().size() > 0);
-//        }
+
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 modelDetailDataSet);
     }
 
-    @Test
-    @SneakyThrows
-    @Ignore
-    public void findAllModelsByBrandName() {
-        //Given
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(ModelDetailDaoImplTest.class.getResourceAsStream(
-                        "ModelDetailDaoImplTest.xml"));
-        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
-
-        //When
-        List<ModelDetail> modelDetails =
-                targetObject.findAllModelsByBrandName("BMW");
-
-        //Then
-        assertEquals(1, modelDetails.size());
-        assertEquals("x5", modelDetails.get(0).getModelName());
-
-        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
-    }
 }

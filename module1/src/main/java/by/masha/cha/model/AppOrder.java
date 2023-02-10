@@ -45,10 +45,4 @@ public class AppOrder {
     @Column(name = "order_time")
     private Timestamp timeOfOrder = Timestamp.valueOf(LocalDateTime.now());
 
-
-    //    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "car_orders",
-//            joinColumns = @JoinColumn(name = "order_id"),
-//            inverseJoinColumns = @JoinColumn(name = "car_id"))
-//    private List<Car> cars;
 }

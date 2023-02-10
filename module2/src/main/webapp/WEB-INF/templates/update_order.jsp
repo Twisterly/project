@@ -11,7 +11,7 @@
                       <option value="${car.id}">${car.brand.brandName} ${car.modelDetail.modelName}</option>
                     </select>
                    </div>
- </div>
+
      <!-- startDate -->
  <div class="col-md-2">
             <label for="startDate" class="form-label">start Date</label>
@@ -24,7 +24,7 @@
               <input value="${appOrder.endDate}" type="date" name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp">
               <div id="nameHelp" class="form-text">Enter end Date</div>
               </div>
-
+</div>
 <input name="appOrderId" id="appOrderId" value="${oldAppOrderId}" type="hidden">
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>

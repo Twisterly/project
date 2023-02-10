@@ -32,13 +32,6 @@ public class AddAppUserController {
         );
     }
 
-//    @PostMapping("/reg-appUser.html")
-//    public String addAppUser(AppUser appUser) {
-//        System.out.println("Call addAppUser: " + appUser);
-//        appUserService.add(appUser);
-//        return "redirect:/index.html";
-//    }
-
     @PostMapping("/reg-appUser.html")
     //   @Secured("ADMIN")
     public ModelAndView addAppUser(AppUser appUser) {

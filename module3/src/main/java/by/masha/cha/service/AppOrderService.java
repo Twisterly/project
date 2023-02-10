@@ -31,10 +31,6 @@ public class AppOrderService {
         return appOrderDao.findById(id);
     }
 
-    public AppOrder findLastOrder() {
-        return appOrderDao.findLastOrder();
-    }
-
     public void delete(AppOrder appOrder) {
         appOrderDao.delete(appOrder);
     }
@@ -108,35 +104,6 @@ public class AppOrderService {
         }
         return false;
     }
-
-//    public List<Date> freeDays(List<AppOrder> appOrders, LocalDate startDate,
-//                               LocalDate endDate) {
-//        List<LocalDate> bookedDates = new ArrayList<>();
-//        for (AppOrder order : appOrders) {
-//            LocalDate firstDate = order.getStartDate().toLocalDate();
-//            LocalDate secondDate = order.getEndDate().toLocalDate();
-//            while (firstDate.isBefore(secondDate)) {
-//                bookedDates.add(firstDate);
-//                firstDate = firstDate.plusDays(1);
-//            }
-//            bookedDates.add(secondDate);
-//        }
-//        List<Date> freeDates = new ArrayList<>();
-//        while (startDate.isBefore(endDate)) {
-//            freeDates.add(Date.valueOf(startDate.minusDays(15)));
-//            startDate = startDate.plusDays(1);
-//        }
-//        while (endDate.isBefore(endDate.plusDays(15))) {
-//            freeDates.add(Date.valueOf(endDate));
-//            endDate = endDate.plusDays(1);
-//        }
-//        for (Date date : freeDates) {
-//            if (bookedDates.stream().anyMatch(date.toLocalDate()::equals)) {
-//                freeDates.remove(date);
-//            }
-//        }
-//        return freeDates;
-//    }
 
     public boolean isAvailableDate(List<AppOrder> appOrders, LocalDate date) {
         List<LocalDate> bookedDates = new ArrayList<>();

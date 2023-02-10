@@ -31,4 +31,8 @@ public class BodyTypeService {
         return bodyTypeDao.isAlreadyExists(bodyType);
     }
 
+    public BodyType findById(long id){
+        return bodyTypeDao.findById(id);
+    }
+
 }

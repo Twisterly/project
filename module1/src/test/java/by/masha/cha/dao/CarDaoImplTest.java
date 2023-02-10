@@ -38,6 +38,7 @@ public class CarDaoImplTest extends BaseDaoTest {
 
     @Before
     public void setUp() {
+
     }
 
     @After
@@ -206,28 +207,6 @@ public class CarDaoImplTest extends BaseDaoTest {
 
     }
 
-    @Test
-    @SneakyThrows
-    @Ignore
-    public void findCarByFilter() {
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(CarDaoImplTest.class.getResourceAsStream(
-                        "CarDaoImplTest.xml"));
-        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
-        CarFilter carFilter = new CarFilter();
-               carFilter.setBrand("BMW");
-               carFilter.setClimateControl("false");
-               carFilter.setDoors("4");
-        //When
-//        List<Car> cars =
-//                targetObject.findCarByFilter(carFilter);
-
-        //Then
-//        assertEquals(1, cars.size());
-
-
-        DatabaseOperation.DELETE.execute(iDatabaseConnection, dataSet);
-    }
     @Test
     @SneakyThrows
     public void update(){

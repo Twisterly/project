@@ -2,8 +2,6 @@ package by.masha.cha.service;
 
 import by.masha.cha.dao.AppUserDao;
 import by.masha.cha.model.AppUser;
-import by.masha.cha.model.BodyType;
-import by.masha.cha.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,12 +34,38 @@ AppUserService {
     }
 
     @Transactional
-    public void update(AppUser appUser) {
+    public void update(AppUser updatedAppUser, String userId) {
+        AppUser appUser = appUserDao.findById(userId);
+        if (!(updatedAppUser.getFirstName().equals(appUser.getFirstName()))){
+            appUser.setFirstName(updatedAppUser.getFirstName());
+        }
+        if (!(updatedAppUser.getLastName().equals(appUser.getLastName()))){
+            appUser.setLastName(updatedAppUser.getLastName());
+        }
+        if (!(updatedAppUser.getLastName().equals(appUser.getLastName()))){
+            appUser.setLastName(updatedAppUser.getLastName());
+        }
+        if (!(updatedAppUser.getPassword().equals(appUser.getPassword()))){
+            appUser.setPassword(updatedAppUser.getPassword());
+        }
+        if (!(updatedAppUser.getLastName().equals(appUser.getLastName()))){
+            appUser.setLastName(updatedAppUser.getLastName());
+        }
+        if (!(updatedAppUser.getEmail().equals(appUser.getEmail()))){
+            appUser.setEmail(updatedAppUser.getEmail());
+        }
+        if (!(updatedAppUser.getPhoneNumber().equals(appUser.getPhoneNumber()))){
+            appUser.setPhoneNumber(updatedAppUser.getPhoneNumber());
+        }
         appUserDao.update(appUser);
     }
 
     public Integer isAlreadyExists(AppUser appUser) {
         return appUserDao.isAlreadyExists(appUser);
+    }
+
+    public Integer isAlreadyExists(AppUser appUser, String appUserId){
+        return appUserDao.isAlreadyExists(appUser, appUserId);
     }
 
     public Integer getRoleNum(AppUser appUser) {

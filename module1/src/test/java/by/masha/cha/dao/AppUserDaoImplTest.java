@@ -32,6 +32,8 @@ public class AppUserDaoImplTest extends BaseDaoTest {
 
     @Before
     public void setUp() throws Exception {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+        conn.createStatement().executeUpdate("delete from t_app_user;");
     }
 
     @After

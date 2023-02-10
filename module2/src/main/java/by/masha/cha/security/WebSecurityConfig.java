@@ -36,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/create*").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/create*").hasRole("USER")
                 .antMatchers(HttpMethod.GET, "/appUser-list*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/update-car*").hasRole("Admin")
-                .antMatchers(HttpMethod.POST, "/update-car*").hasRole("Admin")
+                .antMatchers(HttpMethod.GET, "/update-car*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/update-car*").hasRole("ADMIN")
                 .and()
                 .csrf().disable()
                 .formLogin();

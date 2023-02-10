@@ -17,13 +17,13 @@
 
     <t_fuel_type fuel_type_id="100" fuel_type_name="petrol"/>
 
-    <t_car_photo car_photo_id="200" photo_name="sorentoPhoto"/>
-    <t_car_photo car_photo_id="201" photo_name="x5Photo"/>
+    <t_car_photo car_photo_id="200" />
+    <t_car_photo car_photo_id="201" />
 
     <t_car car_id="12300000-0000-0000-0000-000000000111" reg_number="7434CK-7"
            vin_number="375HJFNFOW36272FEIFH" price="20.0"
            year="2020" color="black" climate_control="true"
-           seats="5" doors="4" engine_capacity="2.5"
+           seats="5" doors="4"
            car_photo_id="200" body_type_id="600"
            transmission_type_id="500" car_brand_id="200"
            fuel_type_id="100" modeldetail_id="1"/>
@@ -31,7 +31,7 @@
     <t_car car_id="12300000-0000-0000-0000-000000000112" reg_number="7084MM-7"
            vin_number="37JGRNFOW36272FEIFH" price="25.0"
            year="2022" color="white" climate_control="false"
-           seats="5" doors="4" engine_capacity="4.8"
+           seats="5" doors="4"
            car_photo_id="201" body_type_id="601"
            transmission_type_id="501" fuel_type_id="100"
            car_brand_id="201" modeldetail_id="2"/>
@@ -43,9 +43,11 @@
 
     <t_app_order order_id="10000000-0000-0000-0000-000000000001"
                  start_date="2023-03-30" end_date="2023-02-02" total_sum="50.0"
-                 car_id="12300000-0000-0000-0000-000000000111" app_user_id="12300000-0000-0000-0000-000000000123"/>
+                 car_id="12300000-0000-0000-0000-000000000111" app_user_id="12300000-0000-0000-0000-000000000123"
+                 order_time="2023-02-09 16:24:30"/>
 
     <t_app_order order_id="10000000-0000-0000-0000-000000000002"
                  start_date="2023-04-03" end_date="2023-01-28" total_sum="70.0"
-                 car_id="12300000-0000-0000-0000-000000000112" app_user_id="12300000-0000-0000-0000-000000000123"/>
+                 car_id="12300000-0000-0000-0000-000000000112" app_user_id="12300000-0000-0000-0000-000000000123"
+                 order_time="2023-02-10 10:24:30"/>
 </dataset>
