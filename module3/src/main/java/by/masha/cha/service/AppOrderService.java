@@ -42,20 +42,20 @@ public class AppOrderService {
     public AppOrder update(Date startDate,Date endDate,
                        String carId, String appOrderId) {
         AppOrder oldAppOrder = appOrderDao.findById(appOrderId);
-//        if (!(oldAppOrder.getStartDate().toLocalDate().equals(appOrder.getStartDate()))) {
-//            oldAppOrder.setStartDate(appOrder.getStartDate());
-//        }
-//        if (!(oldAppOrder.getEndDate().toLocalDate().equals(appOrder.getEndDate()))) {
-//            oldAppOrder.setEndDate(appOrder.getEndDate());
-//        }
-//        if (!(oldAppOrder.getEndDate().toLocalDate().equals(appOrder.getEndDate()))) {
-//            oldAppOrder.setEndDate(appOrder.getEndDate());
+        if (!(oldAppOrder.getStartDate().toLocalDate().equals(startDate))) {
+            oldAppOrder.setStartDate(startDate);
+        }
+        if (!(oldAppOrder.getEndDate().toLocalDate().equals(endDate))) {
+            oldAppOrder.setEndDate(endDate);
+        }
+//        if (!(oldAppOrder.getEndDate().toLocalDate().equals(endDate))) {
+//            oldAppOrder.setEndDate(endDate);
 //        }
 //        if (!(oldAppOrder.getTotalSum() == appOrder.getTotalSum())) {
 //            oldAppOrder.setTotalSum(appOrder.getTotalSum());
 //        }
-//        if (!(oldAppOrder.getCar().getId().equals(appOrder.getCar().getId()))) {
-//            oldAppOrder.setCar(appOrder.getCar());
+//        if (!(oldAppOrder.getCar().getId().equals(carId))) {
+//            oldAppOrder.setCar(carId);
 //        }
 //        if (!(oldAppOrder.getTotalSum() == appOrder.getTotalSum())) {
 //            oldAppOrder.setTotalSum(appOrder.getTotalSum());

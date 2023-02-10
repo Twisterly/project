@@ -2,15 +2,13 @@
 <jsp:include page="_header.jsp"/>
 <h1>Update order</h1>
 
-<form method="post" action="/car/update-order.html?appOrderId=${oldAppOrderId}" enctype="multipart/form-data">
+<form method="post" action="/car/update-order.html" enctype="multipart/form-data">
 <!-- Car -->
  <div class="col-md-6">
           <div class="col-md-6">
                      <label for="car">Choose a car:</label>
                      <select class="form-select" id="carId" name="carId">
-                      <c:forEach items="${cars}" var="brand">
-                      <option value="${car.id}">${car}</option>
-                      </c:forEach>
+                      <option value="${car.id}">${car.brand.brandName} ${car.modelDetail.modelName}</option>
                     </select>
                    </div>
  </div>

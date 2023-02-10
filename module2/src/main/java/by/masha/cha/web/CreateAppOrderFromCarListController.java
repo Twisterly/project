@@ -26,12 +26,12 @@ public class CreateAppOrderFromCarListController {
 
     @GetMapping("/create-order-from-car-list.html")
     public ModelAndView showCreateAppOrderFromCarListPage(String carId) {
-  //      Car car = carService.getById(carId);
+        Car car = carService.getById(carId);
         UserExt principal =
                 (UserExt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ModelAndView modelAndView = new ModelAndView(
                 "createAppOrderFromCarList");
-        modelAndView.addAllObjects(Map.of("car", carId));
+        modelAndView.addAllObjects(Map.of("car", car));
         modelAndView.addAllObjects(Map.of("userId", principal.getUserId()));
         return modelAndView;
     }

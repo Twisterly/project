@@ -58,7 +58,8 @@ public class AppOrderUpdateController {
                                        String carId) {
   //      AppOrder currentOrder = appOrderService.findById(appOrderId);
         List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
-        ordersList = ordersList.stream().filter(appOrder -> appOrder.getId().equals(appOrderId)).collect(Collectors.toList());
+        ordersList = ordersList.stream().filter(appOrder -> !appOrder.getId().equals(appOrderId)).collect(Collectors.toList());
+
         ModelAndView modelAndViewERROR = new ModelAndView(
                 "createAppOrderFromCarList_error");
         if ((appOrderService.isReserved(ordersList,
