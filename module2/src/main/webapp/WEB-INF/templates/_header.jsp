@@ -27,8 +27,8 @@
              User
              </a>
           <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/car/car-list.html">Show cars</a></li>
            <li><a class="dropdown-item" href="/car/add-filter.html">Search</a></li>
-           <li><a class="dropdown-item" href="/car/create-order.html">Create order</a></li>
            <li><a class="dropdown-item" href="/car/personal-info.html">Your info</a></li>
            <li><a class="dropdown-item" href="/car/appUser-orders.html">Your orders</a></li>
          </ul>
@@ -45,7 +45,6 @@
              <li><a class="dropdown-item" href="/car/add-fuelType.html">Add fuel type</a></li>
              <li><a class="dropdown-item" href="/car/add-transmissionType.html">Add transmission type</a></li>
              <li><a class="dropdown-item" href="/car/reg-appUser.html">Add app user</a></li>
-             <li><a class="dropdown-item" href="/car/create-order.html">Add app order</a></li>
               </ul>
               </li>
          <li class="nav-item dropdown">
@@ -61,7 +60,7 @@
               <li><a class="dropdown-item" href="/car/transmissionType-list.html">Show transmission Types</a></li>
               <li><a class="dropdown-item" href="/car/appUsers-list.html">Show all Users</a></li>
               <li><a class="dropdown-item" href="/car/allOrders-list.html">Show all orders</a></li>
-              <li><a class="dropdown-item" href="/car/personal-area-orders.html">Personal area</a></li>
+               <li><a class="dropdown-item" href="/car/personal-info.html">Show admin info</a></li>
               </ul>
             </li>
          </security:authorize>

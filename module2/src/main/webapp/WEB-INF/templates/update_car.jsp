@@ -7,8 +7,6 @@
      <div class="col-md-6">
           <label for="photo" class="form-label">Photo</label>
           <image height="100" width="100" src="/car/image/${carId}/photo.jpg" class="img-thumbnail">
-          <input value="/car/image/${carId}/photo.jpg" type="file" name="photo" class="form-control" id="photo" aria-describedby="nameHelp">
-          <div id="nameHelp" class="form-text">Enter photo</div>
      </div>
      <!-- brand -->
               <div class="col-md-6">

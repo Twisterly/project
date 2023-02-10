@@ -77,12 +77,6 @@
   </c:if>
   </ul>
 </nav>
-<span>Current page:
-<c:out value="${currentPage}"/>
-</span>
-<span>Page count:
-<c:out value="${pageCount}"/>
-</span>
 <button type="button" class="btn btn-light"><a href="appUser-orders.html?pageNumber=${currentPage + 1}">next</a></button>
 </nav>
 <jsp:include page="_footer.jsp"/>
