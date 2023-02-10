@@ -57,7 +57,7 @@ public class AddFilterController {
         return modelAndView;
     }
 
-    @PostMapping("/add-filter.html")
+    @PostMapping("/searching-results.html")
     public ModelAndView addFilter(CarFilter carFilter, String pageNumber) {
         System.out.println("Call addFilter: " + carFilter);
         List<Brand> brands = brandService.getAll();
@@ -71,9 +71,9 @@ public class AddFilterController {
             page = Integer.valueOf(pageNumber);
         }
         List<Car> cars = carService.findCarByFilter(carFilter, 3, page);
-        Long carCount = carService.getCount();
+        Long carCount = (long) cars.size();
         int pageCount = (int) Math.ceil((double) carCount / 3);
-        ModelAndView modelAndView = new ModelAndView("car_list");
+        ModelAndView modelAndView = new ModelAndView("filtered_car_list");
         modelAndView.addAllObjects(Map.of("cars", cars));
         modelAndView.addAllObjects(Map.of("brands", brands));
         modelAndView.addAllObjects(Map.of("bodyTypes", bodyTypes));

@@ -1,50 +1,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
+<h1>Searched cars:</h1>
+<table style="width:100%" class="table table-bordered">
+  <tr>
+    <th>Photo</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Registration number</th>
+    <th>Body Type</th>
+    <th>Transmission Type</th>
+    <th>Fuel Type</th>
+    <th>Climate Control</th>
+    <th>Seats</th>
+    <th>Doors</th>
+    <th>Color</th>
+    <th>Year</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  <c:forEach items="${cars}" var="car">
+  <tr>
+  <td><image height="100" width="100" src="/car/image/${car.id}/photo.jpg" class="img-thumbnail"></td>
+    <td><c:out value="${car.brand.brandName}"/></td>
+    <td><c:out value="${car.modelDetail.modelName}"/></td>
+    <td><c:out value="${car.regNumber}"/></td>
+    <td><c:out value="${car.bodyType.bodyTypeName}"/></td>
+    <td><c:out value="${car.transmissionType.transmissionTypeName}"/></td>
+    <td><c:out value="${car.fuelType.fuelTypeName}"/></td>
+    <td><c:if test="${car.climateControl == true}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+    </c:if>
+    <c:if test="${car.climateControl == false}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+        </svg>
+    </c:if>
+    </td>
+    <td><c:out value="${car.seats}"/></td>
+    <td><c:out value="${car.doors}"/></td>
+    <td><c:out value="${car.color}"/></td>
+    <td><c:out value="${car.year}"/></td>
+    <td><c:out value="${car.price}"/></td>
+    <td>
+    <input name="car.id" id="car.id" value="${car.id}" type="hidden">
 
-<h1>Cars</h1>
-<div class="card-group">
-<c:forEach items="${cars}" var="car">
- <div class="card" style="width: 18rem;">
- <image src="/car/image/${car.id}/photo.jpg" class="img-thumbnail">
-     <div class="card-body">
-     <!-- brand -->
-     <h5 class="card-title"><c:out value="${car.brand.brandName}"/></h5>
-     <!-- model -->
-     <h6 class="card-title"><c:out value="${car.modelDetail.modelName}"/></h6>
-     <!-- bodyType -->
-     <h6 class="card-title"><c:out value="${car.bodyType.bodyTypeName}"/></h6>
-     <!-- transmissionType -->
-     <h6 class="card-title"><c:out value="${car.transmissionType.transmissionTypeName}"/></h6>
-     <!-- doors -->
-     <h6 class="card-title"><c:out value="${car.doors}"/></h6>
-     <!-- color -->
-     <h6 class="card-title"><c:out value="${car.color}"/></h6>
-     <!-- climateControl -->
-     <h6> <c:set var = "climateControl" value = "${car.climateControl}"/>
-             <c:if test = "${climateControl == true}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-snow" viewBox="0 0 16 16">
-                <path d="M8 16a.5.5 0 0 1-.5-.5v-1.293l-.646.647a.5.5 0 0 1-.707-.708L7.5 12.793V8.866l-3.4 1.963-.496 1.85a.5.5 0 1 1-.966-.26l.237-.882-1.12.646a.5.5 0 0 1-.5-.866l1.12-.646-.884-.237a.5.5 0 1 1 .26-.966l1.848.495L7 8 3.6 6.037l-1.85.495a.5.5 0 0 1-.258-.966l.883-.237-1.12-.646a.5.5 0 1 1 .5-.866l1.12.646-.237-.883a.5.5 0 1 1 .966-.258l.495 1.849L7.5 7.134V3.207L6.147 1.854a.5.5 0 1 1 .707-.708l.646.647V.5a.5.5 0 1 1 1 0v1.293l.647-.647a.5.5 0 1 1 .707.708L8.5 3.207v3.927l3.4-1.963.496-1.85a.5.5 0 1 1 .966.26l-.236.882 1.12-.646a.5.5 0 0 1 .5.866l-1.12.646.883.237a.5.5 0 1 1-.26.966l-1.848-.495L9 8l3.4 1.963 1.849-.495a.5.5 0 0 1 .259.966l-.883.237 1.12.646a.5.5 0 0 1-.5.866l-1.12-.646.236.883a.5.5 0 1 1-.966.258l-.495-1.849-3.4-1.963v3.927l1.353 1.353a.5.5 0 0 1-.707.708l-.647-.647V15.5a.5.5 0 0 1-.5.5z"/>
-                </svg>
-             </c:if>
-             <c:if test = "${climateControl == false}">
-                <p>no climate control<p>
-             </c:if>
-     </h6>
-     <!-- price -->
-     <h6 class="card-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-          </svg>
-      <c:out value="${car.price}"/></h6>
-     <!-- fuelType -->
-     <h6 class="card-title">
-               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fuel-pump-fill" viewBox="0 0 16 16">
-                 <path d="M1 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1 2 2v.5a.5.5 0 0 0 1 0V8h-.5a.5.5 0 0 1-.5-.5V4.375a.5.5 0 0 1 .5-.5h1.495c-.011-.476-.053-.894-.201-1.222a.97.97 0 0 0-.394-.458c-.184-.11-.464-.195-.9-.195a.5.5 0 0 1 0-1c.564 0 1.034.11 1.412.336.383.228.634.551.794.907.295.655.294 1.465.294 2.081V7.5a.5.5 0 0 1-.5.5H15v4.5a1.5 1.5 0 0 1-3 0V12a1 1 0 0 0-1-1v4h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V2Zm2.5 0a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5h-5Z"/>
-               </svg>
-               <c:out value="${car.fuelType.fuelTypeName}"/></h6>
-     <a href="#" class="btn btn-primary">Book</a>
-    </div>
-  </div>
-</c:forEach>
-</div>
+    <c:if test="${role == 2}">
+    <button type="button" hidden="true" class="btn btn-light"><a href="update-car.html?carId=${car.id}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+     </svg></button>
+     <button type="button" hidden="true" class="btn btn-light"><a href="delete-car.html"/>
+     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+       <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+     </svg></button>
+     <button type="button" class="btn btn-light"> <a href="create-order-from-car-list.html?carId=${car.id}"/>Book
+           </button>
+</c:if>
+<c:if test="${role == 1}">
+ <button type="button" class="btn btn-light"><a href="update-car.html?carId=${car.id}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+     </svg></button>
+     <button type="button" class="btn btn-light"><a href="delete-car.html"/>
+     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+       <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+     </svg></button>
+     <button type="button" class="btn btn-light"> <a href="create-order-from-car-list.html?carId=${car.id}"/>Book
+           </button>
+</c:if>
+
+     </td>
+  </tr>
+  </c:forEach>
+  </table>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+  <c:if test="${currentPage + 1 == pageCount && pageCount == 1}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+    </c:if>
+    <c:if test="${currentPage + 1 == 1 && currentPage + 1 < pageCount}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item"><a class="page-link" href="searching-results.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 > 1 && currentPage + 1 < pageCount}">
+      <li class="page-item"><a class="page-link" href="searching-results.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="searching-results.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 == pageCount && currentPage + 1 > 1}">
+      <li class="page-item"><a class="page-link" href="searching-results.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item disabled">
+              <span class="page-link">Next</span>
+      </li>
+    </c:if>
+    </ul>
+  </nav>
 <jsp:include page="_footer.jsp"/>

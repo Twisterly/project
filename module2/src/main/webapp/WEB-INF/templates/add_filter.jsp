@@ -2,7 +2,7 @@
 <jsp:include page="_header.jsp"/>
 <h1>Search car</h1>
 
-<form method="post" action="/car/add-filter.html" enctype="multipart/form-data">
+<form method="post" action="/car/searching-results.html" enctype="multipart/form-data">
   <!-- brand -->
 <!-- brand -->
          <div class="col-md-6">
