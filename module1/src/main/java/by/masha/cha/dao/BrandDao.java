@@ -2,6 +2,7 @@ package by.masha.cha.dao;
 
 import by.masha.cha.model.BodyType;
 import by.masha.cha.model.Brand;
+import by.masha.cha.model.Car;
 
 import java.util.List;
 
@@ -24,4 +25,7 @@ public interface BrandDao {
     boolean isAlreadyExists(Brand brand);
 
     Long getIdByBrandName(String brandName);
+
+    List<Brand> getPage(Integer pageSize, Integer pageNumber);
+    Long getCount();
 }

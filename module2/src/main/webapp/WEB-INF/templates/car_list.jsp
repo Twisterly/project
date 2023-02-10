@@ -6,6 +6,7 @@
     <th>Photo</th>
     <th>Brand</th>
     <th>Model</th>
+    <th>Registration number</th>
     <th>Body Type</th>
     <th>Transmission Type</th>
     <th>Fuel Type</th>
@@ -22,6 +23,7 @@
   <td><image height="100" width="100" src="/car/image/${car.id}/photo.jpg" class="img-thumbnail"></td>
     <td><c:out value="${car.brand.brandName}"/></td>
     <td><c:out value="${car.modelDetail.modelName}"/></td>
+    <td><c:out value="${car.regNumber}"/></td>
     <td><c:out value="${car.bodyType.bodyTypeName}"/></td>
     <td><c:out value="${car.transmissionType.transmissionTypeName}"/></td>
     <td><c:out value="${car.fuelType.fuelTypeName}"/></td>

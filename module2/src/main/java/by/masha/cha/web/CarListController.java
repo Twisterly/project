@@ -64,22 +64,6 @@ public class CarListController {
     }
 
 
-//    @GetMapping("/pagination")
-//    public String listCars(
-//            Model model,
-//            @RequestParam(value = "size", required = false, defaultValue =
-//            "0") Integer size,
-//            @RequestParam(value = "size", required = false, defaultValue =
-//            "7") Integer page ){
-//        Page<Car> pageCars = carService.findAll(PageRequest.of(page, size));
-//        model.addAttribute("pageCars", pageCars);
-//        model.addAttribute("numbers", IntStream.range(0, pageCars
-//        .getTotalPages()).toArray());
-//
-//        return "car_list";
-//    }
-
-
     @ResponseBody
     @GetMapping("/image/{car.id}/photo.jpg")
     public byte[] getImage(@PathVariable("car.id") String carId) {
@@ -87,13 +71,6 @@ public class CarListController {
         Car car = carService.getById(carId);
         return car.getCarPhoto().getPhoto();
     }
-
-//    @GetMapping("/car-list.html")
-//    @SneakyThrows
-//    public ModelAndView updateCar( Car car) {
-//        System.out.println("Call updateCar: " + car);
-//        return new ModelAndView("update_car", Map.of("car", car));
-//    }
 
 
 }

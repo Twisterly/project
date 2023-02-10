@@ -14,7 +14,6 @@
     <th>Color</th>
     <th>Year</th>
     <th>Price</th>
-    <th>Actions</th>
   </tr>
   <tr>
   <td><image height="100" width="100" src="/car/image/${car.id}/photo.jpg" class="img-thumbnail"></td>

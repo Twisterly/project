@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
-<h3>Your personal information was successfully updated!</h3>
+<h3>personal information was successfully updated!</h3>
 <table style="width:100%" class="table table-hover">
   <tr>
     <th>Username</th>

@@ -55,14 +55,14 @@
   <!-- regNumber -->
   <div class="col-md-6">
       <label for="regNumber" class="form-label">Registration Number</label>
-      <input type="text" name="regNumber" class="form-control" id="regNumber" aria-describedby="nameHelp" pattern="^\d{4}[A-Z]{2}[-]\d{1}$">
-      <div id="nameHelp" class="form-text">Enter Registration name</div>
+      <input value="${car.regNumber}" type="text" name="regNumber" class="form-control is-invalid" id="regNumber" aria-describedby="nameHelp" pattern="^\d{4}[A-Z]{2}[-]\d{1}$" required>
+       <div id="nameHelp" class="invalid-feedback">
+                This registartion number already exists.
   </div>
    <!-- vinNumber -->
     <div class="col-md-6">
      <label for="vinNumber" class="form-label">VIN Number</label>
      <input type="text" name="vinNumber" class="form-control" id="vinNumber" aria-describedby="nameHelp" pattern="^[0123456789ABCDEFGHJKLMNPRSTUVWXYZ]{17}$">
-     <div id="nameHelp" class="form-text">Enter VIN Number</div>
      <div id="nameHelp" class="form-text">Enter VIN Number</div>
     </div>
     <!-- price -->

@@ -3,7 +3,10 @@ package by.masha.cha.dao;
 import by.masha.cha.model.Brand;
 import by.masha.cha.model.Car;
 import by.masha.cha.model.ModelDetail;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,6 +83,23 @@ public class ModelDetailDaoImpl implements ModelDetailDao {
             return false;
         } else
             return true;
+    }
+
+    public List<ModelDetail> getPage(Integer pageSize, Integer pageNumber) {
+        Criteria criteria =
+                sessionFactory.getCurrentSession().createCriteria(ModelDetail.class).addOrder(Order.asc("modelName"));
+        criteria.setFirstResult(pageNumber * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+
+    public Long getCount() {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(ModelDetail.class);
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
+
     }
 
 }

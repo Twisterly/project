@@ -144,7 +144,7 @@ public class AppUserDaoImpl implements AppUserDao {
 
     public Long getCount() {
         Criteria criteriaCount =
-                sessionFactory.getCurrentSession().createCriteria(Car.class);
+                sessionFactory.getCurrentSession().createCriteria(AppUser.class);
         criteriaCount.setProjection(Projections.rowCount());
         return (Long) criteriaCount.uniqueResult();
 

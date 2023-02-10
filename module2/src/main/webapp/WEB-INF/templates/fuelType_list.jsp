@@ -2,7 +2,7 @@
 <jsp:include page="_header.jsp"/>
 <h1>Fuel Types</h1>
 
-<table style="width:100%" class="table">
+<table style="width:100%" class="table table-hover">
   <tr>
     <th>Fuel Type Name</th>
   </tr>

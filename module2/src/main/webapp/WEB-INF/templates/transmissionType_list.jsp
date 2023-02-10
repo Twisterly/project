@@ -2,7 +2,7 @@
 <jsp:include page="_header.jsp"/>
 <h1>Transmission Types</h1>
 
-<table style="width:100%" class="table">
+<table style="width:100%" class="table table-hover">
   <tr>
     <th>Transmission Type Name</th>
   </tr>

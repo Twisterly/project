@@ -33,7 +33,6 @@ public class AddAppUserController {
     }
 
     @PostMapping("/reg-appUser.html")
-    //   @Secured("ADMIN")
     public ModelAndView addAppUser(AppUser appUser) {
         System.out.println("Call addAppUser: " + appUser);
         if (appUserService.isAlreadyExists(appUser) == 1) {

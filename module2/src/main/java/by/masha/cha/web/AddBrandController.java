@@ -31,6 +31,7 @@ public class AddBrandController {
     //   @Secured("ADMIN")
     public ModelAndView addBrand(Brand brand) {
         System.out.println("Call addBrand: " + brand);
+
         ModelAndView modelAndView1 = new ModelAndView("brand_list");
         ModelAndView modelAndView2 = new ModelAndView("error_brand");
         if (brandService.isAlreadyExists(brand) == false) {

@@ -23,5 +23,8 @@ public interface ModelDetailDao {
 
     boolean isAlreadyExists(ModelDetail modelDetail);
 
+    List<ModelDetail> getPage(Integer pageSize, Integer pageNumber);
+    Long getCount();
+
 
 }

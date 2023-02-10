@@ -42,4 +42,12 @@ public class ModelDetailService {
     public ModelDetail findById(long id){
         return modelDetailDao.findById(id);
     }
+
+    public List<ModelDetail> getPage(Integer pageSize, Integer pageNumber) {
+        return modelDetailDao.getPage(pageSize, pageNumber);
+    }
+    public Long getCount() {
+        return modelDetailDao.getCount();
+    }
+
 }

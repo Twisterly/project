@@ -52,6 +52,20 @@
              </c:forEach>
               </select>
             </div>
+            <!-- bodyType -->
+                 <div class="col-md-6">
+                  <label for="fuelType.id">update fuel Type:</label>
+                  <select class="form-select" id="fuelType.id" name="fuelType.id">
+                   <c:forEach items="${fuelTypes}" var="fuelType">
+                     <c:if test="${fuelType.id == car.fuelType.id}">
+                       <option selected="selected" value="${fuelType.id}">${fuelType.fuelTypeName}</option>
+                      </c:if>
+                       <c:if test="${fuelType.id != car.fuelType.id}">
+                        <option value="${fuelType.id}">${fuelType.fuelTypeName}</option>
+                         </c:if>
+                         </c:forEach>
+                          </select>
+                        </div>
      <!-- transmissionType -->
      <div class="col-md-6">
           <label for="transmissionType.id">update transmission Type:</label>
