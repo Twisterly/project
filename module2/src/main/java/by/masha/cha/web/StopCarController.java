@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class StopCarController {
 
     @GetMapping("/stop-car.html")
-    public ModelAndView showDelayOrderPage() {
+    public ModelAndView showStopCarPage() {
         return new ModelAndView(
                 "stop_car");
 

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CancelOrderController {
 
     @GetMapping("/cancel-order.html")
-    public ModelAndView showDelayOrderPage() {
+    public ModelAndView showCancelOrderPage() {
         return new ModelAndView(
                 "cancel_order");
 
