@@ -54,7 +54,7 @@ public class CarDaoImpl implements CarDao {
         return sessionFactory.getCurrentSession().get(Car.class, id);
     }
 
-    public void update(Car car){
+    public void update(Car car) {
         sessionFactory.getCurrentSession().update(car);
     }
 
@@ -172,11 +172,26 @@ public class CarDaoImpl implements CarDao {
         return criteria.list();
     }
 
+    public List<Car> getPageNotActiveCars(Integer pageSize,
+                                          Integer pageNumber) {
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<Car> criteria = criteriaBuilder.createQuery(Car.class);
+        Root<Car> cars = criteria.from(Car.class);
+        criteria.select(cars).where(criteriaBuilder.equal(cars.get("active"),
+                0));
+        Query<Car> query =
+                sessionFactory.getCurrentSession().createQuery(criteria);
+        query.setFirstResult(pageNumber * pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
+    }
+
     public List<Car> getPage(Integer pageSize, Integer pageNumber) {
         CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Car> criteria = criteriaBuilder.createQuery(Car.class);
         Root<Car> cars = criteria.from(Car.class);
-        criteria.select(cars).where(criteriaBuilder.equal(cars.get("active"), 1));
+        criteria.select(cars).where(criteriaBuilder.equal(cars.get("active"),
+                1));
         Query<Car> query =
                 sessionFactory.getCurrentSession().createQuery(criteria);
         query.setFirstResult(pageNumber * pageSize);
@@ -223,11 +238,10 @@ public class CarDaoImpl implements CarDao {
 
     public boolean isUnique(String regNum) {
         List<Car> cars = sessionFactory.getCurrentSession().createQuery(
-                "from Car c WHERE c.regNumber='" + regNum + "' ",Car.class).list();
+                "from Car c WHERE c.regNumber='" + regNum + "' ", Car.class).list();
         if (cars.size() > 0) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
 }

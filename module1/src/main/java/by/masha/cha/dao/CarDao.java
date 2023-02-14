@@ -32,6 +32,8 @@ public interface CarDao {
     List<Car> findAllAndSortByYear();
 
     List<Car> getPage(Integer pageSize, Integer pageNumber);
+
+    List<Car> getPageNotActiveCars(Integer pageSize, Integer pageNumber);
     Long getCount();
 
     List<String> getAllCarDoorsModification();

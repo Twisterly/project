@@ -41,11 +41,13 @@ public class CarListController {
     @GetMapping("/car-list.html")
     public ModelAndView showCarList(String pageNumber) {
         List<Brand> brands = brandService.getAll();
-        Integer page= 0;
-        if(pageNumber != null){page = Integer.valueOf(pageNumber);}
+        Integer page = 0;
+        if (pageNumber != null) {
+            page = Integer.valueOf(pageNumber);
+        }
         List<Car> cars = carService.getPage(3, page);
-        Long carCount = carService.getCount();
-        int pageCount = (int) Math.ceil((double)carCount/3);
+        Long carCount = (long) cars.size();
+        int pageCount = (int) Math.ceil((double) carCount / 3);
         List<ModelDetail> modelDetails = modelDetailService.getAll();
         List<BodyType> bodyTypes = bodyTypeService.getAll();
         ModelAndView modelAndView = new ModelAndView("car_list");

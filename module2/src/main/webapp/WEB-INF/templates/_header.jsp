@@ -52,7 +52,8 @@
              Admin lists/edits
               </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/car/car-list.html">Show cars</a></li>
+              <li><a class="dropdown-item" href="/car/car-list.html">Show active cars</a></li>
+              <li><a class="dropdown-item" href="/car/car-list-not-active.html">Show not active cars</a></li>
               <li><a class="dropdown-item" href="/car/brand-list.html">Show brands</a></li>
                <li><a class="dropdown-item" href="/car/modelDetail-list.html">Show models</a></li>
               <li><a class="dropdown-item" href="/car/bodyType-list.html">Show body types</a></li>

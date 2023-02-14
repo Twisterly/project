@@ -118,6 +118,10 @@ public class CarService {
         return carDao.getPage(pageSize, pageNumber);
     }
 
+    public List<Car> getPageNotActiveCars(Integer pageSize, Integer pageNumber) {
+        return carDao.getPageNotActiveCars(pageSize, pageNumber);
+    }
+
     public Long getCount() {
         return carDao.getCount();
     }
