@@ -112,6 +112,8 @@
             `climate_control` BOOLEAN,
             `seats` BIGINT(19),
             `doors` BIGINT(19),
+            `active` BIGINT(19),
+            `comment` VARCHAR(255),
             `car_photo_id` BIGINT(19),
             `body_type_id` BIGINT(19),
             `car_brand_id` BIGINT(19),

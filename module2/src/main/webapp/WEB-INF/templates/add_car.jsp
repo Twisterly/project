@@ -62,8 +62,7 @@
     <div class="col-md-6">
      <label for="vinNumber" class="form-label">VIN Number</label>
      <input type="text" name="vinNumber" class="form-control" id="vinNumber" aria-describedby="nameHelp" pattern="^[0123456789ABCDEFGHJKLMNPRSTUVWXYZ]{17}$">
-     <div id="nameHelp" class="form-text">Enter VIN Number</div>
-     <div id="nameHelp" class="form-text">Enter VIN Number</div>
+     <div id="nameHelp" class="form-text">Enter VIN Number using only this signs 0 1 2 3 4 5 6 7 8 9 A B C D E F G H J K L M N P R S T U V W X Y Z</div>
     </div>
     <!-- price -->
      <div class="col-md-6">
@@ -140,6 +139,23 @@
                    <label class="form-check-label" for="seats6">7</label>
                     </div>
                   <br/>
+     <!-- active -->
+    <label for="active" class="form-label">Car is</label><br/>
+     <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="active" id="activeYES" value="1">
+        <label class="form-check-label" for="activeYES">active</label>
+     </div>
+     <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="active" id="activeNO" value="0">
+        <label class="form-check-label" for="activeNO">not active</label>
+     </div>
+     <!-- comment -->
+     <div class="col-md-4">
+          <label for="comment" class="form-label">Comment</label>
+          <input type="text" name="comment" class="form-control" id="comment" aria-describedby="nameHelp">
+          <div id="nameHelp" class="form-text">Enter comment</div>
+         </div>
+     <br/>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 <jsp:include page="_footer.jsp"/>

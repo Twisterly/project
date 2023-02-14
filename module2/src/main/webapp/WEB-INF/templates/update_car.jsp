@@ -120,12 +120,45 @@
             <input value="${car.price}" type="number" name="price" class="form-control" id="price" aria-describedby="nameHelp">
             <div id="nameHelp" class="form-text">Enter price</div>
            </div>
+           </br>
       <!-- color -->
        <div class="col-md-6">
        <label for="color" class="form-label">Color</label>
             <input value="${car.color}" type="text" name="color" class="form-control" id="color" aria-describedby="nameHelp">
             <div id="nameHelp" class="form-text">Enter color</div>
            </div>
+           <br/>
+<!-- active -->
+       <div class="col-md-6">
+    <label for="active" class="form-label">Car is</label><br/>
+        <div class="form-check form-check-inline">
+        <c:if test="${car.active == 1}">
+           <input class="form-check-input" type="radio" name="active" id="activeYES" value="1" checked>
+           <label class="form-check-label" for="activeYES">active</label>
+           <div class="form-check form-check-inline">
+           <input class="form-check-input" type="radio" name="active" id="activeNO" value="0">
+           <label class="form-check-label" for="activeNO">not active</label>
+        </c:if>
+         </div>
+       </div>
+         <c:if test="${car.active == 0}">
+         <div class="form-check form-check-inline">
+           <input class="form-check-input" type="radio" name="active" id="activeYES" value="1">
+            <label class="form-check-label" for="activeYES">active</label>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="active" id="activeNO" value="0" checked>
+              <label class="form-check-label" for="aciveNO">not active</label>
+         </c:if>
+         </div>
+      </div>
+      <br/>
+<!-- comment -->
+       <div class="col-md-6">
+       <label for="comment" class="form-label">Comment</label>
+            <input value="${car.comment}" type="text" name="comment" class="form-control" id="comment" aria-describedby="nameHelp">
+            <div id="nameHelp" class="form-text">Enter comment</div>
+           </div>
+       <br/>
 <button type="submit" class="btn btn-primary">Update</button>
 </form>
 

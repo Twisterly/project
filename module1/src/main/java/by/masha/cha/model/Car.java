@@ -68,5 +68,11 @@ public class Car {
     @JoinColumn(name = "modeldetail_id")
     private ModelDetail modelDetail;
 
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "active")
+    private Integer active;
+
 
 }

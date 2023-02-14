@@ -129,6 +129,7 @@ public class CarDaoImpl implements CarDao {
             predicates.add(criteriaBuilder.equal(cars.get("seats"),
                     Integer.parseInt(carFilter.getSeats())));
         }
+        predicates.add(criteriaBuilder.equal(cars.get("active"), 1));
         criteria.select(cars).where(predicates.toArray(Predicate[]::new));
         Query<Car> query =
                 sessionFactory.getCurrentSession().createQuery(criteria);
@@ -172,11 +173,15 @@ public class CarDaoImpl implements CarDao {
     }
 
     public List<Car> getPage(Integer pageSize, Integer pageNumber) {
-        Criteria criteria =
-                sessionFactory.getCurrentSession().createCriteria(Car.class).addOrder(Order.asc("year"));
-        criteria.setFirstResult(pageNumber * pageSize);
-        criteria.setMaxResults(pageSize);
-        return criteria.list();
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<Car> criteria = criteriaBuilder.createQuery(Car.class);
+        Root<Car> cars = criteria.from(Car.class);
+        criteria.select(cars).where(criteriaBuilder.equal(cars.get("active"), 1));
+        Query<Car> query =
+                sessionFactory.getCurrentSession().createQuery(criteria);
+        query.setFirstResult(pageNumber * pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
     }
 
 

@@ -66,7 +66,7 @@ public class UpdateCarController {
         FuelType fuelType = car.getFuelType();
         Car updatedCar = carService.updateCar(brand, modelDetail, bodyType,
                 transmissionType, fuelType, car.getDoors(), car.getSeats(),
-                car.getColor(), car.getPrice(), carId);
+                car.getColor(), car.getPrice(), car.getActive(), car.getComment(),carId);
         return new ModelAndView("car_info", Map.of("car", updatedCar));
     }
 

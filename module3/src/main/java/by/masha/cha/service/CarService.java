@@ -55,6 +55,8 @@ public class CarService {
                          Integer seats,
                          String color,
                          double price,
+                         Integer active,
+                         String comment,
                          String carId) {
 
         Car car = carDao.findById(carId);
@@ -67,6 +69,8 @@ public class CarService {
         car.setSeats(seats);
         car.setColor(color);
         car.setPrice(price);
+        car.setActive(active);
+        car.setComment(comment);
 //        if (!(car.getBrand().equals(brand))) {
 //            car.setBrand(brand);
 //        }
