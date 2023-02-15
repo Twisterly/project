@@ -30,9 +30,15 @@ public class GuestCarListController {
     private AppUserService appUserService;
 
     @GetMapping("/guest-car-list.html")
-    public ModelAndView showCarList() {
+    public ModelAndView showCarListForGuests(String pageNumber) {
         List<Brand> brands = brandService.getAll();
-        List<Car> cars = carService.getAll();
+        Integer page = 0;
+        if (pageNumber != null) {
+            page = Integer.valueOf(pageNumber);
+        }
+        List<Car> cars = carService.getPage(5, page);
+        Long carCount = (long) cars.size();
+        int pageCount = (int) Math.ceil((double) carCount / 5);
         List<ModelDetail> modelDetails = modelDetailService.getAll();
         List<BodyType> bodyTypes = bodyTypeService.getAll();
         ModelAndView modelAndView = new ModelAndView("guest_car_list");
@@ -40,6 +46,9 @@ public class GuestCarListController {
         modelAndView.addAllObjects(Map.of("brands", brands));
         modelAndView.addAllObjects(Map.of("bodyTypes", bodyTypes));
         modelAndView.addAllObjects(Map.of("modelDetails", modelDetails));
+        modelAndView.addAllObjects(Map.of("pageCount", pageCount));
+        modelAndView.addAllObjects(Map.of("currentPage", page));
+
         return modelAndView;
 
     }
