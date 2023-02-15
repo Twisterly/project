@@ -59,13 +59,5 @@ public class NotActiveCarListController {
     }
 
 
-//    @ResponseBody
-//    @GetMapping("/image/{car.id}/photo.jpg")
-//    public byte[] getImageForNotActiveCar(@PathVariable("car.id") String carId) {
-//        System.out.println("Call getImage: " + carId);
-//        Car car = carService.getById(carId);
-//        return car.getCarPhoto().getPhoto();
-//    }
-
 
 }
