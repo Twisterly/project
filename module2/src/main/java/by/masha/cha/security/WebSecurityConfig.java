@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/transmissionType-list*").hasRole("ADMIN")
                 .antMatchers("/appUsers-list*").hasRole("ADMIN")
                 .antMatchers("/allOrders-list*").hasRole("ADMIN")
+                .antMatchers("/not-active-car-list*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/add-car*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/add-car*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/add-brand*").hasRole("ADMIN")
