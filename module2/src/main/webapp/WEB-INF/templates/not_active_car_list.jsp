@@ -1,0 +1,102 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="_header.jsp"/>
+<h1>Not active cars:</h1>
+<table style="width:100%" class="table table-hover">
+  <tr>
+    <th>Photo</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Registration number</th>
+    <th>Body Type</th>
+    <th>Transmission Type</th>
+    <th>Fuel Type</th>
+    <th>Climate Control</th>
+    <th>Seats</th>
+    <th>Doors</th>
+    <th>Color</th>
+    <th>Year</th>
+    <th>Price</th>
+    <th>Active</th>
+    <th>Comment</th>
+    <th>Actions</th>
+  </tr>
+  <c:forEach items="${cars}" var="car">
+  <tr>
+  <td><image height="100" width="100" src="/car/image/${car.id}/photo.jpg" class="img-thumbnail"></td>
+    <td><c:out value="${car.brand.brandName}"/></td>
+    <td><c:out value="${car.modelDetail.modelName}"/></td>
+    <td><c:out value="${car.regNumber}"/></td>
+    <td><c:out value="${car.bodyType.bodyTypeName}"/></td>
+    <td><c:out value="${car.transmissionType.transmissionTypeName}"/></td>
+    <td><c:out value="${car.fuelType.fuelTypeName}"/></td>
+    <td><c:if test="${car.climateControl == true}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+    </c:if>
+    <c:if test="${car.climateControl == false}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+        </svg>
+    </c:if>
+    </td>
+    <td><c:out value="${car.seats}"/></td>
+    <td><c:out value="${car.doors}"/></td>
+    <td><c:out value="${car.color}"/></td>
+    <td><c:out value="${car.year}"/></td>
+    <td><c:out value="${car.price}"/></td>
+    <td><c:if test="${car.active == 1}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+        </c:if>
+        <c:if test="${car.active == 0}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+            <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z"/>
+          </svg>
+        </c:if>
+        </td>
+        <td><c:out value="${car.comment}"/></td>
+    <td>
+    <input name="car.id" id="car.id" value="${car.id}" type="hidden">
+
+ <button type="button" class="btn btn-light"><a href="update-car.html?carId=${car.id}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+     </svg></button>
+     <button type="button" class="btn btn-light"> <a href="create-order-from-car-list.html?carId=${car.id}"/>Book
+           </button>
+
+     </td>
+  </tr>
+  </c:forEach>
+  </table>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+  <c:if test="${currentPage + 1 == pageCount && pageCount == 1}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+    </c:if>
+    <c:if test="${currentPage + 1 == 1 && currentPage + 1 < pageCount}">
+      <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+      </li>
+        <li class="page-item"><a class="page-link" href="not-active-car-list.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 > 1 && currentPage + 1 < pageCount}">
+      <li class="page-item"><a class="page-link" href="not-active-car-list.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="not-active-car-list.html?pageNumber=${currentPage + 1}">Next</a></li>
+    </c:if>
+    <c:if test="${currentPage + 1 == pageCount && currentPage + 1 > 1}">
+      <li class="page-item"><a class="page-link" href="not-active-car-list.html?pageNumber=${currentPage - 1}">Previous</a></li>
+      <li class="page-item disabled">
+              <span class="page-link">Next</span>
+      </li>
+    </c:if>
+    </ul>
+  </nav>
+<jsp:include page="_footer.jsp"/>
