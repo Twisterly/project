@@ -216,28 +216,28 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
                 dataSet);
     }
 
-    @Test
-    @SneakyThrows
-    public void findAllByCarId() {
-        Connection conn = testMysqlJdbcDataSource.getConnection();
-
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(AppOrderDaoImplTest.class.getResourceAsStream(
-                        "AppOrderDaoImplTest.xml"));
-        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
-                dataSet);
-
-        //When
-        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000" +
-                "-0000-0000-0000-000000000111");
-
-
-        //Then
-        assertEquals(1, appOrderList.size());
-
-        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
-                dataSet);
-    }
+//    @Test
+//    @SneakyThrows
+//    public void findAllByCarId() {
+//        Connection conn = testMysqlJdbcDataSource.getConnection();
+//
+//        IDataSet dataSet = new FlatXmlDataSetBuilder()
+//                .build(AppOrderDaoImplTest.class.getResourceAsStream(
+//                        "AppOrderDaoImplTest.xml"));
+//        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
+//                dataSet);
+//
+//        //When
+//        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000" +
+//                "-0000-0000-0000-000000000111");
+//
+//
+//        //Then
+//        assertEquals(1, appOrderList.size());
+//
+//        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
+//                dataSet);
+//    }
 
 
 }

@@ -18,7 +18,7 @@ public interface AppOrderDao {
 
     List<AppOrder> findAllByUserId(String id);
 
-    List<AppOrder> findAllByCarId(String id);
+    List<AppOrder> findAllActiveByCarId(String id);
 
     List<AppOrder> getPageForUser(String appUserId, Integer pageSize, Integer pageNumber);
     Long getCountForUser(String appUserId);

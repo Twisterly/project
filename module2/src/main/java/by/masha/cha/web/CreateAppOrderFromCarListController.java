@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +51,9 @@ public class CreateAppOrderFromCarListController {
                 appOrder.getEndDate().toLocalDate()) == false)
                 && appOrderService.isCorrectDates(appOrder.getStartDate().toLocalDate(),
                 appOrder.getEndDate().toLocalDate())) {
+            appOrder.setTimeOfOrder(null);
+            appOrder.setCancellation(false);
+            appOrder.setTimeOfCancellation(Timestamp.valueOf("2000-01-01 03:00:00"));
             appOrderService.add(appOrder);
             ModelAndView modelAndView = new ModelAndView("appOrder");
             modelAndView.addAllObjects(Map.of("newAppOrder", appOrder));

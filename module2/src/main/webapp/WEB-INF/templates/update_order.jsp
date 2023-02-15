@@ -23,6 +23,17 @@
               <input value="${appOrder.endDate}" type="date" name="endDate" class="form-control" id="endDate" aria-describedby="nameHelp">
               <div id="nameHelp" class="form-text">Enter end Date</div>
               </div>
+<!-- cancellation -->
+ <label for="cancellation" class="form-label">Do you want to cancel your order?</label><br/>
+     <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cancellation" id="cancellationYES" value="true">
+        <label class="form-check-label" for="cancellationTRUE">cancel</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cancellation" id="cancellationNO" value="false">
+        <label class="form-check-label" for="cancellationFALSE">do not cancel</label>
+      </div>
+      <br/>
 </div>
 <input name="appOrderId" id="appOrderId" value="${oldAppOrderId}" type="hidden">
 <button type="submit" class="btn btn-primary">Submit</button>

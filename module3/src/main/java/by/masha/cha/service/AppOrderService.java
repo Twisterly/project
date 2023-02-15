@@ -35,7 +35,7 @@ public class AppOrderService {
         appOrderDao.delete(appOrder);
     }
 
-    public AppOrder update(Date startDate,Date endDate,
+    public AppOrder update(Date startDate,Date endDate, boolean cancellation,
                        String carId, String appOrderId) {
         AppOrder oldAppOrder = appOrderDao.findById(appOrderId);
         if (!(oldAppOrder.getStartDate().toLocalDate().equals(startDate))) {
@@ -43,6 +43,10 @@ public class AppOrderService {
         }
         if (!(oldAppOrder.getEndDate().toLocalDate().equals(endDate))) {
             oldAppOrder.setEndDate(endDate);
+        }
+        if(oldAppOrder.isCancellation() != cancellation){
+            oldAppOrder.setCancellation(cancellation);
+            oldAppOrder.setTimeOfCancellation(null);
         }
 //        if (!(oldAppOrder.getEndDate().toLocalDate().equals(endDate))) {
 //            oldAppOrder.setEndDate(endDate);
@@ -68,7 +72,7 @@ public class AppOrderService {
     }
 
     public List<AppOrder> findAllByCarId(String carId) {
-        return appOrderDao.findAllByCarId(carId);
+        return appOrderDao.findAllActiveByCarId(carId);
     }
 
     public boolean isCorrectDates(LocalDate startDate, LocalDate endDate) {

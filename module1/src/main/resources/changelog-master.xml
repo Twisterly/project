@@ -188,6 +188,8 @@
             `car_id` VARCHAR(256),
             `app_user_id` VARCHAR(256),
             `order_time` TIMESTAMP,
+            `cancellation` BOOLEAN,
+            `cancellation_time` TIMESTAMP,
             FOREIGN KEY (`car_id`) REFERENCES `t_car` (`car_id`),
             FOREIGN KEY (`app_user_id`) REFERENCES `t_app_user` (`app_user_id`)
             );

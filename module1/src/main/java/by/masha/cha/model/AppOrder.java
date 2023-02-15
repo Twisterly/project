@@ -40,9 +40,14 @@ public class AppOrder {
     private double totalSum;
 
     @ManyToOne
-    @JoinColumn(name="app_user_id")
+    @JoinColumn(name = "app_user_id")
     private AppUser appUser;
     @Column(name = "order_time")
-    private Timestamp timeOfOrder = Timestamp.valueOf(LocalDateTime.now());
+    private Timestamp timeOfOrder;
+    @Column(name = "cancellation")
+    private boolean cancellation;
+
+    @Column(name = "cancellation_time")
+    private Timestamp timeOfCancellation;
 
 }

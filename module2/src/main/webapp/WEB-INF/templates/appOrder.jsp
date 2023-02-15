@@ -130,7 +130,13 @@
    </div>
     <h5 class="card-title">Your order</h5>
     <p class="card-text">From: "${appOrder.startDate}" to  "${appOrder.endDate}"</p>
+<c:if test="${appOrder.cancellation == true}">
+<strong>WAS CANCELLED</strong>
+    <h5 class="card-title" hidden="true">Total: "${appOrder.totalSum}"</h5>
+</c:if>
+<c:if test="${appOrder.cancellation == false}">
     <h5 class="card-title">Total: "${appOrder.totalSum}"</h5>
+</c:if>
     <p class="card-text"><small class="text-muted">Thank you!</small></p>
   </div>
 </div>

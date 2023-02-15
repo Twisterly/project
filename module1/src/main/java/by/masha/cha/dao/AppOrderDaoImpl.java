@@ -68,8 +68,8 @@ public class AppOrderDaoImpl implements AppOrderDao {
 
 
     @Override
-    public List<AppOrder> findAllByCarId(String id) {
-        String query = "From AppOrder ao WHERE ao.car='" + id + "' ";
+    public List<AppOrder> findAllActiveByCarId(String id) {
+        String query = "From AppOrder ao WHERE ao.car='" + id + "' AND ao.cancellation='false'";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, AppOrder.class).list();
     }

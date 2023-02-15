@@ -54,7 +54,7 @@ public class AppOrderUpdateController {
 
     @PostMapping("/update-order.html")
     @SneakyThrows
-    public ModelAndView updateAppOrder(Date startDate, Date endDate, String appOrderId,
+    public ModelAndView updateAppOrder(Date startDate, Date endDate, boolean cancellation, String appOrderId,
                                        String carId) {
   //      AppOrder currentOrder = appOrderService.findById(appOrderId);
         List<AppOrder> ordersList = appOrderService.findAllByCarId(carId);
@@ -67,7 +67,7 @@ public class AppOrderUpdateController {
                 endDate.toLocalDate()) == false)
                 && appOrderService.isCorrectDates(startDate.toLocalDate(),
                 endDate.toLocalDate())) {
-            AppOrder newOrder = appOrderService.update(startDate, endDate,
+            AppOrder newOrder = appOrderService.update(startDate, endDate, cancellation,
                     carId, appOrderId);
             ModelAndView modelAndView = new ModelAndView("appOrder");
             modelAndView.addAllObjects(Map.of("appOrder",
