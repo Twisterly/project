@@ -27,7 +27,7 @@
            seats="5" doors="4"
            car_photo_id="200" body_type_id="600"
            transmission_type_id="500" car_brand_id="200"
-           fuel_type_id="100" modeldetail_id="1"/>
+           fuel_type_id="100" modeldetail_id="1" active="1" comment="-"/>
 
     <t_car car_id="12300000-0000-0000-0000-000000000112" reg_number="7084MM-7"
            vin_number="37JGRNFOW36272FEIFH" price="25.0"
@@ -35,6 +35,6 @@
            seats="5" doors="4"
            car_photo_id="201" body_type_id="601"
            transmission_type_id="501" fuel_type_id="100"
-           car_brand_id="201" modeldetail_id="2"/>
+           car_brand_id="201" modeldetail_id="2" active="1" comment="-"/>
 
 </dataset>

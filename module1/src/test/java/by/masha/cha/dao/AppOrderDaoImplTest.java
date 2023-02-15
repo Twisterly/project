@@ -107,6 +107,8 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
         appOrder.setAppUser(appUser);
         appOrder.setStartDate(Date.valueOf("2023-02-09"));
         appOrder.setEndDate(Date.valueOf("2023-02-12"));
+        appOrder.setCancellation(false);
+        appOrder.setTimeOfCancellation(Timestamp.valueOf("2000-01-01 03:00:00"));
 
         //When
         targetObject.create(appOrder);
@@ -211,33 +213,33 @@ public class AppOrderDaoImplTest extends BaseDaoTest {
 
         //Then
         assertEquals(2, appOrderList.size());
-//
+
         DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
                 dataSet);
     }
 
-//    @Test
-//    @SneakyThrows
-//    public void findAllByCarId() {
-//        Connection conn = testMysqlJdbcDataSource.getConnection();
-//
-//        IDataSet dataSet = new FlatXmlDataSetBuilder()
-//                .build(AppOrderDaoImplTest.class.getResourceAsStream(
-//                        "AppOrderDaoImplTest.xml"));
-//        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
-//                dataSet);
-//
-//        //When
-//        List<AppOrder> appOrderList = targetObject.findAllByCarId("12300000" +
-//                "-0000-0000-0000-000000000111");
-//
-//
-//        //Then
-//        assertEquals(1, appOrderList.size());
-//
-//        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
-//                dataSet);
-//    }
+    @Test
+    @SneakyThrows
+    public void findAllByCarId() {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(AppOrderDaoImplTest.class.getResourceAsStream(
+                        "AppOrderDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection,
+                dataSet);
+
+        //When
+        List<AppOrder> appOrderList = targetObject.findAllActiveByCarId("12300000" +
+                "-0000-0000-0000-000000000111");
+
+
+        //Then
+        assertEquals(1, appOrderList.size());
+
+        DatabaseOperation.DELETE_ALL.execute(iDatabaseConnection,
+                dataSet);
+    }
 
 
 }
