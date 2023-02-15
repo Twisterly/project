@@ -1,0 +1,337 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-1">
+        <createTable tableName="t_app_order">
+            <column name="order_id" type="VARCHAR(256)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="start_date" type="date"/>
+            <column name="start_time" type="time"/>
+            <column name="end_date" type="date"/>
+            <column name="end_time" type="time"/>
+            <column name="total_sum" type="DOUBLE"/>
+            <column name="car_id" type="VARCHAR(256)"/>
+            <column name="app_user_id" type="VARCHAR(256)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="order_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cancellation" type="BIT(1)"/>
+            <column defaultValue="0000-00-00 00:00:00" name="cancellation_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-2">
+        <createTable tableName="t_app_user">
+            <column name="app_user_id" type="VARCHAR(256)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_name" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_password" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_first_name" type="VARCHAR(256)"/>
+            <column name="user_last_name" type="VARCHAR(256)"/>
+            <column name="user_birth_date" type="date"/>
+            <column name="user_phone_number" type="VARCHAR(256)"/>
+            <column name="user_email" type="VARCHAR(256)"/>
+            <column name="user_gender" type="VARCHAR(256)"/>
+            <column defaultValue="USER" name="user_role" type="VARCHAR(256)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-3">
+        <createTable tableName="t_body_type">
+            <column name="body_type_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="body_type_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-4">
+        <createTable tableName="t_body_type_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-5">
+        <createTable tableName="t_car">
+            <column name="car_id" type="VARCHAR(256)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="reg_number" type="VARCHAR(255)"/>
+            <column name="vin_number" type="VARCHAR(255)"/>
+            <column name="price" type="DOUBLE"/>
+            <column name="year" type="VARCHAR(255)"/>
+            <column name="color" type="VARCHAR(255)"/>
+            <column name="climate_control" type="BIT(1)"/>
+            <column name="seats" type="BIGINT"/>
+            <column name="doors" type="BIGINT"/>
+            <column name="active" type="BIGINT"/>
+            <column name="comment" type="VARCHAR(255)"/>
+            <column name="car_photo_id" type="BIGINT"/>
+            <column name="body_type_id" type="BIGINT"/>
+            <column name="car_brand_id" type="BIGINT"/>
+            <column name="transmission_type_id" type="BIGINT"/>
+            <column name="fuel_type_id" type="BIGINT"/>
+            <column name="modeldetail_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-6">
+        <createTable tableName="t_car_brand">
+            <column name="car_brand_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="car_brand_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-7">
+        <createTable tableName="t_car_brand_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-8">
+        <createTable tableName="t_car_photo">
+            <column name="car_photo_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="car_photo" type="MEDIUMBLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-9">
+        <createTable tableName="t_car_photo_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-10">
+        <createTable tableName="t_fuel_type">
+            <column name="fuel_type_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="fuel_type_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-11">
+        <createTable tableName="t_fuel_type_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-12">
+        <createTable tableName="t_model_detail">
+            <column name="modeldetail_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="model_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-13">
+        <createTable tableName="t_model_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-14">
+        <createTable tableName="t_transmission_type">
+            <column name="transmission_type_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="transmission_type_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-15">
+        <createTable tableName="t_transmission_type_seq">
+            <column name="next_val" type="INT UNSIGNED">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-16">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_app_order.csv" quotchar="&quot;" separator="," tableName="t_app_order">
+            <column header="order_id" name="order_id" type="STRING"/>
+            <column header="start_date" name="start_date" type="DATE"/>
+            <column header="start_time" name="start_time" type="skip"/>
+            <column header="end_date" name="end_date" type="DATE"/>
+            <column header="end_time" name="end_time" type="skip"/>
+            <column header="total_sum" name="total_sum" type="NUMERIC"/>
+            <column header="car_id" name="car_id" type="STRING"/>
+            <column header="app_user_id" name="app_user_id" type="STRING"/>
+            <column header="order_time" name="order_time" type="DATE"/>
+            <column header="cancellation" name="cancellation" type="BOOLEAN"/>
+            <column header="cancellation_time" name="cancellation_time" type="DATE"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-17">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_app_user.csv" quotchar="&quot;" separator="," tableName="t_app_user">
+            <column header="app_user_id" name="app_user_id" type="STRING"/>
+            <column header="user_name" name="user_name" type="STRING"/>
+            <column header="user_password" name="user_password" type="STRING"/>
+            <column header="user_first_name" name="user_first_name" type="STRING"/>
+            <column header="user_last_name" name="user_last_name" type="STRING"/>
+            <column header="user_birth_date" name="user_birth_date" type="DATE"/>
+            <column header="user_phone_number" name="user_phone_number" type="STRING"/>
+            <column header="user_email" name="user_email" type="STRING"/>
+            <column header="user_gender" name="user_gender" type="STRING"/>
+            <column header="user_role" name="user_role" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-18">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_body_type.csv" quotchar="&quot;" separator="," tableName="t_body_type">
+            <column header="body_type_id" name="body_type_id" type="NUMERIC"/>
+            <column header="body_type_name" name="body_type_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-19">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_body_type_seq.csv" quotchar="&quot;" separator="," tableName="t_body_type_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-20">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_car.csv" quotchar="&quot;" separator="," tableName="t_car">
+            <column header="car_id" name="car_id" type="STRING"/>
+            <column header="reg_number" name="reg_number" type="STRING"/>
+            <column header="vin_number" name="vin_number" type="STRING"/>
+            <column header="price" name="price" type="NUMERIC"/>
+            <column header="year" name="year" type="STRING"/>
+            <column header="color" name="color" type="STRING"/>
+            <column header="climate_control" name="climate_control" type="BOOLEAN"/>
+            <column header="seats" name="seats" type="NUMERIC"/>
+            <column header="doors" name="doors" type="NUMERIC"/>
+            <column header="active" name="active" type="NUMERIC"/>
+            <column header="comment" name="comment" type="STRING"/>
+            <column header="car_photo_id" name="car_photo_id" type="NUMERIC"/>
+            <column header="body_type_id" name="body_type_id" type="NUMERIC"/>
+            <column header="car_brand_id" name="car_brand_id" type="NUMERIC"/>
+            <column header="transmission_type_id" name="transmission_type_id" type="NUMERIC"/>
+            <column header="fuel_type_id" name="fuel_type_id" type="NUMERIC"/>
+            <column header="modeldetail_id" name="modeldetail_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-21">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_car_brand.csv" quotchar="&quot;" separator="," tableName="t_car_brand">
+            <column header="car_brand_id" name="car_brand_id" type="NUMERIC"/>
+            <column header="car_brand_name" name="car_brand_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-22">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_car_brand_seq.csv" quotchar="&quot;" separator="," tableName="t_car_brand_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-23">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_car_photo.csv" quotchar="&quot;" separator="," tableName="t_car_photo">
+            <column header="car_photo_id" name="car_photo_id" type="NUMERIC"/>
+            <column header="car_photo" name="car_photo" type="BLOB"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-24">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_car_photo_seq.csv" quotchar="&quot;" separator="," tableName="t_car_photo_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-25">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_fuel_type.csv" quotchar="&quot;" separator="," tableName="t_fuel_type">
+            <column header="fuel_type_id" name="fuel_type_id" type="NUMERIC"/>
+            <column header="fuel_type_name" name="fuel_type_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-26">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_fuel_type_seq.csv" quotchar="&quot;" separator="," tableName="t_fuel_type_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-27">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_model_detail.csv" quotchar="&quot;" separator="," tableName="t_model_detail">
+            <column header="modeldetail_id" name="modeldetail_id" type="NUMERIC"/>
+            <column header="model_name" name="model_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-28">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_model_seq.csv" quotchar="&quot;" separator="," tableName="t_model_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-29">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_transmission_type.csv" quotchar="&quot;" separator="," tableName="t_transmission_type">
+            <column header="transmission_type_id" name="transmission_type_id" type="NUMERIC"/>
+            <column header="transmission_type_name" name="transmission_type_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-30">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="generatedChangeLog/data/t_transmission_type_seq.csv" quotchar="&quot;" separator="," tableName="t_transmission_type_seq">
+            <column header="next_val" name="next_val" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-31">
+        <createIndex indexName="app_user_id" tableName="t_app_order">
+            <column name="app_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-32">
+        <createIndex indexName="body_type_id" tableName="t_car">
+            <column name="body_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-33">
+        <createIndex indexName="car_brand_id" tableName="t_car">
+            <column name="car_brand_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-34">
+        <createIndex indexName="car_id" tableName="t_app_order">
+            <column name="car_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-35">
+        <createIndex indexName="car_photo_id" tableName="t_car">
+            <column name="car_photo_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-36">
+        <createIndex indexName="fuel_type_id" tableName="t_car">
+            <column name="fuel_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-37">
+        <createIndex indexName="modeldetail_id" tableName="t_car">
+            <column name="modeldetail_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-38">
+        <createIndex indexName="transmission_type_id" tableName="t_car">
+            <column name="transmission_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-39">
+        <addForeignKeyConstraint baseColumnNames="car_id" baseTableName="t_app_order" constraintName="t_app_order_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="car_id" referencedTableName="t_car" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-40">
+        <addForeignKeyConstraint baseColumnNames="app_user_id" baseTableName="t_app_order" constraintName="t_app_order_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="app_user_id" referencedTableName="t_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-41">
+        <addForeignKeyConstraint baseColumnNames="car_photo_id" baseTableName="t_car" constraintName="t_car_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="car_photo_id" referencedTableName="t_car_photo" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-42">
+        <addForeignKeyConstraint baseColumnNames="body_type_id" baseTableName="t_car" constraintName="t_car_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="body_type_id" referencedTableName="t_body_type" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-43">
+        <addForeignKeyConstraint baseColumnNames="car_brand_id" baseTableName="t_car" constraintName="t_car_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="car_brand_id" referencedTableName="t_car_brand" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-44">
+        <addForeignKeyConstraint baseColumnNames="transmission_type_id" baseTableName="t_car" constraintName="t_car_ibfk_4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="transmission_type_id" referencedTableName="t_transmission_type" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-45">
+        <addForeignKeyConstraint baseColumnNames="fuel_type_id" baseTableName="t_car" constraintName="t_car_ibfk_5" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="fuel_type_id" referencedTableName="t_fuel_type" validate="true"/>
+    </changeSet>
+    <changeSet author="mashafadik@yahoo.com" id="1676456914857-46">
+        <addForeignKeyConstraint baseColumnNames="modeldetail_id" baseTableName="t_car" constraintName="t_car_ibfk_6" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="modeldetail_id" referencedTableName="t_model_detail" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

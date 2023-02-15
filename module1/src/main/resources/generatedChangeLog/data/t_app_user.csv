@@ -1,0 +1,6 @@
+"app_user_id","user_name","user_password","user_first_name","user_last_name","user_birth_date","user_phone_number","user_email","user_gender","user_role"
+"10000000-0000-0000-0000-000000000001","root","root","NULL","NULL","NULL","NULL","NULL","NULL","ADMIN"
+"10000000-0000-0000-0000-000000000002","maasha","123","Mariia","Chachik","1990-08-16","+3753369692747","mashafadik@yahoo.com","female","USER"
+"10000000-0000-0000-0000-000000000003","ivan","321","Ivan","Ivanov","2000-01-12","+375299876543","ivan@gmail.com","male","USER"
+"27aad0e6-774d-4094-b832-0449af03051d","Julia_123","qwerty","Julia","Ivanova","2001-09-20","+375332134521","julia123@gmail.com","female","USER"
+"76f04425-a676-4725-9a89-b081d03514eb","Petr99","1234","Petr","Petrov","2000-08-31","+375337658990","petr99@mail.ru","male","USER"
