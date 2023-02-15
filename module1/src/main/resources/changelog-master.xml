@@ -4,270 +4,272 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    
+    <include file="generatedChangeLog/GeneratedChangeLog.xml"/>
 
-    <changeSet id="1" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_fuel_type` (
-            `fuel_type_id` BIGINT(19),
-            `fuel_type_name` VARCHAR(255),
-            PRIMARY KEY (`fuel_type_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="1" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_fuel_type` (-->
+<!--            `fuel_type_id` BIGINT(19),-->
+<!--            `fuel_type_name` VARCHAR(255),-->
+<!--            PRIMARY KEY (`fuel_type_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="2" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_fuel_type_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_fuel_type_seq` VALUES (0);
-        </sql>
-    </changeSet>
-    <changeSet id="3" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_car_brand` (
-            `car_brand_id` BIGINT(19),
-            `car_brand_name` VARCHAR(255),
-            PRIMARY KEY (`car_brand_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="2" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_fuel_type_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_fuel_type_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="3" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_car_brand` (-->
+<!--            `car_brand_id` BIGINT(19),-->
+<!--            `car_brand_name` VARCHAR(255),-->
+<!--            PRIMARY KEY (`car_brand_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="4" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_car_brand_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_car_brand_seq` VALUES (0);
-        </sql>
-    </changeSet>
+<!--    <changeSet id="4" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_car_brand_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_car_brand_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="5" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_transmission_type` (
-            `transmission_type_id` BIGINT(19),
-            `transmission_type_name` VARCHAR(255),
-            PRIMARY KEY (`transmission_type_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="5" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_transmission_type` (-->
+<!--            `transmission_type_id` BIGINT(19),-->
+<!--            `transmission_type_name` VARCHAR(255),-->
+<!--            PRIMARY KEY (`transmission_type_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="6" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_transmission_type_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_transmission_type_seq` VALUES (0);
-        </sql>
-    </changeSet>
+<!--    <changeSet id="6" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_transmission_type_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_transmission_type_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="7" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_model_detail` (
-            `modeldetail_id` BIGINT(19),
-            `model_name` VARCHAR(255),
-            PRIMARY KEY (`modeldetail_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="7" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_model_detail` (-->
+<!--            `modeldetail_id` BIGINT(19),-->
+<!--            `model_name` VARCHAR(255),-->
+<!--            PRIMARY KEY (`modeldetail_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="8" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_car_photo` (
-            `car_photo_id` BIGINT(19),
-            `car_photo` MEDIUMBLOB,
-            PRIMARY KEY (`car_photo_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="8" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_car_photo` (-->
+<!--            `car_photo_id` BIGINT(19),-->
+<!--            `car_photo` MEDIUMBLOB,-->
+<!--            PRIMARY KEY (`car_photo_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="9" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_body_type` (
-            `body_type_id` BIGINT(19),
-            `body_type_name` VARCHAR(255),
-            PRIMARY KEY (`body_type_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="9" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_body_type` (-->
+<!--            `body_type_id` BIGINT(19),-->
+<!--            `body_type_name` VARCHAR(255),-->
+<!--            PRIMARY KEY (`body_type_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="10" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_model_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_model_seq` VALUES (0);
-        </sql>
-    </changeSet>
+<!--    <changeSet id="10" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_model_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_model_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="11" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_car` (
-            `car_id` VARCHAR(256),
-            `reg_number` VARCHAR(255),
-            `vin_number` VARCHAR(255),
-            `price` DOUBLE,
-            `year` VARCHAR(255),
-            `color` VARCHAR(255),
-            `climate_control` BOOLEAN,
-            `seats` BIGINT(19),
-            `doors` BIGINT(19),
-            `active` BIGINT(19),
-            `comment` VARCHAR(255),
-            `car_photo_id` BIGINT(19),
-            `body_type_id` BIGINT(19),
-            `car_brand_id` BIGINT(19),
-            `transmission_type_id` BIGINT(19),
-            `fuel_type_id` BIGINT(19),
-            `modeldetail_id` BIGINT(19),
-            PRIMARY KEY (`car_id`),
-            FOREIGN KEY (`car_photo_id`) REFERENCES `t_car_photo` (`car_photo_id`),
-            FOREIGN KEY (`body_type_id`) REFERENCES `t_body_type` (`body_type_id`),
-            FOREIGN KEY (`car_brand_id`) REFERENCES `t_car_brand` (`car_brand_id`),
-            FOREIGN KEY (`transmission_type_id`) REFERENCES `t_transmission_type` (`transmission_type_id`),
-            FOREIGN KEY (`fuel_type_id`) REFERENCES `t_fuel_type` (`fuel_type_id`),
-            FOREIGN KEY (`modeldetail_id`) REFERENCES `t_model_detail` (`modeldetail_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="11" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_car` (-->
+<!--            `car_id` VARCHAR(256),-->
+<!--            `reg_number` VARCHAR(255),-->
+<!--            `vin_number` VARCHAR(255),-->
+<!--            `price` DOUBLE,-->
+<!--            `year` VARCHAR(255),-->
+<!--            `color` VARCHAR(255),-->
+<!--            `climate_control` BOOLEAN,-->
+<!--            `seats` BIGINT(19),-->
+<!--            `doors` BIGINT(19),-->
+<!--            `active` BIGINT(19),-->
+<!--            `comment` VARCHAR(255),-->
+<!--            `car_photo_id` BIGINT(19),-->
+<!--            `body_type_id` BIGINT(19),-->
+<!--            `car_brand_id` BIGINT(19),-->
+<!--            `transmission_type_id` BIGINT(19),-->
+<!--            `fuel_type_id` BIGINT(19),-->
+<!--            `modeldetail_id` BIGINT(19),-->
+<!--            PRIMARY KEY (`car_id`),-->
+<!--            FOREIGN KEY (`car_photo_id`) REFERENCES `t_car_photo` (`car_photo_id`),-->
+<!--            FOREIGN KEY (`body_type_id`) REFERENCES `t_body_type` (`body_type_id`),-->
+<!--            FOREIGN KEY (`car_brand_id`) REFERENCES `t_car_brand` (`car_brand_id`),-->
+<!--            FOREIGN KEY (`transmission_type_id`) REFERENCES `t_transmission_type` (`transmission_type_id`),-->
+<!--            FOREIGN KEY (`fuel_type_id`) REFERENCES `t_fuel_type` (`fuel_type_id`),-->
+<!--            FOREIGN KEY (`modeldetail_id`) REFERENCES `t_model_detail` (`modeldetail_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
 
 
-    <changeSet id="12" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_car_photo_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_car_photo_seq` VALUES (0);
-        </sql>
-    </changeSet>
+<!--    <changeSet id="12" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_car_photo_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_car_photo_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="13" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_body_type_seq` (
-            next_val INT UNSIGNED PRIMARY KEY NOT NULL
-            );
-            INSERT INTO `t_body_type_seq` VALUES (0);
-        </sql>
-    </changeSet>
+<!--    <changeSet id="13" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_body_type_seq` (-->
+<!--            next_val INT UNSIGNED PRIMARY KEY NOT NULL-->
+<!--            );-->
+<!--            INSERT INTO `t_body_type_seq` VALUES (0);-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="14" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_app_user` (
-            `app_user_id` VARCHAR(256) PRIMARY KEY NOT NULL,
-            `user_name` VARCHAR(256) NOT NULL,
-            `user_password` VARCHAR(256) NOT NULL,
-            `user_first_name` VARCHAR(256),
-            `user_last_name` VARCHAR(256),
-            `user_birth_date` DATE,
-            `user_phone_number` VARCHAR(256),
-            `user_email` VARCHAR(256),
-            `user_gender` VARCHAR(256),
-            `user_role` VARCHAR(256) DEFAULT 'USER'
-            );
-            INSERT INTO `t_app_user` (app_user_id, user_name,
-            user_password, user_role)
-            VALUES (
-            '10000000-0000-0000-0000-000000000001',
-            'root',
-            'root',
-            'ADMIN'
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="14" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_app_user` (-->
+<!--            `app_user_id` VARCHAR(256) PRIMARY KEY NOT NULL,-->
+<!--            `user_name` VARCHAR(256) NOT NULL,-->
+<!--            `user_password` VARCHAR(256) NOT NULL,-->
+<!--            `user_first_name` VARCHAR(256),-->
+<!--            `user_last_name` VARCHAR(256),-->
+<!--            `user_birth_date` DATE,-->
+<!--            `user_phone_number` VARCHAR(256),-->
+<!--            `user_email` VARCHAR(256),-->
+<!--            `user_gender` VARCHAR(256),-->
+<!--            `user_role` VARCHAR(256) DEFAULT 'USER'-->
+<!--            );-->
+<!--            INSERT INTO `t_app_user` (app_user_id, user_name,-->
+<!--            user_password, user_role)-->
+<!--            VALUES (-->
+<!--            '10000000-0000-0000-0000-000000000001',-->
+<!--            'root',-->
+<!--            'root',-->
+<!--            'ADMIN'-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="15" author="mashafadik@yahoo.com">
-        <sql>
-            CREATE TABLE IF NOT EXISTS `t_app_order` (
-            `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,
-            `start_date` DATE,
-            `start_time` TIME,
-            `end_date` DATE,
-            `end_time` TIME,
-            `total_sum` DOUBLE,
-            `car_id` VARCHAR(256),
-            `app_user_id` VARCHAR(256),
-            `order_time` TIMESTAMP,
-            `cancellation` BOOLEAN,
-            `cancellation_time` TIMESTAMP,
-            FOREIGN KEY (`car_id`) REFERENCES `t_car` (`car_id`),
-            FOREIGN KEY (`app_user_id`) REFERENCES `t_app_user` (`app_user_id`)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="15" author="mashafadik@yahoo.com">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS `t_app_order` (-->
+<!--            `order_id` VARCHAR(256) PRIMARY KEY NOT NULL,-->
+<!--            `start_date` DATE,-->
+<!--            `start_time` TIME,-->
+<!--            `end_date` DATE,-->
+<!--            `end_time` TIME,-->
+<!--            `total_sum` DOUBLE,-->
+<!--            `car_id` VARCHAR(256),-->
+<!--            `app_user_id` VARCHAR(256),-->
+<!--            `order_time` TIMESTAMP,-->
+<!--            `cancellation` BOOLEAN,-->
+<!--            `cancellation_time` TIMESTAMP,-->
+<!--            FOREIGN KEY (`car_id`) REFERENCES `t_car` (`car_id`),-->
+<!--            FOREIGN KEY (`app_user_id`) REFERENCES `t_app_user` (`app_user_id`)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
-    <changeSet id="16" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/brands.csv"
-                tableName="t_car_brand"
-                primaryKey="car_brand_id">
-            <column name="car_brand_id" header="car_brand_id" type="NUMERIC"/>
-            <column name="car_brand_name" header="car_brand_name" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="16" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/brands.csv"-->
+<!--                tableName="t_car_brand"-->
+<!--                primaryKey="car_brand_id">-->
+<!--            <column name="car_brand_id" header="car_brand_id" type="NUMERIC"/>-->
+<!--            <column name="car_brand_name" header="car_brand_name" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="17" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/modelDetails.csv"
-                tableName="t_model_detail"
-                primaryKey="modeldetail_id">
-            <column name="modeldetail_id" header="model_detail_id" type="NUMERIC"/>
-            <column name="model_name" header="model_name" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="17" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/modelDetails.csv"-->
+<!--                tableName="t_model_detail"-->
+<!--                primaryKey="modeldetail_id">-->
+<!--            <column name="modeldetail_id" header="model_detail_id" type="NUMERIC"/>-->
+<!--            <column name="model_name" header="model_name" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="18" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/transmissionTypes.csv"
-                tableName="t_transmission_type"
-                primaryKey="transmission_type_id">
-            <column name="transmission_type_id" header="transmission_type_id" type="NUMERIC"/>
-            <column name="transmission_type_name" header="transmission_type_name" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="18" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/transmissionTypes.csv"-->
+<!--                tableName="t_transmission_type"-->
+<!--                primaryKey="transmission_type_id">-->
+<!--            <column name="transmission_type_id" header="transmission_type_id" type="NUMERIC"/>-->
+<!--            <column name="transmission_type_name" header="transmission_type_name" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="19" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/fuelTypes.csv"
-                tableName="t_fuel_type"
-                primaryKey="fuel_type_id">
-            <column name="fuel_type_id" header="fuel_type_id" type="NUMERIC"/>
-            <column name="fuel_type_name" header="fuel_type_name" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="19" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/fuelTypes.csv"-->
+<!--                tableName="t_fuel_type"-->
+<!--                primaryKey="fuel_type_id">-->
+<!--            <column name="fuel_type_id" header="fuel_type_id" type="NUMERIC"/>-->
+<!--            <column name="fuel_type_name" header="fuel_type_name" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="20" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/bodyTypes.csv"
-                tableName="t_body_type"
-                primaryKey="body_type_id">
-            <column name="body_type_id" header="body_type_id" type="NUMERIC"/>
-            <column name="body_type_name" header="body_type_name" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="20" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/bodyTypes.csv"-->
+<!--                tableName="t_body_type"-->
+<!--                primaryKey="body_type_id">-->
+<!--            <column name="body_type_id" header="body_type_id" type="NUMERIC"/>-->
+<!--            <column name="body_type_name" header="body_type_name" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
-    <changeSet id="21" author="mashafadik@yahoo.com" >
-        <loadUpdateData
-                encoding="UTF-8"
-                file="csv_files/appUsers.csv"
-                tableName="t_app_user"
-                primaryKey="app_user_id">
-            <column name="app_user_id" header="app_user_id" type="STRING"/>
-            <column name="user_name" header="user_name" type="STRING"/>
-            <column name="user_password" header="user_password" type="STRING"/>
-            <column name="user_first_name" header="user_first_name" type="STRING"/>
-            <column name="user_last_name" header="user_last_name" type="STRING"/>
-            <column name="user_birth_date" header="user_birth_date" type="DATE"/>
-            <column name="user_phone_number" header="user_phone_number" type="STRING"/>
-            <column name="user_email" header="user_email" type="STRING"/>
-            <column name="user_gender" header="user_gender" type="STRING"/>
-            <column name="user_role" header="user_role" type="STRING"/>
-        </loadUpdateData>
-    </changeSet>
+<!--    <changeSet id="21" author="mashafadik@yahoo.com" >-->
+<!--        <loadUpdateData-->
+<!--                encoding="UTF-8"-->
+<!--                file="csv_files/appUsers.csv"-->
+<!--                tableName="t_app_user"-->
+<!--                primaryKey="app_user_id">-->
+<!--            <column name="app_user_id" header="app_user_id" type="STRING"/>-->
+<!--            <column name="user_name" header="user_name" type="STRING"/>-->
+<!--            <column name="user_password" header="user_password" type="STRING"/>-->
+<!--            <column name="user_first_name" header="user_first_name" type="STRING"/>-->
+<!--            <column name="user_last_name" header="user_last_name" type="STRING"/>-->
+<!--            <column name="user_birth_date" header="user_birth_date" type="DATE"/>-->
+<!--            <column name="user_phone_number" header="user_phone_number" type="STRING"/>-->
+<!--            <column name="user_email" header="user_email" type="STRING"/>-->
+<!--            <column name="user_gender" header="user_gender" type="STRING"/>-->
+<!--            <column name="user_role" header="user_role" type="STRING"/>-->
+<!--        </loadUpdateData>-->
+<!--    </changeSet>-->
 
 </databaseChangeLog>

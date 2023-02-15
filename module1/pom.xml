@@ -156,7 +156,18 @@
                         <phase>process-resources</phase>
                     </execution>
 
-
+<!--                    <execution>-->
+<!--                        <id>Generate ChangeLog</id>-->
+<!--                        <configuration>-->
+<!--                            <propertyFile>src/main/resources/rent.jdbc.properties</propertyFile>-->
+<!--                            <outputChangeLogFile>generatedChangeLog/GeneratedChangeLog.xml</outputChangeLogFile>-->
+<!--                            <dataDir>generatedChangeLog/data</dataDir>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>generateChangeLog</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>process-resources</phase>-->
+<!--                    </execution>-->
 
                 </executions>
             </plugin>

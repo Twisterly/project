@@ -1,2 +1,0 @@
-car_id,reg_number,vin_number,price,year,color,climate_control,seats,doors,car_photo_id,body_type_id,car_brand_id,transmission_type_id,fuel_type_id,modeldetail_id, is_active, comment
-11000000-0000-0000-0000-000000000003,6745HH-7,2W4ER5T64S1X9NBV5,25,2022,blue,true,5,4,1,2,7,1,1,6,true,no renovation planned
