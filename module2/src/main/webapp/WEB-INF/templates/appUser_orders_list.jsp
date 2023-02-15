@@ -1,37 +1,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
 <h1>All your orders:</h1>
-<table style="width:100%" class="table table-bordered">
+<table style="width:100%" class="table table-hover">
   <tr>
+    <th>Car Photo</th>
     <th>AppOrder Id</th>
     <th>Time of order</th>
     <th>Start date</th>
     <th>End date</th>
     <th>Total sum</th>
-    <th>Car id</th>
     <th>Car brand</th>
     <th>Car model</th>
     <th>Car body type</th>
     <th>Car transmission type</th>
     <th>Car fuel type</th>
-    <th>AppUser id</th>
     <th>AppUser username</th>
     <th>Actions</th>
   </tr>
-  <c:forEach items="${appOrders}" var="appOrder">
   <tr>
+  <c:forEach items="${appOrders}" var="appOrder">
+    <td><image height="100" width="100" src="/car/image/${appOrder.car.id}/photo.jpg" class="img-thumbnail"></td>
     <td><c:out value="${appOrder.id}"/></td>
     <td><c:out value="${appOrder.timeOfOrder}"/></td>
     <td><c:out value="${appOrder.startDate}"/></td>
     <td><c:out value="${appOrder.endDate}"/></td>
     <td><c:out value="${appOrder.totalSum}"/></td>
-    <td><c:out value="${appOrder.car.id}"/></td>
     <td><c:out value="${appOrder.car.brand.brandName}"/></td>
     <td><c:out value="${appOrder.car.modelDetail.modelName}"/></td>
     <td><c:out value="${appOrder.car.bodyType.bodyTypeName}"/></td>
     <td><c:out value="${appOrder.car.transmissionType.transmissionTypeName}"/></td>
     <td><c:out value="${appOrder.car.fuelType.fuelTypeName}"/></td>
-    <td><c:out value="${appOrder.appUser.id}"/></td>
     <td><c:out value="${appOrder.appUser.username}"/></td>
     <td>
     <input name="car.id" id="car.id" value="${car.id}" type="hidden">
@@ -76,7 +74,5 @@
     </li>
   </c:if>
   </ul>
-</nav>
-<button type="button" class="btn btn-light"><a href="appUser-orders.html?pageNumber=${currentPage + 1}">next</a></button>
 </nav>
 <jsp:include page="_footer.jsp"/>

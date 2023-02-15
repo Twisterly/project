@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
 <h1>All cars:</h1>
-<table style="width:100%" class="table table-bordered">
+<table style="width:100%" class="table table-hover">
   <tr>
     <th>Photo</th>
     <th>Brand</th>
