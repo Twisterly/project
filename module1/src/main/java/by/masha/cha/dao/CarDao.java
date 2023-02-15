@@ -36,6 +36,8 @@ public interface CarDao {
     List<Car> getPageNotActiveCars(Integer pageSize, Integer pageNumber);
     Long getCount();
 
+    Long getCountNotActiveCars();
+
     List<String> getAllCarDoorsModification();
 
     List<String> getAllCarSeatsModification();

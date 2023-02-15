@@ -46,7 +46,7 @@ public class CarListController {
             page = Integer.valueOf(pageNumber);
         }
         List<Car> cars = carService.getPage(3, page);
-        Long carCount = (long) cars.size();
+        Long carCount = carService.getCount();
         int pageCount = (int) Math.ceil((double) carCount / 3);
         List<ModelDetail> modelDetails = modelDetailService.getAll();
         List<BodyType> bodyTypes = bodyTypeService.getAll();

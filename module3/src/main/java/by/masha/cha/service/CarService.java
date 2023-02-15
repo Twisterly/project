@@ -125,6 +125,9 @@ public class CarService {
     public Long getCount() {
         return carDao.getCount();
     }
+    public Long getCountNotActiveCars() {
+        return carDao.getCountNotActiveCars();
+    }
 
     public List<Car> getFreeCars(List<AppOrder> orders) {
         List<Car> allCars = carDao.findAll();

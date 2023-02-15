@@ -186,6 +186,14 @@ public class CarDaoImpl implements CarDao {
         return query.list();
     }
 
+    public Long getCountNotActiveCars() {
+        Criteria criteriaCount =
+                sessionFactory.getCurrentSession().createCriteria(Car.class).add(Restrictions.eq("active", 0));
+        criteriaCount.setProjection(Projections.rowCount());
+        return (Long) criteriaCount.uniqueResult();
+
+    }
+
     public List<Car> getPage(Integer pageSize, Integer pageNumber) {
         CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Car> criteria = criteriaBuilder.createQuery(Car.class);
@@ -202,7 +210,7 @@ public class CarDaoImpl implements CarDao {
 
     public Long getCount() {
         Criteria criteriaCount =
-                sessionFactory.getCurrentSession().createCriteria(Car.class);
+                sessionFactory.getCurrentSession().createCriteria(Car.class).add(Restrictions.eq("active", 1));
         criteriaCount.setProjection(Projections.rowCount());
         return (Long) criteriaCount.uniqueResult();
 
