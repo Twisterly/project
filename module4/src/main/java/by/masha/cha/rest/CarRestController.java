@@ -5,9 +5,7 @@ import by.masha.cha.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,32 @@ public class CarRestController {
                     .transmissionType(car.getTransmissionType())
                     .build());
         }
+        return new ResponseEntity<>(
+                result,
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> getById(@PathVariable(value = "id") String id) {
+        Car car = carService.getById(id);
+        Car result = Car.builder()
+                .id(car.getId())
+                .regNumber(car.getRegNumber())
+                .vinNumber(car.getVinNumber())
+                .price(car.getPrice())
+                .year(car.getYear())
+                .color(car.getColor())
+                .seats(car.getSeats())
+                .doors(car.getDoors())
+                .active(car.getActive())
+                .comment(car.getComment())
+                .brand(car.getBrand())
+                .modelDetail(car.getModelDetail())
+                .bodyType(car.getBodyType())
+                .fuelType(car.getFuelType())
+                .transmissionType(car.getTransmissionType())
+                .build();
+
         return new ResponseEntity<>(
                 result,
                 HttpStatus.OK);
