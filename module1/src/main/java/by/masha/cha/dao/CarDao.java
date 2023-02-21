@@ -1,6 +1,7 @@
 package by.masha.cha.dao;
 
 import by.masha.cha.model.*;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.awt.print.Pageable;
@@ -43,6 +44,7 @@ public interface CarDao {
     List<String> getAllCarSeatsModification();
 
     boolean isUnique(String regNum);
+
 
 
 

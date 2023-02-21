@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Table(name = "t_car")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Car {
 
     @Id

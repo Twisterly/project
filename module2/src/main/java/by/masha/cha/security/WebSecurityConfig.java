@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/personal-info*").permitAll()
                 .antMatchers("/create-order-from-car-list*").permitAll()
                 .antMatchers("/order*").permitAll()
+                .antMatchers("/car/rest*").permitAll()
                 .antMatchers("/brand-list*").hasRole("ADMIN")
                 .antMatchers("/modelDetail-list*").hasRole("ADMIN")
                 .antMatchers("/bodyType-list*").hasRole("ADMIN")

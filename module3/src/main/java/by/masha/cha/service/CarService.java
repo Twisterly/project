@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +32,7 @@ public class CarService {
     public List<Car> getAll() {
         return carDao.findAll();
     }
+
 
     public Car getById(String carId) {
         return carDao.findById(carId);
@@ -71,47 +70,12 @@ public class CarService {
         car.setPrice(price);
         car.setActive(active);
         car.setComment(comment);
-//        if (!(car.getBrand().equals(brand))) {
-//            car.setBrand(brand);
-//        }
-//        if (!(car.getModelDetail().equals(modelDetail))) {
-//            car.setModelDetail(modelDetail);
-//        }
-//        if (!(car.getBodyType().equals(bodyType))) {
-//            car.setBodyType(bodyType);
-//        }
-//        if (car.getTransmissionType().getId() != transmissionType.getId()) {
-//            car.setTransmissionType(transmissionType);
-//        }
-//        if (car.getDoors() != doors) {
-//            car.setDoors(doors);
-//        }
-//        if (car.getSeats() != seats) {
-//            car.setSeats(seats);
-//        }
-//        if (!(car.getColor().equals(color))) {
-//            car.setColor(color);
-//        }
-//        if (car.getPrice() != price) {
-//            car.setPrice(price);
-//        }
-////        if (car.isClimateControl() == climateControl) {
-////            car.setClimateControl(climateControl);
-////        }
         carDao.update(car);
         return carDao.findById(carId);
     }
 
     public List<Car> findAllByUserId(String userId) {
         return carDao.findAllByUserId(userId);
-    }
-
-    public List<Car> findAllByLimit(Integer limit, Integer offset) {
-        return carDao.findAllByLimit(limit, offset);
-    }
-
-    public List<Car> findAllAndSortByYear() {
-        return carDao.findAllAndSortByYear();
     }
 
     public List<Car> getPage(Integer pageSize, Integer pageNumber) {
